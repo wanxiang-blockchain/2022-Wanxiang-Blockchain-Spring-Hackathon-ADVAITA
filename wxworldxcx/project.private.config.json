@@ -1,0 +1,56 @@
+{
+  "setting": {
+    "urlCheck": false,
+    "compileHotReLoad": true
+  },
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "",
+          "pathName": "pageWatch/pageWatch/bluetooth/bluetooth",
+          "query": "sn=9999999",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pageWatch/pageWatch/realTimeChart/realTimeChart",
+          "query": "device_id=9999999",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pageWatch/pageWatch/treport2/treport2",
+          "query": "DeviceIdentity=863221040931881&id=11183&bindid=17541&example=0&isSelf=1",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/noCheck/no_check",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pageWatch/pageWatch/index/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pageWatch/pageWatch/share/share",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "projectname": "非二世界"
+}

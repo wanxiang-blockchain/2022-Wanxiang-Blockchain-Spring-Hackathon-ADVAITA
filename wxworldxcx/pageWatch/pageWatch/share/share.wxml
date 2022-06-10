@@ -1,0 +1,53 @@
+<MyHeader2 bind:clickDate="clickDate" bind:back="back" titleText="添加共享人" backIcon="{{true}}" color="#FFF"></MyHeader2>
+<scroll-view style="height:calc({{windowHeight}}px - 74rpx); width:{{windowWidth}}px;position:relative;background: linear-gradient(180deg, #1F222F 0%, #0A3066 100%);" scroll-y="true" class="scroll-h">
+
+<view class="block" style="margin-top:calc({{statusBarHeight}}px + {{navHeight}}px + 20rpx);">
+  <view class="block-item share-my">
+    <image src="https://i.2fei2.com/poster/slide/2022-06-07/10:26:46/629eb766552c0.png"></image>
+    <view class="t">共享我的健康数据</view>
+    <view class="c">添加共享对象后，对方可在他的手机实时查看我的健康状况。如健康报告、实时心率等。</view>
+
+    <view class="st">选择共享的内容</view>
+    <view class="s">
+      <view class="item">
+        <view class="l">健康报告</view>
+        <view class="r"><switch checked="true" name="switch"/></view>
+      </view>
+      <view class="item">
+        <view class="l">实时心率、血压</view>
+        <view class="r"><switch name="switch"/></view>
+      </view>
+      <view class="item">
+        <view class="l">连续心率、血压图，脉搏波，心率变异性</view>
+        <view class="r"><switch name="switch"/></view>
+      </view>
+    </view>
+    <view class="btn">共享</view>
+  </view>
+
+  <view class="block-item share-ta">
+    <image src="https://i.2fei2.com/poster/slide/2022-06-07/10:26:46/629eb76618cef.png"></image>
+    <view class="t">查看他人的健康数据</view>
+    <view class="c">我可在自己的手机实时查看他人的健康状况，如健康报告、实时心率等。</view>
+
+    <view class="st">选择想要查看的内容</view>
+    <view class="s">
+      <view class="item">
+        <view class="l">健康报告</view>
+        <view class="r"><switch checked="true" name="switch"/></view>
+      </view>
+      <view class="item">
+        <view class="l">实时心率、血压</view>
+        <view class="r"><switch name="switch"/></view>
+      </view>
+      <view class="item">
+        <view class="l">连续心率、血压图，脉搏波，心率变异性</view>
+        <view class="r"><switch name="switch"/></view>
+      </view>
+    </view>
+    <view class="btn">添加共享对象</view>
+  </view>
+</view>
+</scroll-view>
+
+<include src="../../../pages/common/footer.wxml" />

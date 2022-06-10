@@ -1,0 +1,29 @@
+<MyHeader2 ></MyHeader2>
+<scroll-view id="scrollBox" style="height: calc({{windowHeight}}px  - {{statusBarHeight}}px + 29rpx); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h" catchtouchmove='true'>
+  <view style="padding:0 42rpx;">
+
+    <view style="padding-top:calc({{statusBarHeight}}px + {{navHeight}}px + 33rpx);">
+      <image style="width:85rpx;height:67rpx;"  src="https://i.2fei2.com/goods/logo/2022-01-21/10:00:00/61ea13a0f1ae1.png"></image>
+    </view>
+    <view class="title">设置手表WLAN</view>
+
+    <view class="tips"><image src="https://i.2fei2.com/goods/logo/2022-01-21/10:02:21/61ea142d253de.png"></image>仅支持数字、英文与英式符号的WLAN账号、密码</view>
+
+    <!--输入账号-->
+    <input type="text" placeholder="账号" value="{{acc}}" bindinput="accInput"></input>
+    <!--密码-->
+    <view class="tag">
+      <view bindtap="isPass" class="{{isPass == 1 ? 'active' : ''}}">有密码</view>
+      <view bindtap="isPass" class="{{isPass == 0 ? 'active' : ''}}">无密码</view>
+    </view>
+    <!--输入密码-->
+    <input type="password" wx:if="{{isPass}}" value="{{pass}}" bindinput="passInput" placeholder="密码"></input>
+    <view class="confirm {{check == 1 ? 'active' : ''}}">确定</view>
+  </view>
+
+<!-- <view bindtap="goChat" style="font-size: 25rpx;text-align: center;position: fixed;bottom:74rpx;width: 100%;font-weight: 400;display: inline-flex;justify-content: center;">
+  如有疑问请 
+  <view style="color: #339BFF;display: inline-flex;margin-left: 5rpx;">咨询客服<view class="iconfont iconmore" style="font-size: 25rpx;"></view></view>
+</view> -->
+ </scroll-view>

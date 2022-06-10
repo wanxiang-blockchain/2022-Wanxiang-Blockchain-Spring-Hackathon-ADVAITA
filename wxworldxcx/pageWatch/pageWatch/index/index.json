@@ -1,0 +1,11 @@
+{
+  "usingComponents": {
+   "MyHeader2": "/components/MyHeader2/MyHeader2",
+   "circle": "/components/circle/circle",
+   "messageboxOne": "/components/messageboxOne/messageboxOne",
+   "ec-canvas": "../../../utils/ec-canvas/ec-canvas",
+   "validData": "/components/validData/validData"
+  },
+"navigationBarTextStyle": "white"
+
+}

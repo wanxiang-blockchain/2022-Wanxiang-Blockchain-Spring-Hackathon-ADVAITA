@@ -1,0 +1,85 @@
+{
+	"pages": [
+		"pages/shop/shop",
+		"pages/index/index",
+		"pages/noCheck/no_check",
+		"pages/chartList/chartList",
+		"pages/scanWatch/scanWatch",
+		"pages/addTreportUser/addTreportUser",
+
+
+		"pages/home/home",
+		"pages/home/news",
+		"pages/home/quota",
+		"pages/home/quotaDetail",
+
+		"pages/personal/personal",
+		
+		"pages/help/help",
+		"pages/works/works",
+		
+		"pages/linkErr/linkErr",
+		"pages/msg/msg_fail",
+		"pages/focus/focus"
+	],
+	"requiredBackgroundModes": ["audio"],
+	"subPackages": [{
+		"root": "pageShop",
+		"pages": [
+			"pageShop/shopDetail/shopDetail",
+			"pageShop/address/address",
+			"pageShop/sleepIntro/sleepIntro",
+
+			"pageShop/orderConfirm/orderConfirm",
+			"pageShop/orderDetail/orderDetail",
+
+			"pageShop/moneyDetail/moneyDetail",
+			"pageShop/moneyList/moneyList",
+			"pageShop/agentApply/agentApply",
+			
+			"pageShop/car/car",
+			"pageShop/order/order",
+			"pageShop/workDetail/workDetail",
+			"pageShop/activity/activity",
+			"pageShop/moreGoods/moreGoods",
+			"pageShop/agent/agent"
+		]
+	}],
+	"preloadRule": {
+		"pages/shop/shop": {
+			"network": "all",
+			"packages": ["pageShop"]
+		},
+		"pages/personal/personal": {
+			"network": "all",
+			"packages": ["pageShop"]
+		}
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "你的位置信息将用于小程序定位"
+		},
+		"scope.werun": {
+			"desc": "即将获取你的微信步数"
+		}
+	},
+	"window": {
+		"navigationStyle": "custom",
+		"navigationBarBackgroundColor": "#ffffff",
+		"navigationBarTextStyle": "white",
+		"backgroundColor": "#eeeeee",
+		"backgroundTextStyle": "light",
+		"navigationBarTitleText": "心灵艺术家园",
+		"enablePullDownRefresh": false
+	},
+	"plugins": {
+	},
+	"usingComponents": {},
+	"networkTimeout": {
+		"request": 3000000,
+		"uploadFile":100000,
+		"downloadFile": 10000
+	},
+	"debug": false,
+	"sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,100 @@
+<!-- <MyHeader2 bind:back="back" color="#000" backIcon="{{true}}" ></MyHeader2> -->
+<!-- <scroll-view style="height: calc({{windowHeight}}px - {{windowIsBang ? 40 : 16}}px - 52px ); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true"> -->
+<!-- <scroll-view class="scroll_h" style="top: {{statusBarHeight+navHeight}}px; width:{{windowWidth}}px;position:relative;" scroll-y="true"
+> -->
+ <scroll-view style="background: linear-gradient(180deg, #091131 0%, #0A3066 100%);width:{{windowWidth}}px;" scroll-y="true"   class="scroll-h">
+	<view class='back-icon' style="top: {{navHeight-statusBarHeight/4}}px;" bindtap='back'>
+			<view class="back iconfont iconjiantouyou" style="transform: rotate(180deg);color:{{color}};"></view>
+	</view>
+	<view class="type-block"></view>
+	<view class="type-block"></view>
+
+	<view class="life-bar" style="background: #202A4D;">
+		<view class="life-echart">
+			<view class="left" style="display: inline-flex;">
+				<image src="https://i.2fei2.com/goods/logo/2022-04-01/11:36:34/62467342e5525.png" style="width: 33rpx;margin: 8rpx 10rpx 0 0;" mode="widthFix"></image>
+				脉搏波
+			</view>
+			
+			<view class="clearfix"></view>
+		</view>
+		<view class="echart-box" style="height:263rpx;">
+			<view  wx:if="{{mbbData.length==0 && mbbLoading}}" class="no-data" style="height: 263rpx;line-height: 263rpx;"><loading size="40"></loading></view>
+			<ec-canvas id="mychart-dom-mbb" type="2d" canvas-id="mychart-dom-mbb" ec="{{ecMBB}}"></ec-canvas>
+		</view>
+	</view>
+
+	<view class="life-bar" style="background: #3B3253;">
+		<view class="life-echart">
+			<view class="left" style="display: inline-flex;">
+				<image src="https://i.2fei2.com/goods/logo/2022-04-01/11:40:50/6246744254d8f.png" style="width: 33rpx;margin: 5rpx 10rpx 0 0;" mode="widthFix"></image>
+				心率
+			</view>
+			
+			<view class="clearfix"></view>
+		</view>
+		<view class="echart-box" style="height:263rpx;">
+			<view  wx:if="{{bpmData.length==0 && bpmLoading}}" class="no-data" style="height: 263rpx;line-height: 263rpx;"><loading size="40"></loading></view>
+			<ec-canvas id="mychart-dom-bpm" type="2d" canvas-id="mychart-dom-bpm" ec="{{ecBPM}}"></ec-canvas>
+		</view>
+
+		<view class="real-bpm">
+			<view class="num"><text>{{bpm}}</text>次/分</view>
+			<view class="hint">
+				<text>0-60 心率偏低</text>
+				<text>60-100 心率正常</text>
+				<text>100-180 心率偏高</text>
+			</view>
+
+		</view>
+	</view>
+	
+	<view class="life-bar" style="background: #3B3D50;">
+		<view class="life-echart">
+			<view class="left" style="display: inline-flex;">
+				<image src="https://i.2fei2.com/goods/logo/2022-04-01/11:41:51/6246747f09f6f.png" style="width: 33rpx;margin: 8rpx 10rpx 0 0;" mode="widthFix"></image>
+				血压
+			</view>
+			
+			<text class="right">仅供参考 不做服药依据 服药请遵医嘱</text>
+			
+			<view class="clearfix"></view>
+			
+		</view>
+		<view class="echart-box" style="height:263rpx;" >
+			<view wx:if="{{systolicData.length==0 && diastoliData.length==0 && bpLoading}}" class="no-data" style="height: 263rpx;line-height: 263rpx;"><loading size="40"></loading></view>
+			<ec-canvas id="mychart-dom-bp" type="2d" canvas-id="mychart-dom-bp" ec="{{ecBP}}"></ec-canvas>
+		</view>
+		<view class="real-bp">
+			<view class="row">
+				<view class="item">
+					<view class="num">
+						{{dia}}
+					</view>
+					<view class="unit">
+						<view class="top">高压</view>
+						<view class="bottom">mmHg</view>
+					</view>
+				</view>
+				<view class="item">
+					<view class="num">
+						{{sys}}
+					</view>
+					<view class="unit">
+						<view class="top">低压</view>
+						<view class="bottom">mmHg</view>
+					</view>
+				</view>
+			</view>
+			<view class="hint">
+				高压正常范围是90-140mmHg，低压正常范围是60-90mmHg。
+			</view>
+
+		</view>
+	</view>
+
+
+
+	<view style="height: 1px;width: 100%;"></view>
+</scroll-view>

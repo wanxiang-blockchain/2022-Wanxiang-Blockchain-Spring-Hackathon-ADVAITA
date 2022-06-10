@@ -1,0 +1,1480 @@
+<MyHeader2 bind:clickDate="clickDate" bind:back="back" backIcon="{{true}}" color="#FFF"></MyHeader2>
+<scroll-view class="scroll-h" bindscroll="bindscroll" style="height: calc({{windowHeight}}px ); width:{{windowWidth}}px;position:relative;background: linear-gradient(180deg, #091131 0%, #0A3066 100%);" scroll-y="true" scroll-into-view="{{type}}">
+	<view class="count-div" style="margin-top:calc({{statusBarHeight}}px + {{navHeight}}px);">
+		<view class="top">
+			<view class="top-left">
+				<image wx:if="{{example==1}}" src="https://i.2fei2.com/shop/logo/2020-08-12/17:34:33/5f33b7a911bb7.png"></image>
+				<image wx:else src="{{treport.avatar_url}}"></image>
+				<view class="info">
+					<view class="name">{{example==1? '陈先生' :treport.nickname}}</view>
+					<view class="time">出具时间 {{treport.addString}}</view>
+				</view>
+			</view>
+			<view class="top-right">
+				<view class="top-right-r">检测时长 {{treport.examinetime}} h</view>
+				<view class="top-right-r">有效数据 {{treport.validation}}%</view>
+			</view>
+		</view>
+		<view class="top2">
+			<view class="t">
+				综合得分<text>（满分100分、合格60分）</text>
+			</view>
+			<view class="c {{treport.color_list.count}}">
+				{{treport.count}}<text>分</text>
+			</view>
+		</view>
+		<view class="top3">
+			<view class="item">
+				<view class="l-t {{treport.color_list.heart_multi_score}}" style="background: rgba(38, 9, 28, 0.78);">
+					<view class="c">{{treport.heart_multi_score*1}}<text>分</text></view>
+					<view class="t">心藏</view>
+				</view>
+				<view class="d {{treport.color_list.spisc}}">
+					<view class="c">{{treport.spisc}}<text>分</text></view>
+					<view class="t">精神状态</view>
+				</view>
+				<view class="d {{treport.color_list.cardsc}}">
+					<view class="c">{{treport.cardsc}}<text>分</text></view>
+					<view class="t">心血管</view>
+				</view>
+			</view>
+
+			<view class="item">
+				<view class="l-t {{treport.color_list.liver_multi_score}}" style="background: rgba(2, 40, 32, 0.78);">
+					<view class="c">{{treport.liver_multi_score*1}}<text>分</text></view>
+					<view class="t">肝藏</view>
+				</view>
+				<view class="d {{treport.color_list.autoners}}">
+					<view class="c">{{treport.autoners}}<text>分</text></view>
+					<view class="t">内脏神经</view>
+				</view>
+				<view class="d {{treport.color_list.sleepqualiscore}}">
+					<view class="c">{{treport.sleepqualiscore}}<text>分</text></view>
+					<view class="t">睡眠质量</view>
+				</view>
+				<view class="d {{treport.color_list.diurnalrhythmscore}}">
+					<view class="c">{{treport.diurnalrhythmscore}}<text>分</text></view>
+					<view class="t">生命节律</view>
+				</view>
+			</view>
+
+			<view class="item">
+				<view class="l-t {{treport.color_list.kidney_multi_score}}" style="background: #00142D;">
+					<view class="c">{{treport.kidney_multi_score*1}}<text>分</text></view>
+					<view class="t">肾藏</view>
+				</view>
+				<view class="d {{treport.color_list.energyscore}}">
+					<view class="c">{{treport.energyscore}}<text>分</text></view>
+					<view class="t">生命活力</view>
+				</view>
+				<view class="d {{treport.color_list.sympatheticscore}}">
+					<view class="c">{{treport.sympatheticscore}}<text>分</text></view>
+					<view class="t">寒热状态</view>
+				</view>
+			</view>
+
+			<view class="item">
+				<view class="l-t {{treport.color_list.bmiscore}}" style="background: #26091C;">
+					<view class="c">{{treport.bmiscore*1}}<text>分</text></view>
+					<view class="t">脾藏</view>
+				</view>
+				<view class="d {{treport.color_list.bmiscore}}">
+					<view class="c">{{treport.bmiscore}}<text>分</text></view>
+					<view class="t">体重指数</view>
+				</view>
+			</view>
+
+			<view class="bottom" wx:if="{{treport.risk_list}}">
+				<view class="t">风险提示（低于60分）</view>
+				<view class="d" wx:for="{{treport.risk_list}}">
+					<view class="dian"></view>{{item.text}}：{{item.value}}分
+				</view>
+			</view>
+		</view>
+
+		<view class="top4">
+			<view class="t">
+				身心内稳态参数洞
+			</view>
+			<block wx:if="{{treport.singema_val.state==0}}">
+				<block wx:for="{{treport.singema_val.count}}" wx:for-item="v">
+					<block wx:if="{{v.is_select==1}}">
+						<block wx:if="{{v.hole3_num!=0||v.hole2_num!=0||v.hole1_num!=0}}">
+							<view class="item gao {{showDetailInfo.gaofengxian ? 'close' : ''}} {{v.hole3_num==0 ? 'wu' : ''}}">
+								<view class="t">
+									<view class="l">
+										<view class="dian"></view>高风险<text>{{v.hole3_num==0 ? '无' : v.hole3_num+'个'}}</text>
+									</view>
+									<view class="r">
+										<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="gaofengxian"></view>
+									</view>
+								</view>
+								<view class="d-group">
+									<view class="d" wx:for="{{v.hole3_line}}" wx:for-item="vv">
+										<view class="t">
+											{{vv.line_name}}
+										</view>
+										<view class="dd" wx:for="{{vv.row_detail}}" wx:for-item="vvv">
+											<view class="dd-l"><view class="dian"></view>{{vvv.value}}</view> <view class="dd-r">报告({{vvv.time_text}})</view>
+										</view>
+									</view>
+								</view>
+							</view>
+
+							<view class="item zhong {{showDetailInfo.zhongfengxian ? 'close' : ''}} {{v.hole2_num==0 ? 'wu' : ''}}">
+								<view class="t">
+									<view class="l">
+										<view class="dian"></view>中风险<text>{{v.hole2_num==0 ? '无' : v.hole2_num+'个'}}</text>
+									</view>
+									<view class="r">
+										<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="zhongfengxian"></view>
+									</view>
+								</view>
+								<view class="d-group">
+									<view class="d" wx:for="{{v.hole2_line}}" wx:for-item="vv">
+										<view class="t">
+											{{vv.line_name}}
+										</view>
+										<view class="dd" wx:for="{{vv.row_detail}}" wx:for-item="vvv">
+											<view class="dd-l"><view class="dian"></view>{{vvv.value}}</view> <view class="dd-r">报告({{vvv.time_text}})</view>
+										</view>
+									</view>
+								</view>
+							</view>
+
+
+							<view class="item di {{showDetailInfo.difengxian ? 'close' : ''}} {{v.hole1_num==0 ? 'wu' : ''}}">
+								<view class="t">
+									<view class="l">
+										<view class="dian"></view>低风险<text>{{v.hole1_num==0 ? '无' : v.hole1_num+'个'}}</text>
+									</view>
+									<view class="r">
+										<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="difengxian"></view>
+									</view>
+								</view>
+								<view class="d-group">
+									<view class="d" wx:for="{{v.hole1_line}}" wx:for-item="vv">
+										<view class="t">
+											{{vv.line_name}}
+										</view>
+										<view class="dd" wx:for="{{vv.row_detail}}" wx:for-item="vvv">
+											<view class="dd-l"><view class="dian"></view>{{vvv.value}}</view> <view class="dd-r">报告({{vvv.time_text}})</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</block>
+						<block wx:else>
+							<view class="item kong">
+								{{treport.singema_val.text}}
+							</view>
+						</block>
+					</block>
+				</block>
+			</block>
+			<block wx:else>
+
+				<view class="item kong">
+					{{treport.singema_val.text}}
+				</view>
+			</block>
+		</view>
+
+		<view class="top5">
+			调理矿盐：{{recommend_sugar_ball?recommend_sugar_ball:'无需调理'}}
+			<view class="btn" wx:if="{{recommend_sugar_ball}}" bindtap="addCart">去购买</view>
+		</view>
+	</view>
+
+	<view class="block" style="background: rgba(192, 159, 159, 0.38);">
+		<view class="big-title" style="background: rgba(41, 20, 41, 1);">
+			心藏<text>《中医心藏功能态势测评报告》</text>
+		</view>
+
+		<view class="item">
+
+			<view class="t {{showDetailInfo.heart ? 'open' : ''}}">
+				中医心藏功能态势测评报告
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="heart"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.heart}}">
+				<view class="quota-name">● 中医心藏的含义</view>
+				<view class="quota-text"><text class="quota-blue">中医学中的心藏(音zàng)是指产生意识思维、学习记忆、睡眠梦幻、昼夜节律等精神活动的中枢神经系统。</text></view>
+				<view class="quota-name">● 中医心藏(音zàng)的藏(音cáng)神功能</view>
+				<view class="quota-text"><text class="quota-blue">是指中枢神经系统产生意识、思维、学习、记忆等精神活动的功能。</text>该功能异常时，常表现为精神不振、嗜睡、健忘，甚至表情淡漠、目光呆滞、动作迟缓、意识模糊、昏睡、昏迷；心烦、谵语、失眠多梦、白天打盹晚上睡不着，甚至狂躁妄动、打人毁物、胡言乱语；头沉、头蒙、注意力不集中、喃喃自语、语无伦次、行为怪异、幻听幻视、哭笑无常。</view>
+				<view class="quota-name">● 中医心藏主血脉功能</view>
+				<view class="quota-text"><text class="quota-blue">是指脉管系统约束和推动血液和淋巴循行全身的功能。</text>该功能异常时，常表现为心悸怔忡，活动劳累后加重、脉虚无力；心胸冷痛、遇冷或入夜加重；心胸憋闷、胸痛掣背，夜间尤甚；头晕、头胀、头昏、头蒙、健忘。</view>
+
+			</view>
+
+			<view class="c {{treport.color_list.heart_multi_score}}">
+				<view class="l">
+					{{treport.heart_multi_score}}<text>分</text>
+				</view>
+			</view>
+
+			<image src="{{treport.ecg_curve}}" data-src="{{treport.ecg_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.ecg_curve1 ? 'open' : ''}}">
+				24小时心率分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="ecg_curve1"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.ecg_curve1}}">
+				该图表达了用户的24小时心率实时分布状况。横轴表达了心率变化的发生时间，纵轴表达了心率的高低。绿色部分反映用户处于睡眠状态，红色和蓝色部分反映用户处于清醒状态。睡眠和清醒状态的心率变化表达了内脏神经的调节能力。
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、24小时平均心率增高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022e1ded.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  24小时平均心率增高</view>
+				<view class="quota-text"><view class="quota-blue">图1表示用户处于高代谢状态，中医称内热。</view></view>
+
+				<view class="quota-text">常见症状：不怕冷而怕热、喜欢吃凉东西、吃得多拉得多、穿得少盖得少、喜欢冬天不喜欢夏天。若不怕热而怕冷，则属真热假寒，为交感神经兴奋所致，如感冒初期的体温高而怕冷。 </view>
+
+				<view class="quota-text">好发疾病：高热、糖尿病、甲亢、不育。正常人见于婴幼儿、儿童、饮茶或咖啡、饮酒、情绪激动。 </view>
+				<view class="expert-line"></view>
+				<view class="quota-text">二、24小时平均心率降低  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:00:13/6260baadbcfe1.png" mode="widthFix"></image>
+					<view class="quota-tips">图2  24小时平均心率降低 </view>
+				<view class="quota-text"><view class="quota-blue">图2表示用户处于低代谢状态，中医称内寒。</view></view>
+
+				<view class="quota-text">常见症状：不怕热而怕冷、不敢吃凉东西、吃得少拉得少，穿得多盖得多、喜欢夏天不喜欢冬天、手脚发凉。 </view>
+
+				<view class="quota-text">好发疾病：甲减、慢性结肠炎、慢性盆腔炎、不孕。正常人见于老年人或来自长寿家族。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">三、睡眠期间心率骤降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:13:53/6260bde1e5975.png" mode="widthFix"></image>
+					<view class="quota-tips">图3 睡眠期间心率骤降 </view>
+				<view class="quota-text"><view class="quota-blue">图3 表示睡眠期间（绿线）心率出现“断崖性”下降，即阵发性心动过缓，常见于副交感神经的异常兴奋，中医称肝气郁结。</view></view>
+
+				<view class="quota-text">常见症状：胸闷、胸痛。 </view>
+
+				<view class="quota-text">好发疾病：颅内疾病、严重缺氧、低温、甲减、阻塞性黄疸、窦房结病变、下壁心梗。  </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">四、觉醒期间心率突升  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022a23b7.png" mode="widthFix"></image>
+					<view class="quota-tips">图4 觉醒期间的心率突升 </view>
+				<view class="quota-text"><view class="quota-blue">图4 表示觉醒期间（蓝线）心率出现“冲顶性”上升，即特发性心动过速，常见于交感神经的异常兴奋，中医称肝气逆乱或肝风内动。 </view></view>
+
+				<view class="quota-text">常见症状：多无异常症状。 </view>
+
+				<view class="quota-text">好发疾病：窦房结病变、内脏神经功能紊乱、癫痫。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">五、觉醒期间平均心率较高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b02261393.png" mode="widthFix"></image>
+					<view class="quota-tips">图5  觉醒期间平均心率较高 </view>
+				<view class="quota-text"><view class="quota-blue">图5 表示觉醒期间平均心率较高（蓝色），即精神状态较好，交感神经兴奋，饮茶或咖啡、饮酒、情绪激动。 </view></view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">六、觉醒期间平均心率较低 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b0222bab4.png" mode="widthFix"></image>
+					<view class="quota-tips">图6 觉醒期间平均心率较低</view>
+				<view class="quota-text"><view class="quota-blue">图6 表示觉醒期间平均心率较低（蓝色），即精神状态不好，副交感神经兴奋，中医称肝气郁结、少神、失神。</view></view>
+
+				<view class="quota-text">常见症状：轻则无精打采、健忘；重则反应迟钝、表情淡漠、动作迟缓。  </view>
+
+				<view class="quota-text">好发疾病：心脏病、脑梗塞、血管性痴呆、过用镇静催眠或抗焦虑药。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">七、睡眠期间平均心率过高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b021db68e.png" mode="widthFix"></image>
+					<view class="quota-tips">图7 睡眠期间平均心率过高</view>
+				<view class="quota-text"><view class="quota-blue">图7 表示睡眠期间（绿线）平均心率过高，表示交感神经兴奋，中医称肝阴虚、肝血虚。</view></view>
+
+				<view class="quota-text">常见症状：睡眠轻浅，一有动静就醒。 </view>
+
+				<view class="quota-text">好发疾病：失眠、血管性痴呆。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">八、昼夜节律过小  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:16:25/6260be79498b2.png" mode="widthFix"></image>
+					<view class="quota-tips">图8 昼夜节律过小</view>
+				<view class="quota-text"><view class="quota-blue">图8 表示生命节律的变化状况。昼夜节律较好的人，觉醒期间的平均心率较高，睡眠期间的平均心率较低，两者差异较大，见图5。昼夜节律紊乱的人，觉醒期间的平均心率不高，睡眠期间的平均心率不低，两者差异较小，绿线与蓝线交叉性分布，中医称肝阴虚、肝血虚。 </view></view>
+
+				<view class="quota-text">常见症状：坐着打盹躺着睡不着。 </view>
+
+				<view class="quota-text">好发疾病：血管性痴呆、脑梗塞。</view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">九、睡眠期间心率忽高忽低   </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b02160523.png" mode="widthFix"></image>
+					<view class="quota-tips">图9 睡眠期间心率忽高忽低</view>
+				<view class="quota-text"><view class="quota-blue">图9 表示睡眠期间心率忽高忽低，常见多梦易醒，中医称肝阴虚、魂魄不宁。 </view></view>
+			</view>
+
+		</view>
+
+		<view class="item">
+			<view class="t">
+				精神状态测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.spisc}}">
+					{{treport.spisc}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.spisc}}"></image>
+
+					{{treport.mentalstate_requali}}
+				</view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.spisc ? 'open' : ''}}">
+					<view class="td">SPISC</view>
+					<view class="td">{{treport.spisc}}</view>
+					<view class="td">
+						<image wx:if="{{treport.spisc < 60}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<!-- <image src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image> -->
+					</view>
+					<view class="td">≥60</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="spisc"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.spisc}}">
+					<view class="quota-blue">此指标暂无详解释义</view>
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.mentalexcite_symptom!=''&&treport.mentalexcite_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.mentalexcite_symptom ? treport.mentalexcite_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.mentalexcite_warning ? treport.mentalexcite_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.mentalexcite_suggestion ? treport.mentalexcite_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+		<view class="item">
+			<view class="t">
+				心血管功能测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.cardsc}}">
+					{{treport.cardsc}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.cardsc}}"></image>
+
+					{{treport.cardiovascular_requali}}
+				</view>
+			</view>
+
+			<image src="{{treport.pulse_curve}}" data-src="{{treport.pulse_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.pulse_curve1 ? 'open' : ''}}">
+				24小时脉搏波变化图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="pulse_curve1"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.pulse_curve1}}">
+				该图表达了用户心肌收缩力和外周阻力的24小时分布情况。心肌收缩力和外周阻力越大，数值越大；心肌收缩力和外周阻力越小，数值越小。正常情况下，心肌收缩力和外周阻力既不能太低，也不能太高。心肌收缩力和外周阻力偏低或过低说明用户为轻体力劳动者，或心衰患者。心肌收缩力和外周阻力偏高或过高说明用户为重体力劳动者，或出现动脉硬化、高血压、高脂血症、高粘滞血症。
+
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+				<view class="quota-text">一、脉搏波协同性升高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:52/6260bf843cba3.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  脉搏波协同性升高</view>
+				<view class="quota-text">图1 表示脉搏波协同性升高，常发生于 03:00 或 15:00 附近。正常情况下代表人体需血量增高，如孕妇、生长发育较快的婴幼儿或儿童；异常状态下代表人体重要脏器（如心、脑、肾）缺血，交感神经兴奋，但内脏神经协同性尚好，中医称痰阻心脉、血脉痹阻。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-text">二、脉搏波离散性升高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:51/6260bf83ed210.png" mode="widthFix"></image>
+					<view class="quota-tips">图2 脉搏波协同性升高</view>
+				<view class="quota-text">图2 表示脉搏波离散性升高，常发生于 03:00 或 15:00 附近。常表示人体重要脏器（如心、脑、肾）缺血，交感神经兴奋，且内脏神经协同性降低，中医称痰阻心脉、血脉痹阻。</view>
+				<view class="expert-line"></view>
+			</view>
+
+			<image src="{{treport.pm_curve}}" data-src="{{treport.pm_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.pm_curve4 ? 'open' : ''}}">
+				24小时体动分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="pm_curve4"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.pm_curve4}}">
+				该图表达了用户的24小时体动实时分布状况。横轴表达体动发生的时间，纵轴表达了体动的多少。绿色部分反映用户处于静息睡眠状态，红色部分反映用户处于运动亢奋状态，蓝色部分反映用户处于一般清醒状态。生命活力强的人表现为动作灵活多动，如儿童。生命活力弱的人表现为动作迟缓少动，如老年人。
+
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、生命活力下降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:50/6260bf82bfabb.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  生命活力下降</view>
+				<view class="quota-text"><view class="quota-blue">图1 表示生命活力下降，体动的强度小、持续时间短，中医称肾气虚，常因脾气虚、心气虚或肺气虚引发。</view></view>
+
+				<view class="quota-text">常见症状：体倦乏力、食欲不振、形体消瘦、动则气喘、胸闷气短、运动量少、话语量少、工作效率低、抵抗力低。</view>
+
+				<view class="quota-text">好发疾病：胃肠疾病、冠心病、慢阻肺、自身免疫性疾病。</view>
+			</view>
+
+
+			<image src="{{treport.ecg_curve}}" data-src="{{treport.ecg_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.ecg_curve2 ? 'open' : ''}}">
+				24小时心率分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="ecg_curve2"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.ecg_curve2}}">
+				该图表达了用户的24小时心率实时分布状况。横轴表达了心率变化的发生时间，纵轴表达了心率的高低。绿色部分反映用户处于睡眠状态，红色和蓝色部分反映用户处于清醒状态。睡眠和清醒状态的心率变化表达了内脏神经的调节能力。
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、24小时平均心率增高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022e1ded.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  24小时平均心率增高</view>
+				<view class="quota-text"><view class="quota-blue">图1表示用户处于高代谢状态，中医称内热。</view></view>
+
+				<view class="quota-text">常见症状：不怕冷而怕热、喜欢吃凉东西、吃得多拉得多、穿得少盖得少、喜欢冬天不喜欢夏天。若不怕热而怕冷，则属真热假寒，为交感神经兴奋所致，如感冒初期的体温高而怕冷。 </view>
+
+				<view class="quota-text">好发疾病：高热、糖尿病、甲亢、不育。正常人见于婴幼儿、儿童、饮茶或咖啡、饮酒、情绪激动。 </view>
+				<view class="expert-line"></view>
+				<view class="quota-text">二、24小时平均心率降低  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:00:13/6260baadbcfe1.png" mode="widthFix"></image>
+					<view class="quota-tips">图2  24小时平均心率降低 </view>
+				<view class="quota-text"><view class="quota-blue">图2表示用户处于低代谢状态，中医称内寒。</view></view>
+
+				<view class="quota-text">常见症状：不怕热而怕冷、不敢吃凉东西、吃得少拉得少，穿得多盖得多、喜欢夏天不喜欢冬天、手脚发凉。 </view>
+
+				<view class="quota-text">好发疾病：甲减、慢性结肠炎、慢性盆腔炎、不孕。正常人见于老年人或来自长寿家族。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">三、睡眠期间心率骤降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:13:53/6260bde1e5975.png" mode="widthFix"></image>
+					<view class="quota-tips">图3 睡眠期间心率骤降 </view>
+				<view class="quota-text"><view class="quota-blue">图3 表示睡眠期间（绿线）心率出现“断崖性”下降，即阵发性心动过缓，常见于副交感神经的异常兴奋，中医称肝气郁结。</view></view>
+
+				<view class="quota-text">常见症状：胸闷、胸痛。 </view>
+
+				<view class="quota-text">好发疾病：颅内疾病、严重缺氧、低温、甲减、阻塞性黄疸、窦房结病变、下壁心梗。  </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">四、觉醒期间心率突升  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022a23b7.png" mode="widthFix"></image>
+					<view class="quota-tips">图4 觉醒期间的心率突升 </view>
+				<view class="quota-text"><view class="quota-blue">图4 表示觉醒期间（蓝线）心率出现“冲顶性”上升，即特发性心动过速，常见于交感神经的异常兴奋，中医称肝气逆乱或肝风内动。 </view></view>
+
+				<view class="quota-text">常见症状：多无异常症状。 </view>
+
+				<view class="quota-text">好发疾病：窦房结病变、内脏神经功能紊乱、癫痫。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">五、觉醒期间平均心率较高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b02261393.png" mode="widthFix"></image>
+					<view class="quota-tips">图5  觉醒期间平均心率较高 </view>
+				<view class="quota-text"><view class="quota-blue">图5 表示觉醒期间平均心率较高（蓝色），即精神状态较好，交感神经兴奋，饮茶或咖啡、饮酒、情绪激动。 </view></view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">六、觉醒期间平均心率较低 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b0222bab4.png" mode="widthFix"></image>
+					<view class="quota-tips">图6 觉醒期间平均心率较低</view>
+				<view class="quota-text"><view class="quota-blue">图6 表示觉醒期间平均心率较低（蓝色），即精神状态不好，副交感神经兴奋，中医称肝气郁结、少神、失神。</view></view>
+
+				<view class="quota-text">常见症状：轻则无精打采、健忘；重则反应迟钝、表情淡漠、动作迟缓。  </view>
+
+				<view class="quota-text">好发疾病：心脏病、脑梗塞、血管性痴呆、过用镇静催眠或抗焦虑药。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">七、睡眠期间平均心率过高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b021db68e.png" mode="widthFix"></image>
+					<view class="quota-tips">图7 睡眠期间平均心率过高</view>
+				<view class="quota-text"><view class="quota-blue">图7 表示睡眠期间（绿线）平均心率过高，表示交感神经兴奋，中医称肝阴虚、肝血虚。</view></view>
+
+				<view class="quota-text">常见症状：睡眠轻浅，一有动静就醒。 </view>
+
+				<view class="quota-text">好发疾病：失眠、血管性痴呆。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">八、昼夜节律过小  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:16:25/6260be79498b2.png" mode="widthFix"></image>
+					<view class="quota-tips">图8 昼夜节律过小</view>
+				<view class="quota-text"><view class="quota-blue">图8 表示生命节律的变化状况。昼夜节律较好的人，觉醒期间的平均心率较高，睡眠期间的平均心率较低，两者差异较大，见图5。昼夜节律紊乱的人，觉醒期间的平均心率不高，睡眠期间的平均心率不低，两者差异较小，绿线与蓝线交叉性分布，中医称肝阴虚、肝血虚。 </view></view>
+
+				<view class="quota-text">常见症状：坐着打盹躺着睡不着。 </view>
+
+				<view class="quota-text">好发疾病：血管性痴呆、脑梗塞。</view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">九、睡眠期间心率忽高忽低   </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b02160523.png" mode="widthFix"></image>
+					<view class="quota-tips">图9 睡眠期间心率忽高忽低</view>
+				<view class="quota-text"><view class="quota-blue">图9 表示睡眠期间心率忽高忽低，常见多梦易醒，中医称肝阴虚、魂魄不宁。 </view></view>
+			</view>
+
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.cardsc ? 'open' : ''}}">
+					<view class="td">CARDSC</view>
+					<view class="td">{{treport.cardsc}}</view>
+					<view class="td">
+						<image wx:if="{{treport.cardsc < 60}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<!-- <image src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image> -->
+					</view>
+					<view class="td">≥60</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="cardsc"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.cardsc}}">
+					<view class="quota-blue">此指标暂无详解释义</view>
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.cardiovascular_symptom!=''&&treport.cardiovascular_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.cardiovascular_symptom ? treport.cardiovascular_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.cardiovascular_warning ? treport.cardiovascular_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.cardiovascular_suggestion ? treport.cardiovascular_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+
+	</view>
+
+	<view class="block" style="background: rgba(118, 127, 111, 0.38);">
+		<view class="big-title" style="background:rgba(16, 42, 50, 1)">
+			肝藏<text>《中医肝藏功能态势测评报告》</text>
+		</view>
+
+		<view class="item">
+
+			<view class="t {{showDetailInfo.liver ? 'open' : ''}}">
+				中医肝藏功能态势测评报告
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="liver"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.liver}}">
+				<view class="quota-name">● 中医肝藏的含义</view>
+				<view class="quota-text"><text class="quota-blue">医学中的肝藏(音zàng)是指产生和传导内脏感觉和运动信号支配内脏运动并使人对外来刺激产生情绪体验的内脏神经系统，和产生和传导躯体感觉和运动信号支配躯体运动的躯体神经系统。</text></view>
+
+				<view class="quota-name">● 中医肝藏(音zàng)的疏泄功能</view>
+				<view class="quota-text"><text class="quota-blue">是指内脏神经系统产生和传导内脏感觉和运动信号，并使人对外来刺激产生情绪体验的功能。</text>该功能异常时，肝阳上亢表现为头晕胀痛、面红目赤、耳鸣如潮、头重脚轻；肝气郁结表现为胸胁、乳房、少腹胀痛、咽如物梗、瘕聚不定；肝气不舒表现急躁易怒、善恐易惊、闷闷不乐、善悲欲哭、多疑善虑、多愁善感。</view>
+				<view class="expert-line"></view>
+				<view class="quota-name">● 中医肝藏(音zàng)的藏(音cáng)血功能</view>
+				<view class="quota-text"><text class="quota-blue">是指躯体神经系统产生和传导躯体感觉和运动信号支配躯体运动的功能。</text>该功能异常时常表现为肌肤麻木、手足震颤、肌肉瞤动、眼球震颤；颈项强直、半身不遂、口眼歪斜、舌强语謇、两目上视、口吐白沫、作猪羊叫声、四肢抽搐、角弓反张、牙关紧闭。</view>
+
+			</view>
+
+			<view class="c {{treport.color_list.liver_multi_score}}">
+				<view class="l">
+					{{treport.liver_multi_score}}<text>分</text>
+				</view>
+			</view>
+		</view>
+
+		<view class="item">
+			<view class="t">
+				内脏神经协调性评估
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.autoners}}">
+					{{treport.autoners}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.autoners}}"></image>
+
+					{{treport.autoner_requali}}
+				</view>
+			</view>
+			<image src="{{treport.poincare}}" data-src="{{treport.poincare}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.poincare1 ? 'open' : ''}}">
+				24小时Poincare散点图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="poincare1"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.poincare1}}">
+				<view class="quota-text">该图表达了用户的内脏神经的调节能力。内脏神经调节能力越好，散点图则面积越大；内脏神经调节能力越差，散点图则面积越小。正常情况下，散点分布在左下至右上连线的中点附近，较长、较宽且面积较大。
+				</view>
+
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、散点图面积减小 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:51/6260bf83b5c44.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  散点图面积减小</view>
+				<view class="quota-text"><view class="quota-blue">图1 表示心藏的主血脉功能，即心脏使人适应环境的能力(又称心脏裕度)下降，中医称为心气虚。</view></view>
+
+				<view class="quota-text">常见症状：胸闷、气短、惊悸不宁、精神不振、乏力。 </view>
+
+				<view class="quota-text">好发疾病：心衰。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-text">二、散点图左下飘移 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:51/6260bf83858a4.png" mode="widthFix"></image>
+					<view class="quota-tips">图2  散点图左下飘移</view>
+				<view class="quota-text"><view class="quota-blue">图2 表示交感神经兴奋，中医称肝气逆乱。</view></view>
+
+				<view class="quota-text">常见症状：轻则表现为口干、鼻干、心跳快、多汗、食欲不振、腹胀、男子阳痿早泄、大便次数少、小便次数少、体温偏高但畏寒怕冷、血糖偏高、失眠多梦、睡眠轻浅、提心吊胆；重则表现为头目胀痛、头重脚轻、面红目赤、耳鸣如潮、多语多动、手足冷汗、急躁易怒、坐立不宁、胸胁、乳房、少腹胀痛、咽如物梗、瘕聚不定。 </view>
+
+				<view class="quota-text">好发疾病：高血压、焦虑症、惊恐症、狂躁症、胃溃疡、梅核气、经前紧张综合征、更年期紧张综合征。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-text">三、散点图右上飘移 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:51/6260bf8312cd9.png" mode="widthFix"></image>
+					<view class="quota-tips">图3  散点图右上飘移</view>
+				<view class="quota-text"><view class="quota-blue">图3 表示副交感神经兴奋，中医称肝气郁结。</view></view>
+
+				<view class="quota-text">常见症状：轻则表现为流口水、流涕、流泪、心率慢、胸闷憋气、多食易饥、男子阳强、大便次数多、小便次数多、体温偏低、血糖偏低、兴趣低落、闷闷不乐、多愁善感、少语少动；重则表现为悲痛欲哭、自卑自责、多疑善虑、有自杀念头、不愿与人交往。</view>
+
+				<view class="quota-text">好发疾病：抑郁症、自闭症。</view>
+				<view class="expert-line"></view>
+			</view>
+
+			<image src="{{treport.ecg_curve}}" data-src="{{treport.ecg_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.ecg_curve4 ? 'open' : ''}}">
+				24小时心率分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="ecg_curve4"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.ecg_curve4}}">
+				该图表达了用户的24小时心率实时分布状况。横轴表达了心率变化的发生时间，纵轴表达了心率的高低。绿色部分反映用户处于睡眠状态，红色和蓝色部分反映用户处于清醒状态。睡眠和清醒状态的心率变化表达了内脏神经的调节能力。
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、24小时平均心率增高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022e1ded.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  24小时平均心率增高</view>
+				<view class="quota-text"><view class="quota-blue">图1表示用户处于高代谢状态，中医称内热。</view></view>
+
+				<view class="quota-text">常见症状：不怕冷而怕热、喜欢吃凉东西、吃得多拉得多、穿得少盖得少、喜欢冬天不喜欢夏天。若不怕热而怕冷，则属真热假寒，为交感神经兴奋所致，如感冒初期的体温高而怕冷。 </view>
+
+				<view class="quota-text">好发疾病：高热、糖尿病、甲亢、不育。正常人见于婴幼儿、儿童、饮茶或咖啡、饮酒、情绪激动。 </view>
+				<view class="expert-line"></view>
+				<view class="quota-text">二、24小时平均心率降低  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:00:13/6260baadbcfe1.png" mode="widthFix"></image>
+					<view class="quota-tips">图2  24小时平均心率降低 </view>
+				<view class="quota-text"><view class="quota-blue">图2表示用户处于低代谢状态，中医称内寒。</view></view>
+
+				<view class="quota-text">常见症状：不怕热而怕冷、不敢吃凉东西、吃得少拉得少，穿得多盖得多、喜欢夏天不喜欢冬天、手脚发凉。 </view>
+
+				<view class="quota-text">好发疾病：甲减、慢性结肠炎、慢性盆腔炎、不孕。正常人见于老年人或来自长寿家族。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">三、睡眠期间心率骤降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:13:53/6260bde1e5975.png" mode="widthFix"></image>
+					<view class="quota-tips">图3 睡眠期间心率骤降 </view>
+				<view class="quota-text"><view class="quota-blue">图3 表示睡眠期间（绿线）心率出现“断崖性”下降，即阵发性心动过缓，常见于副交感神经的异常兴奋，中医称肝气郁结。</view></view>
+
+				<view class="quota-text">常见症状：胸闷、胸痛。 </view>
+
+				<view class="quota-text">好发疾病：颅内疾病、严重缺氧、低温、甲减、阻塞性黄疸、窦房结病变、下壁心梗。  </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">四、觉醒期间心率突升  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022a23b7.png" mode="widthFix"></image>
+					<view class="quota-tips">图4 觉醒期间的心率突升 </view>
+				<view class="quota-text"><view class="quota-blue">图4 表示觉醒期间（蓝线）心率出现“冲顶性”上升，即特发性心动过速，常见于交感神经的异常兴奋，中医称肝气逆乱或肝风内动。 </view></view>
+
+				<view class="quota-text">常见症状：多无异常症状。 </view>
+
+				<view class="quota-text">好发疾病：窦房结病变、内脏神经功能紊乱、癫痫。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">五、觉醒期间平均心率较高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b02261393.png" mode="widthFix"></image>
+					<view class="quota-tips">图5  觉醒期间平均心率较高 </view>
+				<view class="quota-text"><view class="quota-blue">图5 表示觉醒期间平均心率较高（蓝色），即精神状态较好，交感神经兴奋，饮茶或咖啡、饮酒、情绪激动。 </view></view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">六、觉醒期间平均心率较低 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b0222bab4.png" mode="widthFix"></image>
+					<view class="quota-tips">图6 觉醒期间平均心率较低</view>
+				<view class="quota-text"><view class="quota-blue">图6 表示觉醒期间平均心率较低（蓝色），即精神状态不好，副交感神经兴奋，中医称肝气郁结、少神、失神。</view></view>
+
+				<view class="quota-text">常见症状：轻则无精打采、健忘；重则反应迟钝、表情淡漠、动作迟缓。  </view>
+
+				<view class="quota-text">好发疾病：心脏病、脑梗塞、血管性痴呆、过用镇静催眠或抗焦虑药。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">七、睡眠期间平均心率过高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b021db68e.png" mode="widthFix"></image>
+					<view class="quota-tips">图7 睡眠期间平均心率过高</view>
+				<view class="quota-text"><view class="quota-blue">图7 表示睡眠期间（绿线）平均心率过高，表示交感神经兴奋，中医称肝阴虚、肝血虚。</view></view>
+
+				<view class="quota-text">常见症状：睡眠轻浅，一有动静就醒。 </view>
+
+				<view class="quota-text">好发疾病：失眠、血管性痴呆。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">八、昼夜节律过小  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:16:25/6260be79498b2.png" mode="widthFix"></image>
+					<view class="quota-tips">图8 昼夜节律过小</view>
+				<view class="quota-text"><view class="quota-blue">图8 表示生命节律的变化状况。昼夜节律较好的人，觉醒期间的平均心率较高，睡眠期间的平均心率较低，两者差异较大，见图5。昼夜节律紊乱的人，觉醒期间的平均心率不高，睡眠期间的平均心率不低，两者差异较小，绿线与蓝线交叉性分布，中医称肝阴虚、肝血虚。 </view></view>
+
+				<view class="quota-text">常见症状：坐着打盹躺着睡不着。 </view>
+
+				<view class="quota-text">好发疾病：血管性痴呆、脑梗塞。</view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">九、睡眠期间心率忽高忽低   </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b02160523.png" mode="widthFix"></image>
+					<view class="quota-tips">图9 睡眠期间心率忽高忽低</view>
+				<view class="quota-text"><view class="quota-blue">图9 表示睡眠期间心率忽高忽低，常见多梦易醒，中医称肝阴虚、魂魄不宁。 </view></view>
+			</view>
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.autoner ? 'open' : ''}}">
+					<view class="td">AUTONERS</view>
+					<view class="td">{{treport.autoners}}</view>
+					<view class="td">
+						<!-- <image src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image> -->
+						<image wx:if="{{treport.autoners < 69}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">≥69</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="autoner"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.autoner}}">
+					<view class="quota-blue">此指标暂无详解释义</view>
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.autoner_symptom!=''&&treport.autoner_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.autoner_symptom ? treport.autoner_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.autoner_warning ? treport.autoner_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.autoner_suggestion ? treport.autoner_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+
+		<view class="item">
+			<view class="t">
+				睡眠质量测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.sleepqualiscore}}">
+					{{treport.sleepqualiscore}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.sleepqualiscore}}"></image>
+
+					{{treport.sleepquality_requali}}
+				</view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.xst ? 'open' : ''}}">
+					<view class="td">XST</view>
+					<view class="td">{{treport.xst}}</view>
+					<view class="td">
+						<image wx:if="{{treport.xst > 8.3}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<image wx:if="{{treport.xst < 5.9}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">5.9-8.3</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="xst"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.xst}}">
+					<view class="quota-name">● 睡眠时间(XST)</view>
+					<view class="quota-text">
+						<view class="quota-blue">用以测定用户累计睡眠的时间。正常范围为5.9-8.3小时。</view>若XST低于5.9小时则为累计睡眠时间偏短或过短，表现为入睡困难、睡中易醒、早醒。常由阴虚内热所致，常见于老年人、心理压力较大或焦虑症患者。
+					</view>
+					<view class="quota-text">若XST高于8.3小时则为累计睡眠时间偏长或过长，表现为头身困重、精神不振、注意力不集中。常由痰湿内盛所致，常见于肥胖之人或脑动脉硬化患者。</view>
+					<view class="quota-title">应用举例</view>
+					<view class="quota-text">例5.图5的下横线以下部分表征客户处于睡眠状态，其睡眠持续时间过长，为12.15小时。</view>
+					<image class="quota-img" src="https://i.2fei2.com/shop/logo/2020-08-14/10:13:29/5f35f349ac888.png" mode="widthFix"></image>
+					<view class="quota-tips">图5 睡眠时间过长人群24小时心率曲线图</view>
+					<view class="expert-line"></view>
+					<view class="quota-text">例6.图6的下横线以下部分表征客户处于睡眠状态，其睡眠持续时间过短，为2.26小时。</view>
+					<image class="quota-img" src="https://i.2fei2.com/shop/logo/2020-08-14/10:13:54/5f35f3625ae0e.png" mode="widthFix"></image>
+					<view class="quota-tips">图6睡眠时间过短人群24小时心率曲线图</view>
+				</view>
+
+				<view class="tr {{showDetailInfo.xvla ? 'open' : ''}}">
+					<view class="td">XVLA</view>
+					<view class="td">{{treport.xvla}}</view>
+					<view class="td">
+						<!-- <image wx:if="{{treport.xvla > 8.3}}"  src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image> -->
+						<image wx:if="{{treport.xvla < 16}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">≥16</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="xvla"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.xvla}}">
+					<view class="quota-name">● 睡眠深度(XVLA)</view>
+					<view class="quota-text">
+						<view class="quota-blue">睡眠是人清除体内代谢垃圾，为迎接挑战积蓄能量的过程。睡眠深度越好，生命潜力越强。XVLA表达了用户的睡眠深度。正常情况下，XVLA＞23。</view>
+					</view>
+					<view class="quota-text">若XVLA＜23则为睡眠偏浅或过浅，表现为似睡非睡、一有动静就醒，常是内脏(消化、呼吸、泌尿、生殖)疾病和心血管疾病的先兆。身处高原缺氧地区，也表现为睡眠深度浅。</view>
+				</view>
+
+				<view class="tr {{showDetailInfo.xsb ? 'open' : ''}}">
+					<view class="td">XSB</view>
+					<view class="td">{{treport.xsb}}</view>
+					<view class="td">
+						<image wx:if="{{treport.xsb > 11}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<!-- <image wx:if="{{treport.xsb < 16}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image> -->
+					</view>
+					<view class="td">≤11</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="xsb"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.xsb}}">
+					<view class="quota-name">● 寤寐频次(XSB)</view>
+					<view class="quota-text">
+						<view class="quota-blue">XSB表达了用户的睡眠觉醒次数。正常情况下XSB≤11。</view>
+						若XSB＞11表示用户的睡眠觉醒次数偏多或过多，表现为睡眠期间经常觉醒、梦游。常见于坐着打盹躺着睡不着的老年人，常是老年性痴呆、帕金森病、焦虑症、抑郁症的先兆。
+					</view>
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.sleepquality_symptom!=''&&treport.sleepquality_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.sleepquality_symptom ? treport.sleepquality_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.sleepquality_warning ? treport.sleepquality_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.sleepquality_suggestion ? treport.sleepquality_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+		<view class="item">
+			<view class="t">
+				生命节律测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.diurnalrhythmscore}}">
+					{{treport.diurnalrhythmscore}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.diurnalrhythmscore}}"></image>
+
+					{{treport.rhythmdis_requali}}
+				</view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.xasrd ? 'open' : ''}}">
+					<view class="td">XASRD</view>
+					<view class="td">{{treport.xasrd}}</view>
+					<view class="td">
+						<!-- <image src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image> -->
+						<image wx:if="{{treport.xasrd < 13}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">≥13</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="xasrd"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.xasrd}}">
+					<view class="quota-name">● 昼夜节律(XASRD)</view>
+					<view class="quota-text">
+						<view class="quota-blue">“日出而作，日入而息”，人的生命活动过程有昼夜节律性和四季节律性。XASRD 表达了用户的昼夜节律。正常情况下XASRD>13。</view>下图常见于白天精神状态好，夜间睡眠深沉的年轻人，《黄帝内经》称“昼精夜瞑”，表示昼夜节律优秀，大脑供血正常。
+					</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/10:30:13/62314bb5b51fd.png" mode="widthFix"></image>
+
+					<view class="quota-text">
+						下图常见于白天精神不振，夜间睡眠很浅的老年人，《黄帝内经》 称“昼不精夜不瞑”，表示昼夜节律降低，是大脑供血不足的先兆， 常发生老年性痴呆、脑出血、脑血栓、脑栓塞。</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/10:30:13/62314bb554c35.png" mode="widthFix"></image>
+
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.rhythmdis_symptom!=''&&treport.rhythmdis_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.rhythmdis_symptom ? treport.rhythmdis_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.rhythmdis_warning ? treport.rhythmdis_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.rhythmdis_suggestion ? treport.rhythmdis_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+	</view>
+
+	<view class="block" style="background: rgba(80, 101, 127, 0.38);">
+		<view class="big-title" style="background:rgba(0, 20, 45, 1)">
+			肾藏<text>《中医肾藏功能态势测评报告》</text>
+		</view>
+
+		<view class="item">
+
+			<view class="t {{showDetailInfo.kidney ? 'open' : ''}}">
+				中医肾藏功能态势测评报告
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="kidney"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.kidney}}">
+				<view class="quota-name">● 中医肾藏的含义</view>
+				<view class="quota-text"><text class="quota-blue">中医学中的肾藏(音zàng)是指产生生殖细胞，完成生殖、分娩和泌乳的生殖系统；分化生成新的体细胞的成体系统(包括成体干细胞及其分化成熟的环境)，维持人体结构稳定的免疫系统；合成和分解有机物，产生和排放能量的同化异化系统(包括主管有机物合成分解的细胞器、酶和产热散热器官)；生成和排泄尿液的泌尿系统；分泌激素和细胞因子借助体液调节人体的体液调节系统(由合成和分泌激素的内分泌系统，合成和分泌细胞因子的免疫细胞和某些非免疫细胞组成)。</text></view>
+				<view class="quota-name">● 中医肾藏的气化功能</view>
+				<view class="quota-text"><text class="quota-blue">是是指同化异化系统合成和分解有机物，产生和排放能量的功能。</text>其中，同化异化系统包括主管有机物合成分解的细胞器、酶和产热散热器官。该功能异常时，或表现为五心烦热、骨蒸潮热、午后颧红，中医称为阳热状态；或表现为四肢厥冷、腰或小腹冷痛，中医称为阴寒状态。</view>
+
+			</view>
+
+			<view class="c {{treport.color_list.kidney_multi_score}}">
+				<view class="l">
+					{{treport.kidney_multi_score}}<text>分</text>
+				</view>
+			</view>
+
+
+		</view>
+
+		<view class="item">
+			<view class="t">
+				生命活力测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.energyscore}}">
+					{{treport.energyscore}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.energyscore}}"></image>
+
+					{{treport.lifeenergy_requali}}
+				</view>
+			</view>
+
+			<image src="{{treport.pm_curve}}" data-src="{{treport.pm_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.pm_curve2 ? 'open' : ''}}">
+				24小时体动分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="pm_curve2"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.pm_curve2}}">
+				该图表达了用户的24小时体动实时分布状况。横轴表达体动发生的时间，纵轴表达了体动的多少。绿色部分反映用户处于静息睡眠状态，红色部分反映用户处于运动亢奋状态，蓝色部分反映用户处于一般清醒状态。生命活力强的人表现为动作灵活多动，如儿童。生命活力弱的人表现为动作迟缓少动，如老年人。
+
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、生命活力下降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:20:50/6260bf82bfabb.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  生命活力下降</view>
+				<view class="quota-text"><view class="quota-blue">图1 表示生命活力下降，体动的强度小、持续时间短，中医称肾气虚，常因脾气虚、心气虚或肺气虚引发。</view></view>
+
+				<view class="quota-text">常见症状：体倦乏力、食欲不振、形体消瘦、动则气喘、胸闷气短、运动量少、话语量少、工作效率低、抵抗力低。</view>
+
+				<view class="quota-text">好发疾病：胃肠疾病、冠心病、慢阻肺、自身免疫性疾病。</view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.svl ? 'open' : ''}}">
+					<view class="td">SVL</view>
+					<view class="td">{{treport.svl}}</view>
+					<view class="td">
+						<!-- <image wx:if="{{treport.svl < 60}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image> -->
+						<image wx:if="{{treport.svl < 69}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">≥69</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="svl"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.svl}}">
+					<view class="quota-name">● 生命活力(SVL)</view>
+					<view class="quota-text">
+						<view class="quota-blue">SVL 是用于测定用户生命活力的指标。在中医学体系中，用以反映肾藏气化功能化生的元气量。在西医学体系中，用以反映人体同化 异化作用产生的化学能。正常范围为>93。</view>
+					</view>
+					<view class="quota-text">
+						生命活力强的人表现为动作灵活多动，如儿童。检测结果见
+					</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/10:53:07/62315113a73b9.png" mode="widthFix"></image>
+					<view class="quota-text">
+						生命活力弱的人表现为动作迟缓少动，如老年人。检测结果见
+					</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/10:53:07/6231511350079.png" mode="widthFix"></image>
+					<view class="quota-text">
+						生命活力下降常表现为体倦乏力、食欲不振、形体消瘦、动则气 喘、胸闷气短、活动量少、少言寡语、工作效率低、抵抗力低。有发 生感冒、胃肠疾病、心律不齐、自身免疫性疾病、癌症的风险。
+					</view>
+
+				</view>
+
+			</view>
+
+			<view class="info" wx:if="{{treport.lifeenergy_symptom!=''&&treport.lifeenergy_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.lifeenergy_symptom ? treport.lifeenergy_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.lifeenergy_warning ? treport.lifeenergy_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.lifeenergy_suggestion ? treport.lifeenergy_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+
+		<view class="item">
+			<view class="t">
+				寒热状态测评
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.sympatheticscore}}">
+					{{treport.sympatheticscore}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.sympatheticscore}}"></image>
+
+					{{treport.hanrestate_requali}}
+				</view>
+			</view>
+
+			<image src="{{treport.ecg_curve}}" data-src="{{treport.ecg_curve}}" bindtap="previewImage" mode="widthFix"></image>
+			<view class="t {{showDetailInfo.ecg_curve3 ? 'open' : ''}}">
+				24小时心率分布图
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="ecg_curve3"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.ecg_curve3}}">
+				该图表达了用户的24小时心率实时分布状况。横轴表达了心率变化的发生时间，纵轴表达了心率的高低。绿色部分反映用户处于睡眠状态，红色和蓝色部分反映用户处于清醒状态。睡眠和清醒状态的心率变化表达了内脏神经的调节能力。
+				<view class="expert-line"></view>
+				<view class="quota-title">应用举例</view>
+					<view class="quota-text">一、24小时平均心率增高 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022e1ded.png" mode="widthFix"></image>
+					<view class="quota-tips">图1  24小时平均心率增高</view>
+				<view class="quota-text"><view class="quota-blue">图1表示用户处于高代谢状态，中医称内热。</view></view>
+
+				<view class="quota-text">常见症状：不怕冷而怕热、喜欢吃凉东西、吃得多拉得多、穿得少盖得少、喜欢冬天不喜欢夏天。若不怕热而怕冷，则属真热假寒，为交感神经兴奋所致，如感冒初期的体温高而怕冷。 </view>
+
+				<view class="quota-text">好发疾病：高热、糖尿病、甲亢、不育。正常人见于婴幼儿、儿童、饮茶或咖啡、饮酒、情绪激动。 </view>
+				<view class="expert-line"></view>
+				<view class="quota-text">二、24小时平均心率降低  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:00:13/6260baadbcfe1.png" mode="widthFix"></image>
+					<view class="quota-tips">图2  24小时平均心率降低 </view>
+				<view class="quota-text"><view class="quota-blue">图2表示用户处于低代谢状态，中医称内寒。</view></view>
+
+				<view class="quota-text">常见症状：不怕热而怕冷、不敢吃凉东西、吃得少拉得少，穿得多盖得多、喜欢夏天不喜欢冬天、手脚发凉。 </view>
+
+				<view class="quota-text">好发疾病：甲减、慢性结肠炎、慢性盆腔炎、不孕。正常人见于老年人或来自长寿家族。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">三、睡眠期间心率骤降 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:13:53/6260bde1e5975.png" mode="widthFix"></image>
+					<view class="quota-tips">图3 睡眠期间心率骤降 </view>
+				<view class="quota-text"><view class="quota-blue">图3 表示睡眠期间（绿线）心率出现“断崖性”下降，即阵发性心动过缓，常见于副交感神经的异常兴奋，中医称肝气郁结。</view></view>
+
+				<view class="quota-text">常见症状：胸闷、胸痛。 </view>
+
+				<view class="quota-text">好发疾病：颅内疾病、严重缺氧、低温、甲减、阻塞性黄疸、窦房结病变、下壁心梗。  </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">四、觉醒期间心率突升  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b022a23b7.png" mode="widthFix"></image>
+					<view class="quota-tips">图4 觉醒期间的心率突升 </view>
+				<view class="quota-text"><view class="quota-blue">图4 表示觉醒期间（蓝线）心率出现“冲顶性”上升，即特发性心动过速，常见于交感神经的异常兴奋，中医称肝气逆乱或肝风内动。 </view></view>
+
+				<view class="quota-text">常见症状：多无异常症状。 </view>
+
+				<view class="quota-text">好发疾病：窦房结病变、内脏神经功能紊乱、癫痫。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">五、觉醒期间平均心率较高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b02261393.png" mode="widthFix"></image>
+					<view class="quota-tips">图5  觉醒期间平均心率较高 </view>
+				<view class="quota-text"><view class="quota-blue">图5 表示觉醒期间平均心率较高（蓝色），即精神状态较好，交感神经兴奋，饮茶或咖啡、饮酒、情绪激动。 </view></view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">六、觉醒期间平均心率较低 </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:14/6260b0222bab4.png" mode="widthFix"></image>
+					<view class="quota-tips">图6 觉醒期间平均心率较低</view>
+				<view class="quota-text"><view class="quota-blue">图6 表示觉醒期间平均心率较低（蓝色），即精神状态不好，副交感神经兴奋，中医称肝气郁结、少神、失神。</view></view>
+
+				<view class="quota-text">常见症状：轻则无精打采、健忘；重则反应迟钝、表情淡漠、动作迟缓。  </view>
+
+				<view class="quota-text">好发疾病：心脏病、脑梗塞、血管性痴呆、过用镇静催眠或抗焦虑药。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">七、睡眠期间平均心率过高  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b021db68e.png" mode="widthFix"></image>
+					<view class="quota-tips">图7 睡眠期间平均心率过高</view>
+				<view class="quota-text"><view class="quota-blue">图7 表示睡眠期间（绿线）平均心率过高，表示交感神经兴奋，中医称肝阴虚、肝血虚。</view></view>
+
+				<view class="quota-text">常见症状：睡眠轻浅，一有动静就醒。 </view>
+
+				<view class="quota-text">好发疾病：失眠、血管性痴呆。 </view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">八、昼夜节律过小  </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/10:16:25/6260be79498b2.png" mode="widthFix"></image>
+					<view class="quota-tips">图8 昼夜节律过小</view>
+				<view class="quota-text"><view class="quota-blue">图8 表示生命节律的变化状况。昼夜节律较好的人，觉醒期间的平均心率较高，睡眠期间的平均心率较低，两者差异较大，见图5。昼夜节律紊乱的人，觉醒期间的平均心率不高，睡眠期间的平均心率不低，两者差异较小，绿线与蓝线交叉性分布，中医称肝阴虚、肝血虚。 </view></view>
+
+				<view class="quota-text">常见症状：坐着打盹躺着睡不着。 </view>
+
+				<view class="quota-text">好发疾病：血管性痴呆、脑梗塞。</view>
+
+				<view class="expert-line"></view>
+				<view class="quota-text">九、睡眠期间心率忽高忽低   </view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-04-21/09:15:13/6260b02160523.png" mode="widthFix"></image>
+					<view class="quota-tips">图9 睡眠期间心率忽高忽低</view>
+				<view class="quota-text"><view class="quota-blue">图9 表示睡眠期间心率忽高忽低，常见多梦易醒，中医称肝阴虚、魂魄不宁。 </view></view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.smr ? 'open' : ''}}">
+					<view class="td">SMR</view>
+					<view class="td">{{treport.smr}}</view>
+					<view class="td">
+						<image wx:if="{{treport.smr > 79}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<image wx:if="{{treport.smr < 65}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">65-79</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="smr"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.smr}}">
+					<view class="quota-name">● 寒热体质(SMR)</view>
+					<view class="quota-text">
+						<view class="quota-blue">健康和长寿是每个人的刚性需求。然而，两者常常是鱼与熊掌不
+							可兼得。人的生命正像一支燃烧的蜡烛，火苗大代表身体健壮，但燃 烧得快，不长寿;火苗小代表身体虚弱，但燃烧得慢，长寿(夭折除 外)。SMR 是用于测定用户寒热体质的评价指标。在中医学体系中，用以反映肾藏气化功能化生的阳气量。在西医学体系中，用以反映人体 同化异化作用产生的热能。正常范围为 65-79。
+						</view>
+					</view>
+
+					<view class="quota-text">
+						若 SMR低于65，则为阴寒体质，即低代谢状态。有发生甲状腺功能减退、慢性结肠炎、慢性盆腔炎、不孕、前列腺肥大、盆腔肿瘤的风 险。检测结果如下图
+					</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/09:59:25/6231447d4b6a5.png" mode="widthFix"></image>
+
+					<view class="quota-text">若 SMR高于79，则为阳热体质，即高代谢状态。有发生糖尿病、甲 状腺功能亢进、不育、腹部以上肿瘤的风险。检测结果如下图</view>
+					<image class="quota-img" src="https://i.2fei2.com/poster/slide/2022-03-16/09:59:24/6231447cd122f.png" mode="widthFix"></image>
+
+					<view class="quota-text">
+						阴寒体质的人常自觉不怕热怕冷、不敢吃凉东西、吃得少拉得少，穿得多盖得多、喜欢夏天不喜欢冬天，《黄帝内经》称“耐夏不耐冬”。阳热体质的人常自觉不怕冷怕热、喜欢吃凉东西、吃得多拉得多，穿得少盖得少、喜欢冬天不喜欢夏天,《黄帝内经》称“耐冬不耐夏”。
+
+					</view>
+					<view class="quota-text">
+						但人的感觉有时与检测结果相反，即阴寒体质的人自觉怕热，阳热体质的人自觉怕冷。这种情况中医称为真寒假热或里寒表热、真热假寒或里热表寒，常由于交感神经调节紊乱所致。
+					</view>
+					<view class="expert-line"></view>
+					<view class="quota-title">应用举例</view>
+					<view class="quota-text">例15.图15的24小时平均心率较低(53.87)，表明客户整体代谢率较低。</view>
+					<image class="quota-img" src="https://i.2fei2.com/shop/logo/2020-08-14/10:37:54/5f35f902deedc.png" mode="widthFix"></image>
+					<view class="quota-tips">图15 整体代谢率较低人群24小时心率曲线图</view>
+					<view class="expert-line"></view>
+					<view class="quota-text">例16.图16的24小时平均心率较高(115.5)，表明客户整体代谢率较高。</view>
+					<image class="quota-img" src="https://i.2fei2.com/shop/logo/2020-08-14/10:38:08/5f35f9107a7ad.png" mode="widthFix"></image>
+					<view class="quota-tips">图16 整体代谢率较高人群24小时心率曲线图</view>
+
+				</view>
+			</view>
+
+
+			<view class="info" wx:if="{{treport.hanrestate_symptom!=''&&treport.hanrestate_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.hanrestate_symptom ? treport.hanrestate_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.hanrestate_warning ? treport.hanrestate_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.hanrestate_suggestion ? treport.hanrestate_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+		</view>
+
+
+	</view>
+
+	<view class="block" style="background: rgba(192, 159, 159, 0.38);">
+		<view class="big-title" style="background:rgba(39, 44, 27, 1)">
+			脾藏<text>《中医脾藏功能态势测评报告》</text>
+		</view>
+
+		<view class="item">
+
+			<view class="t {{showDetailInfo.picang ? 'open' : ''}}">
+				中医脾藏功能态势测评报告
+				<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="picang"></view>
+			</view>
+			<view class="detail-info" wx:if="{{showDetailInfo.picang}}">
+				<view class="quota-name">● 中医脾藏的含义</view>
+				<view class="quota-text"><text class="quota-blue">中医学中的脾藏(音zàng)有运化(消化吸收)、散精(转载)、统血(凝血抗凝血)和主肌肉(躯体运动)四种功能，主要由消化系统、消化属动力系统、消化属脉管系统、转载系统、转载属脉管系统、凝血系统、抗凝血系统、躯体动力系统和躯体动力属脉管系统完成。</text></view>
+				<view class="quota-name">● 中医脾藏的运化功能释义</view>
+				<view class="quota-text"><text class="quota-blue">该脾藏运化（消化吸收）功能是指消化系统、消化属动力系统和消化属脉管系统消化食物、吸收营养、排泄粪便和少量最终代谢产物的功能。</text>其中，消化系统由消化道、消化道保护屏障、消化腺、皮脂腺、汗腺、消化液、饮食物、粪便、皮脂和汗液组成；消化属动力系统由参与物理性消化的平滑肌、骨骼肌、固定消化器官的深筋膜和运动相关滑液组成；消化属脉管系统由分布于消化道、消化腺和消化属动力系统的动脉、静脉、淋巴管、血液、淋巴液组成。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-name">● 中医脾藏的散精功能</view>
+				<view class="quota-text"><text class="quota-blue">脾藏散精（转载）功能是指转载系统和转载属脉管系统主持物质承载、交换和转化的功能。</text>转载系统由产生承载介质的肝和小肠，主持物质承载的体液，主持物质交换的生物膜，主持中间代谢产物转化的肝和被承载、交换、转化的物质组成；转载属脉管系统由主持物质转载的肝门静脉系、淋巴系，主持物质交换的毛细血管和毛细淋巴管组成。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-name">● 中医脾藏的统血功能</view>
+				<view class="quota-text"><text class="quota-blue">脾藏统血（凝血抗凝血）功能是指凝血系统产生凝血因子防止出血，抗凝血系统产生抗凝血因子防止血栓形成的功能。</text>其中，凝血系统由肝、胃肠道、内皮细胞、血小板、凝血因子组成；抗凝血系统由抗凝系统和纤溶系统组成。</view>
+				<view class="expert-line"></view>
+
+				<view class="quota-name">● 中医脾藏的主肌肉功能</view>
+				<view class="quota-text"><text class="quota-blue">脾藏主肌肉（躯体运动）功能是指躯体动力系统和躯体动力属脉管系统产生肌力和肌紧张，维持躯体姿势和运动，缓冲外力伤害的功能。</text>其中，躯体动力系统由产生肌力、肌紧张的骨骼肌，贮存供能物质和缓冲外力伤害的浅筋膜，起固定保护作用的深筋膜，减少躯体运动摩擦的滑液组成；躯体动力属脉管系统由分布于躯体动力系统的动脉、静脉、淋巴管、血液、淋巴液组成。</view>
+				<view class="expert-line"></view>
+
+			</view>
+
+			<view class="c {{treport.color_list.bmiscore}}">
+				<view class="l">
+					{{treport.bmiscore}}<text>分</text>
+				</view>
+			</view>
+
+		</view>
+
+		<view class="item">
+			<view class="t">
+				体重指数
+			</view>
+			<view class="c">
+				<view class="l {{treport.color_list.bmiscore}}">
+					{{treport.bmiscore}}<text>分</text>
+				</view>
+				<view class="r">
+					<!--坏的-->
+					<image src="{{treport.state_image_list.bmiscore}}"></image>
+
+					{{treport.bmi_requali}}
+				</view>
+			</view>
+
+			<view class="table">
+				<view class="th">
+					<view class="td">检测指标</view>
+					<view class="td">检测结果</view>
+					<view class="td">提示</view>
+					<view class="td">参考范围</view>
+					<view class="td"></view>
+				</view>
+
+				<view class="tr {{showDetailInfo.bmi ? 'open' : ''}}">
+					<view class="td">BMI</view>
+					<view class="td">{{treport.bmi}}</view>
+					<view class="td">
+						<image wx:if="{{treport.bmi > 23.9}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe084c61a.png"></image>
+						<image wx:if="{{treport.bmi < 18.5}}" src="https://i.2fei2.com/poster/slide/2022-04-18/13:58:32/625cfe080c712.png"></image>
+					</view>
+					<view class="td">18.5-23.9</view>
+					<view class="td">
+						<view class="iconfont iconjiantouxia" bindtap="showDetailInfo" data-id="bmi"></view>
+					</view>
+				</view>
+				<view class="detail-info" wx:if="{{showDetailInfo.bmi}}">
+					
+					<view class="quota-text"><view class="quota-blue">又称体重指数，是国际通用的衡量肥瘦程度的指标。身体肥瘦体现了脾藏散精功能中的存储脂肪功能。</view></view>
+
+					<view class="quota-text">体瘦之人常表示脾藏的运化功能较差或肾藏的气化功能过强，中医称阴虚。体胖之人脾藏的运化功能较好或肾藏的气化功能较弱，中医称湿浊。</view>
+				</view>
+			</view>
+
+
+			<view class="info" wx:if="{{treport.bmi_symptom!=''&&treport.bmi_symptom!='无'}}">
+				<view class="item">
+					<view class="t">常见症状</view>
+					<view class="d">
+						{{treport.bmi_symptom ? treport.bmi_symptom : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">好发疾病</view>
+					<view class="d">
+						{{treport.bmi_warning ? treport.bmi_warning : '无'}}
+					</view>
+				</view>
+				<view class="item">
+					<view class="t">调理建议</view>
+					<view class="d">
+						{{treport.bmi_suggestion ? treport.bmi_suggestion : '无'}}
+					</view>
+				</view>
+
+			</view>
+
+
+
+
+		</view>
+		</view>
+		<view style="color: #fff;text-align: right;margin: 22rpx 34rpx 20rpx 0;">报告版本 v{{treport.report_version}}</view>
+
+		<view class="sign" bindtap="showDelMaskZ">
+			<view class="iconfont iconwenhaolveguo" style="float: right;margin-right: 15px;line-height: 40px;color: #fff;"></view>
+			<image style="width:250rpx;float: right;margin: 5px;" src="https://i.2fei2.com/poster/slide/2022-04-18/15:07:07/625d0e1bba2fc.png" mode="widthFix"></image>
+			<view style="text-align: right;float: right;width: 100%;padding-right: 100rpx;font-size: 12px;margin-bottom: 15px;color: #fff;">版权所有 侵权必究</view>
+		</view>
+		<button class="share-treport" open-type="share">
+			<image src="http://i.2fei2.com/5e227ba4a3d02.png" mode="widthFix"></image>
+		</button>
+</scroll-view>
+<!-- 张启明 -->
+<messageboxOne wx:if="{{delMaskZ}}" title="张启明" height="425" bindcancel="hideAuthMaskZ">
+	<view slot="content1">
+		<view class="auth-content">中国中医科学院医学实验中心教授，博士研究生导师，学科带头人。国家教育部“新世纪优秀人才”。中国生物医学工程学会中医学工程分秘书长兼后任主任委员。国家药品监督管理局医疗器械分类技术委员会中医器械专业组组长。国家重点研发计划“穿戴式五藏功能事态检测设备关键技术研究（编号2019YFC1711700）”项目负责人。</view>
+	</view>
+</messageboxOne>
+<!-- 绑定报告 -->
+<view class="notice" style="{{isNeedBind ? '' : 'display:none'}}">
+	<view class="mask" style="width:100%;height:100%;display: block;background: rgba(0,0,0,.6);"></view>
+	<view style="width: 80%;background: #fff;border-radius:10px;position: fixed;left:calc(10% - 10px);top:400rpx;z-index:9999;padding: 10px;padding-bottom:0;">
+		<view style="text-align:center;padding:15px;">您确定绑定这份报告吗？</view>
+		<button style="background:#F3F3F3;color:#031331;width:40%;float:left;margin-left:5%;" data-state="2" bindtap="bindTreport">
+			先看看
+		</button>
+		<button style="background:#031331;color:#fff;width:40%;float:right;margin-right:5%;" data-state="1" wx:if="{{!userInfo}}" bindtap="showLogin">
+			是的
+		</button>
+		<button style="background:#031331;color:#fff;width:40%;float:right;margin-right:5%;" data-state="1" bindtap="bindTreport" wx:else>
+			是的
+		</button>
+		<view class="clearfix" style="margin-bottom:20px;"></view>
+	</view>
+</view>
+<!-- 退回报告 -->
+<messageboxOne wx:if="{{delMask}}" maskType="{{1}}" height="230" bottomname="确定" cancelname="取消" bindcancel="hideAuthMask" bindconfirm="acceptAuth">
+	<view slot="content1">
+		<view class="auth-title" style="margin-bottom: 21rpx;">退回报告</view>
+		<view class="auth-content">退回后您将无法查看这份报告</view>
+	</view>
+</messageboxOne>

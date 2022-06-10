@@ -1,0 +1,174 @@
+{
+  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": false,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": true,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "minifyWXML": true,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "ignoreUploadUnusedFiles": true,
+    "useStaticServer": true,
+    "lazyloadPlaceholderEnable": false
+  },
+  "compileType": "miniprogram",
+  "cloudfunctionTemplateRoot": "",
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "pages/onceLog/onceLog",
+          "pathName": "pages/onceLog/onceLog",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/treportBindUser/treportBindUser",
+          "pathName": "pages/treportBindUser/treportBindUser",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/noCheck/no_check",
+          "pathName": "pages/noCheck/no_check",
+          "query": "shop_id=25&share_user_id=8&share_false_url=1607066941474&DeviceIdentity=863221040933143&id=undefined&share_name=哄哄&invite=1&inviteId=1607066941474",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pageFriend/pageFriend/userDetail/userDetail",
+          "pathName": "pageFriend/pageFriend/userDetail/userDetail",
+          "query": "shop_id=25&share_user_id=219090&share_false_url=1607066941474&DeviceIdentity=863221040933143&id=undefined&share_name=哄哄&invite=1&inviteId=1607066941474",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/userList/userList",
+          "pathName": "pages/userList/userList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "shop_id=25&share_user_id=8&share_false_url=1607066941474&DeviceIdentity=863221040933143&id=undefined&share_name=哄哄&invite=1&inviteId=1607066941474",
+          "scene": null
+        },
+        {
+          "name": "pageHappy/pageHappy/meditation/meditation",
+          "pathName": "pageHappy/pageHappy/meditation/meditation",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/shop/shop",
+          "pathName": "pageShop/pageShop/shop/shop",
+          "query": "shop_id=25&share_user_id=8&share_false_url=1614302400419&DeviceIdentity=863221040910034&type=2",
+          "scene": null
+        },
+        {
+          "name": "pages/authList/authList",
+          "pathName": "pages/authList/authList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/userList/userList",
+          "pathName": "pages/userList/userList",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/moneyDetail/moneyDetail",
+          "pathName": "pageShop/pageShop/moneyDetail/moneyDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/shopDetail/shopDetail",
+          "pathName": "pageShop/pageShop/shopDetail/shopDetail",
+          "query": "goods_id=2878",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/chooseClothes/chooseClothes",
+          "pathName": "pageShop/pageShop/chooseClothes/chooseClothes",
+          "query": "img=https://i.2fei2.com/poster/slide/2021-03-15/11:49:09/604ed935ac128.png&goods_id=2878",
+          "scene": null
+        },
+        {
+          "name": "pages/personal/personal",
+          "pathName": "pages/personal/personal",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/works/works",
+          "pathName": "pages/works/works",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/preview/preview",
+          "pathName": "pageShop/pageShop/preview/preview",
+          "query": "goodsId=2878&artwork_id=65",
+          "scene": null
+        },
+        {
+          "name": "pageShop/pageShop/workDetail/workDetail",
+          "pathName": "pageShop/pageShop/workDetail/workDetail",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "libVersion": "2.24.0",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "appid": "wx4e510a2f85b6734e"
+}

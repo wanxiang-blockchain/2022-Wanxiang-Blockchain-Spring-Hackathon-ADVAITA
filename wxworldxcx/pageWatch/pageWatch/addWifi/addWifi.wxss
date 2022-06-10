@@ -1,0 +1,60 @@
+/* pageWatch/pageWatch/bluetooth/bluetooth.wxss */
+input{
+  background: #F0F0F0;
+  height: 80rpx;
+  border-radius: 14rpx;
+  line-height: 80rpx;
+  padding:0 27rpx;
+}
+.title{
+  padding-top: 30rpx;
+  font-size: 43rpx;
+}
+.tag{
+  margin-top: 33rpx;
+  display: inline-flex;
+  margin-bottom: 16rpx;
+}
+.tag view{
+  font-size: 25rpx;
+  display: inline-flex;
+  text-align: center;
+  border: 2rpx solid #979797;
+  border-radius: 25rpx;
+  padding: 7rpx 40rpx;
+  margin-right: 13rpx;
+}
+.tag .active{
+  border: 2rpx solid #2A2C48;
+  color: #FFF;
+  background: #2A2C48;
+}
+.tips{
+  font-size:25rpx;
+  font-weight: 400;
+  margin-top: 13rpx;
+}
+.tips image{
+  vertical-align: text-top;
+  width:25rpx;
+  height:25rpx;
+  margin-right: 5rpx;
+  margin-bottom: 67rpx;
+}
+.confirm{
+  width:calc(100% - 84rpx);
+  height: 91rpx;
+  border-radius: 45rpx;
+  background: #E3E3E3;
+  color: #8D8D8D;
+  text-align: center;
+  font-size: 33rpx;
+  line-height: 91rpx;
+  left: 42rpx;
+  position: fixed;
+  bottom: 80rpx;
+}
+.confirm.active{
+  background: #2A2C48;
+  color: #fff;
+}

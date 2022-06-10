@@ -1,0 +1,227 @@
+<MyHeader2 ></MyHeader2>
+<scroll-view id="scrollBox" style="height: calc({{windowHeight}}px  - {{statusBarHeight}}px + 29rpx); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h" wx:if="{{addWifiPage==0}}">
+
+ <view style="padding-top:calc({{statusBarHeight}}px + {{navHeight}}px + 33rpx);text-align: center;font-size: 72rpx;margin-bottom: 47rpx;">
+ <image src="https://i.2fei2.com/goods/logo/2022-01-20/17:22:45/61e929e5740c2.png" style="width: 36rpx;height: 68rpx;"></image>
+ <view>蓝牙匹配</view>
+</view>
+
+
+ <block wx:if="{{switchChecked==0}}">
+  <image src="https://i.2fei2.com/goods/logo/2022-01-20/17:24:23/61e92a4761ea9.png" style="width: 100%;height: 542rpx;"></image>
+
+  <view style="text-align: center;margin-top:62rpx;">
+    <view style="font-size: 33rpx;color: #339BFF;font-weight: 800;">匹配中...</view>
+    <view style="font-size: 25rpx;font-weight: 400;">蓝牙连接过程可能需要10秒钟，请耐心等待…</view>
+  </view>
+</block>
+
+ <block wx:if="{{switchChecked==2}}">
+  <view style="text-align: center;font-weight: 800;color: #919191;font-size: 51rpx;line-height: 1;margin-top: 281rpx;">匹配失败</view>
+<view bindtap="onBluetooth" style="position: fixed;bottom: 208rpx;left: 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">重试</view>
+  </block>
+
+
+
+<view bindtap="goChat" style="font-size: 25rpx;text-align: center;position: fixed;bottom:74rpx;width: 100%;font-weight: 400;display: inline-flex;justify-content: center;">如有疑问请 
+<view style="color: #339BFF;display: inline-flex;margin-left: 5rpx;">咨询客服<view class="iconfont iconmore" style="font-size: 25rpx;"></view></view></view>
+
+<block wx:if="{{switchChecked==1}}">
+  <view class="mask"></view>
+  <view class="hint">
+    <image src="https://i.2fei2.com/goods/logo/2022-01-25/16:09:56/61efb0543b878.png"></image>蓝牙匹配成功
+  </view>
+</block>
+ </scroll-view>
+
+
+ <scroll-view id="scrollBox" style="height: calc({{windowHeight}}px  - {{statusBarHeight}}px + 29rpx); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h"  wx:if="{{addWifiPage==1}}">
+  <view style="padding:0 42rpx;">
+
+    <view style="padding-top:calc({{statusBarHeight}}px + {{navHeight}}px + 33rpx);">
+      <image style="width:85rpx;height:67rpx;"  src="https://i.2fei2.com/goods/logo/2022-01-21/10:00:00/61ea13a0f1ae1.png"></image>
+    </view>
+    <view class="title">设置手表WLAN</view>
+
+    <view class="tips"><image src="https://i.2fei2.com/goods/logo/2022-01-21/10:02:21/61ea142d253de.png"></image>
+      <!-- 仅支持数字、英文与英式符号的WLAN账号、密码 -->
+      暂不支持中文的WLAN账号、密码
+    </view>
+    
+    <!-- <view class="tips">调试输出：{{log}}</view> -->
+    
+    <block wx:if="{{!isShowWifiList}}">
+      <!--输入账号-->
+      <input type="text" placeholder="账号" value="{{acc}}" bindinput="accInput"></input>
+      <!--密码-->
+      <view class="tag">
+        <view bindtap="isPass" class="{{isPass == 1 ? 'active' : ''}}">有密码</view>
+        <view bindtap="isPass" class="{{isPass == 0 ? 'active' : ''}}">无密码</view>
+      </view>
+      <!--输入密码-->
+      <input type="text" wx:if="{{isPass}}" value="{{pass}}" bindinput="passInput" placeholder="密码"></input>
+      <view bindtap="confirm" class="confirm {{check ? 'active' : ''}}">确定</view>
+
+    </block>
+  </view>
+  <block wx:if="{{isShowWifiList}}">
+    <view class="wifiList">
+      <view class="item" wx:for="{{wifiList}}" data-name="{{item.SSID}}" bindtap="selectWifi">{{item.SSID}}</view>
+    </view>
+  </block>
+<!-- <view bindtap="goChat" style="font-size: 25rpx;text-align: center;position: fixed;bottom:74rpx;width: 100%;font-weight: 400;display: inline-flex;justify-content: center;">
+  如有疑问请 
+  <view style="color: #339BFF;display: inline-flex;margin-left: 5rpx;">咨询客服<view class="iconfont iconmore" style="font-size: 25rpx;"></view></view>
+</view> -->
+ </scroll-view>
+
+ <scroll-view id="scrollBox" style="height: calc({{windowHeight}}px  - {{statusBarHeight}}px + 29rpx); width:{{windowWidth}}px;position:relative;display:{{addWifiPage==2 ? 'block' : 'none'}};"
+ scroll-y="true" class="scroll-h">
+ 
+ <!-- <view class="echart-box" style="margin-top: 150rpx;height:263rpx;" >
+  波形图：<ec-canvas id="mychart-dom-mbb" canvas-id="mychart-dom-mbb" ec="{{ecMBB}}"></ec-canvas>
+</view> -->
+
+ <view bindtap="updateTime" style="margin:150rpx 5% 30rpx 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">更新当前时间</view>
+ <input type="number" style="margin-left:10%;width: 40%;display: inline-flex;" placeholder="舒张压（低压）" value="{{systolic}}" bindinput="systolicInput"></input>
+ <input type="number" style="width: 40%;display: inline-flex;" placeholder="收缩压（高压）" value="{{diastolic}}" bindinput="diastolicInput"></input>
+
+ <view bindtap="calibration" style="margin:15rpx 5% 30rpx 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">血压校准</view>
+
+
+ <view bindtap="deleteWifi" style="margin:15rpx 5% 30rpx 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">删除WiFi</view>
+ <view bindtap="deleteAllWifi" style="margin:30rpx 5% 0 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">删除全部WiFi</view>
+
+
+
+ <view bindtap="goRealTimeChart"  style="margin:30rpx 5% 0 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">实时脉搏波</view>
+
+ <view bindtap="linkWifi" style="margin:30rpx 5% 0 5%;width: 90%;border-radius: 45rpx;border: 2rpx solid rgba(151, 151, 151, 1);font-size: 33rpx;height: 90rpx;line-height: 90rpx;text-align: center;font-weight: 800;color: #000;">去连WiFi</view>
+
+
+ 
+ <view class="tips">调试输出：{{log}}</view>
+ </scroll-view>
+ 
+
+ <scroll-view id="scrollBox" style="height: calc({{windowHeight}}px  - {{statusBarHeight}}px + 29rpx); width:{{windowWidth}}px;position:relative;display:{{addWifiPage==3 ? 'block' : 'none'}};"
+ scroll-y="true" class="scroll-h">
+ <block wx:if="{{switchChecked==3}}">
+    <view style="font-size: 65rpx;text-align: center;padding-top:calc({{statusBarHeight}}px + {{navHeight}}px + 33rpx);">个人信息</view>
+    <view style="font-size: 22rpx;text-align: center;line-height: 1;margin-bottom: 20rpx;">1/2</view>
+
+    <view style="font-size: 25rpx;text-align: center;margin-bottom: 100rpx;">请填写准确信息，以便精准的分析数据</view>
+
+ 
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">性别</view>
+      <picker bindchange="bindFormChange" range="{{sexArr}}" data-key="sex" value="{{sex}}" style="font-size: 25rpx;{{sex ? 'color:#000;font-weight: 800;' : 'color:#9D9D9D;'}}display:contents;">{{sexArr[sex] ? sexArr[sex] :'请输入'}}<view class="iconfont iconjiantouyou" style="margin-left: 22rpx;font-size: 25rpx;padding-right: 42rpx;display: inline-flex;"></view></picker>
+      
+    </view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">出生年月</view>
+      <picker bindchange="bindFormChange" mode="date" data-key="birth" value="{{birth}}" style="font-size: 25rpx;{{birth ? 'color:#000;font-weight: 800;' : 'color:#9D9D9D;'}}display:contents;">{{birth ? birth :'请输入'}}<view class="iconfont iconjiantouyou" style="margin-left: 22rpx;font-size: 25rpx;padding-right: 42rpx;display: inline-flex;"></view></picker>
+    </view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">身高</view>
+      <view style="display: inline-flex;">
+      <input type="number" placeholder-style="color:#9D9D9D;" bindinput="bindFormChange" value="{{cm}}" data-key="cm" placeholder="请输入" style="width: 100px;text-align: right;padding: 0;height: 42rpx;background: none;font-size: 25rpx;"></input>
+      <view class="iconfont" style="margin-right: 42rpx;margin-left: 10rpx;font-size: 25rpx;line-height: 42rpx;">CM</view>
+      </view>
+    </view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">体重</view>
+      <view style="display: inline-flex;">
+      <input type="number" placeholder-style="color:#9D9D9D;"    bindinput="bindFormChange" value="{{kg}}" data-key="kg" placeholder="请输入" style="width: 100px;text-align: right;padding: 0;height: 42rpx;background: none;font-size: 25rpx;"></input>
+      <view class="iconfont" style="margin-right: 42rpx;margin-left: 13rpx;font-size: 25rpx;line-height: 42rpx;">KG</view>
+      </view>
+    </view>
+    <view bindtap="confirm2" class="confirm {{check==1 ? 'active' : ''}}">下一步</view>
+
+  </block>
+  <block wx:if="{{switchChecked==4}}">
+    <view style="font-size: 65rpx;text-align: center;padding-top:calc({{statusBarHeight}}px + {{navHeight}}px + 33rpx);">既往病史</view>
+    
+    <view style="font-size: 22rpx;text-align: center;line-height: 1;margin-bottom: 20rpx;">2/2</view>
+
+    <view style="font-size: 25rpx;text-align: center;margin-bottom: 100rpx;">请标记您的既往病史，标记得越精准，对您的健康管理越有效。</view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">高血压史</view>
+      <picker bindchange="bindFormChange" range="{{yesOrNo}}" data-key="gaoxueya" value="{{gaoxueya}}" style="font-size: 25rpx;{{gaoxueya ? 'color:#000;font-weight: 800;' : 'color:#9D9D9D;'}}display:contents;">{{yesOrNo[gaoxueya] ? yesOrNo[gaoxueya] :'请输入'}}<view class="iconfont iconjiantouyou" style="margin-left: 22rpx;font-size: 25rpx;padding-right: 42rpx;display: inline-flex;"></view></picker>
+    </view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">糖尿病史</view>
+      <picker bindchange="bindFormChange" range="{{yesOrNo}}" data-key="tangniaobing" value="{{tangniaobing}}" style="font-size: 25rpx;{{tangniaobing ? 'color:#000;font-weight: 800;' : 'color:#9D9D9D;'}}display:contents;">{{yesOrNo[tangniaobing] ? yesOrNo[tangniaobing] :'请输入'}}<view class="iconfont iconjiantouyou" style="margin-left: 22rpx;font-size: 25rpx;padding-right: 42rpx;display: inline-flex;"></view></picker>
+    </view>
+
+    <view style="display: inline-flex;margin-left: 42rpx;padding: 38rpx 0;border-bottom: 1px solid #E7E7E7;width:calc(100% - 42rpx);justify-content: space-between;">
+      <view style="font-size: 25rpx;font-weight: 500;">冠心病史</view>
+      <picker bindchange="bindFormChange" range="{{yesOrNo}}" data-key="guanxinbing" value="{{guanxinbing}}" style="font-size: 25rpx;{{guanxinbing ? 'color:#000;font-weight: 800;' : 'color:#9D9D9D;'}}display:contents;">{{yesOrNo[guanxinbing] ? yesOrNo[guanxinbing] :'请输入'}}<view class="iconfont iconjiantouyou" style="margin-left: 22rpx;font-size: 25rpx;padding-right: 42rpx;display: inline-flex;"></view></picker>
+    </view>
+
+    <view style="margin-left: 42rpx;padding: 38rpx 0;width:calc(100% - 42rpx);">
+      <view style="font-size: 25rpx;font-weight: 500;">其它病史（可多选）</view>
+      <view class="tag2">
+
+<view bindtap="otherChange" class="{{checkex[0] ? 'active':''}}" data-index="0" data-text="无">无</view>
+<view bindtap="otherChange" class="{{checkex[1] ? 'active':''}}" data-index="1" data-text="高血脂">高血脂</view>
+<view bindtap="otherChange" class="{{checkex[2] ? 'active':''}}" data-index="2" data-text="高尿酸">高尿酸</view>
+<view bindtap="otherChange" class="{{checkex[3] ? 'active':''}}" data-index="3" data-text="肥胖症">肥胖症</view>
+<view bindtap="otherChange" class="{{checkex[4] ? 'active':''}}" data-index="4" data-text="抑郁症">抑郁症</view>
+<view bindtap="otherChange" class="{{checkex[6] ? 'active':''}}" data-index="6" data-text="低血糖">低血糖</view>
+<view bindtap="otherChange" class="{{checkex[7] ? 'active':''}}" data-index="7" data-text="脑溢血">脑溢血</view>
+<view bindtap="otherChange" class="{{checkex[8] ? 'active':''}}" data-index="8" data-text="健忘症">健忘症</view>
+<view bindtap="otherChange" class="{{checkex[9] ? 'active':''}}" data-index="9" data-text="嗜睡症">嗜睡症</view>
+<view bindtap="otherChange" class="{{checkex[10] ? 'active':''}}" data-index="10" data-text="痴呆症">痴呆症</view>
+<view bindtap="otherChange" class="{{checkex[12] ? 'active':''}}" data-index="12" data-text="狂躁症">狂躁症</view>
+<view bindtap="otherChange" class="{{checkex[13] ? 'active':''}}" data-index="13" data-text="健忘症">健忘症</view>
+<view bindtap="otherChange" class="{{checkex[14] ? 'active':''}}" data-index="14" data-text="焦虑症">焦虑症</view>
+<view bindtap="otherChange" class="{{checkex[15] ? 'active':''}}" data-index="15" data-text="胃溃疡">胃溃疡</view>
+<view bindtap="otherChange" class="{{checkex[16] ? 'active':''}}" data-index="16" data-text="梅核气">梅核气</view>
+<view bindtap="otherChange" class="{{checkex[36] ? 'active':''}}" data-index="36" data-text="脂肪肝">脂肪肝</view>
+
+<view bindtap="otherChange" class="{{checkex[19] ? 'active':''}}" data-index="19" data-text="心律不齐">心律不齐</view>
+<view bindtap="otherChange" class="{{checkex[25] ? 'active':''}}" data-index="25" data-text="植物神经紊乱">植物神经紊乱</view>
+<view bindtap="otherChange" class="{{checkex[29] ? 'active':''}}" data-index="29" data-text="风湿性心脏病">风湿性心脏病</view>
+
+
+<view bindtap="otherChange" class="{{checkex[24] ? 'active':''}}" data-index="24" data-text="动脉硬化">动脉硬化</view>
+<view bindtap="otherChange" class="{{checkex[26] ? 'active':''}}" data-index="26" data-text="胃肠功能紊乱">胃肠功能紊乱</view>
+<view bindtap="otherChange" class="{{checkex[32] ? 'active':''}}" data-index="32" data-text="先天性心脏病">先天性心脏病</view>
+
+<view bindtap="otherChange" class="{{checkex[22] ? 'active':''}}" data-index="22" data-text="不孕不育">不孕不育</view>
+<view bindtap="otherChange" class="{{checkex[34] ? 'active':''}}" data-index="34" data-text="内分泌紊乱">内分泌紊乱</view>
+<view bindtap="otherChange" class="{{checkex[33] ? 'active':''}}" data-index="33" data-text="高血压性心脏病">高血压性心脏病</view>
+
+<view bindtap="otherChange" class="{{checkex[11] ? 'active':''}}" data-index="11" data-text="失眠">失眠</view>
+<view bindtap="otherChange" class="{{checkex[30] ? 'active':''}}" data-index="30" data-text="更年期紧张综合征">更年期紧张综合征</view>
+
+<view bindtap="otherChange" class="{{checkex[20] ? 'active':''}}" data-index="20" data-text="慢性结肠炎">慢性结肠炎</view>
+
+<view bindtap="otherChange" class="{{checkex[18] ? 'active':''}}" data-index="18" data-text="癌症">癌症</view>
+<view bindtap="otherChange" class="{{checkex[27] ? 'active':''}}" data-index="27" data-text="经前紧张综合征">经前紧张综合征</view>
+
+<view bindtap="otherChange" class="{{checkex[21] ? 'active':''}}" data-index="21" data-text="慢性盆腔炎">慢性盆腔炎</view>
+
+
+<view bindtap="otherChange" class="{{checkex[5] ? 'active':''}}" data-index="5" data-text="慢性乙肝">慢性乙肝</view>
+<view bindtap="otherChange" class="{{checkex[17] ? 'active':''}}" data-index="17" data-text="神经衰弱">神经衰弱</view>
+
+<view bindtap="otherChange" class="{{checkex[28] ? 'active':''}}" data-index="28" data-text="甲状腺功能减退">甲状腺功能减退</view>
+<view bindtap="otherChange" class="{{checkex[31] ? 'active':''}}" data-index="31" data-text="自身免疫性疾病">自身免疫性疾病</view>
+<view bindtap="otherChange" class="{{checkex[35] ? 'active':''}}" data-index="35" data-text="高粘滞血症">高粘滞血症</view>
+      </view>
+    </view>
+    <view wx:if="{{check==3}}" class="confirm">提交中...</view>
+    <view wx:else bindtap="confirm3" class="confirm {{check==2 ? 'active' : ''}}">保存</view>
+
+  </block>
+  
+ </scroll-view>

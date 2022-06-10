@@ -1,0 +1,7 @@
+{
+	"usingComponents": {
+		"MyHeader2": "/components/MyHeader2/MyHeader2",
+		"ec-canvas": "../../../utils/ec-canvas/ec-canvas"
+	},
+	"navigationBarTextStyle": "black"
+}
