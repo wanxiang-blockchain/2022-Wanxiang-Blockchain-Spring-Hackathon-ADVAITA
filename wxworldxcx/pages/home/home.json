@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"MyHeader": "/components/MyHeader/MyHeader",
+		"txv-video": "plugin://tencentvideo/video",
+		"myLive": "/components/live/live",
+		"myLoading": "/components/myLoading/myLoading"
+	},
+	"navigationBarTextStyle": "black"
+}

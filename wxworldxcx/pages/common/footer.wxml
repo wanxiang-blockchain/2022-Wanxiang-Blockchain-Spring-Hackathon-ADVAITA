@@ -1,0 +1,117 @@
+<include src="public.wxml" />
+<!-- 底部菜单栏 -->
+<!-- <cover-view class="footer-bottom">
+	<cover-view class="footer">
+		<cover-view class="ul">
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pageShop/pageShop/meditation/meditation" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 2 ? 'active' : ''}} a">
+						<block wx:if="{{URL != 2}}">
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d31eeee.png"></cover-image>
+						<cover-view>首页</cover-view>
+						</block>
+						<block wx:else>
+							<cover-image class="foot-img-index" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d31eeee.png"></cover-image>
+						</block>
+					</cover-view>
+				</navigator>
+			</cover-view>
+
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pages/shop/shop" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 1 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d3a0ebf.png" wx:if="{{URL != 1}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d3e66b5.png" wx:else></cover-image>
+						<cover-view>商城</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+		
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pageFriend/pageFriend/friendCircle/friendCircle" open-type="reLaunch"
+				 hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 3 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:48/61caa7d46b89b.png" wx:if="{{URL != 3}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:48/61caa7d4a12f0.png" wx:else></cover-image>
+						<cover-view>世界</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+			
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pages/personal/personal" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 4 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:46/61caa7d281215.png" wx:if="{{URL != 4}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:46/61caa7d2d184f.png" wx:else></cover-image>
+						<cover-view>我的</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+
+		</cover-view>
+	</cover-view>
+</cover-view> -->
+<view class="footer">
+	<view class="nav">
+		<view class="ul">
+
+			<view class="li">
+				<navigator class="nav-controller a" url="/pageShop/pageShop/meditation/meditation" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 2 ? 'active' : ''}} a">
+						<block wx:if="{{URL != 2}}">
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d31eeee.png"></image>
+						<view>首页</view>
+						</block>
+						<block wx:else>
+							<image class="foot-img-index" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d31eeee.png"></image>
+						</block>
+					</view>
+				</navigator>
+			</view>
+
+			<view class="li">
+				<navigator class="nav-controller a" url="/pageShop/pageShop/index/index" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 1 ? 'active' : ''}} a">
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d3a0ebf.png" wx:if="{{URL != 1}}"></image>
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:47/61caa7d3e66b5.png" wx:else></image>
+						<view>商城</view>
+					</view>
+				</navigator>
+			</view>
+			<view class="li">
+				<navigator class="nav-controller a" url="/pageWatch/pageWatch/index/index" open-type="reLaunch"
+				 hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 5 ? 'active' : ''}} a">
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2022-06-03/14:25:55/6299a973ed37a.png" wx:if="{{URL != 5}}"></image>
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2022-05-20/10:56:48/628703701b934.png" wx:else></image>
+						<view>手表</view>
+					</view>
+				</navigator>
+			</view>
+			
+
+			<view class="li">
+				<navigator class="nav-controller a" url="/pageFriend/pageFriend/friendCircle/friendCircle" open-type="reLaunch"
+				 hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 3 ? 'active' : ''}} a">
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:48/61caa7d46b89b.png" wx:if="{{URL != 3}}"></image>
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:48/61caa7d4a12f0.png" wx:else></image>
+						<view>社区</view>
+					</view>
+				</navigator>
+			</view>
+
+      
+			
+			<view class="li">
+				<navigator class="nav-controller a" url="/pages/personal/personal" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 4 ? 'active' : ''}} a">
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:46/61caa7d281215.png" wx:if="{{URL != 4}}"></image>
+						<image class="foot-img" src="https://i.2fei2.com/poster/slide/2021-12-28/13:59:46/61caa7d2d184f.png" wx:else></image>
+						<view>我的</view>
+					</view>
+				</navigator>
+			</view>
+		</view>
+	</view>
+</view>

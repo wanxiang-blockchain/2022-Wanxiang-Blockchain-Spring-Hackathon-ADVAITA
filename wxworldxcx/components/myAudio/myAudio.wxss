@@ -1,0 +1,92 @@
+@import '../../common/iconfont.wxss';
+.audio {
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+.all-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.player-list {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.inline{
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 10rpx;
+}
+.audio-box{
+	position: relative;
+}
+/* 播放条2 */
+.finish{
+	background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, rgba(148,148,148,0.5) 100%);
+	/* background: url("https://i.2fei2.com/poster/slide/2021-12-14/15:59:59/61b84eff0faec.png") no-repeat;
+	background-size: 100% 100%; */
+	border-radius: 29rpx;
+	color: #fff;
+	width: calc(100% - 46rpx * 2);
+	height: 100rpx;
+	margin-left:46rpx;
+	box-shadow: 0px 4rpx 36rpx 13rpx rgba(0,0,0,0.25);
+}
+.finish .title{
+	text-align: left;
+	float: left;
+	line-height: 100rpx;
+	font-size: 29rpx;
+	/* font-weight: 800; */
+	vertical-align: top;
+	padding-left: 25rpx;
+}
+.finish .repair{
+	display: initial;
+	font-size: 25rpx;
+	margin-left: 24rpx;
+}
+.finish .repair .iconfont{
+	font-size: 25rpx;
+}
+.finish .btn{
+	float: right;
+	margin-right: 25rpx;
+	width: 274rpx;
+	height: 54rpx;
+	background: #696E73;
+	border-radius: 26rpx;
+	opacity: 0.8;
+	color: #FFF;
+	font-size: 25rpx;
+	text-align: center;
+	line-height: 54rpx;
+	margin-top: 24rpx;
+}
+/* 经典 */
+.audio-classic{
+	color:#6D7278;
+	font-size: 44rpx;
+	position: absolute;
+	right: -4rpx;
+	top:-70rpx;
+}
+/* 样式5 */
+.audio-player{
+	width: 52rpx;
+	height: 52rpx;
+	display: inline-table;
+	font-size: 52rpx;
+	color: #fff;
+	vertical-align: middle;
+	position: relative;
+	/* left: -6rpx; */
+}

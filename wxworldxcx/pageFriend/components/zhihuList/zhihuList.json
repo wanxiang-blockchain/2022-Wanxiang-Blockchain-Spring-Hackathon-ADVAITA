@@ -1,0 +1,10 @@
+{
+	"usingComponents": {
+		"myUserInfo": "/components/userInfo/userInfo",
+		"Carousel": "/components/Carousel/Carousel",
+		"myLoading": "/components/myLoading/myLoading",
+		"watchList": "/components/watchList/watchList",
+		"myToast": "/components/myToast/myToast"
+	},
+	"component": true
+}

@@ -1,0 +1,61 @@
+<MyHeader  titleText='' background="{{skinMainColor}}"></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<scroll-view scroll-y="true" style="height: calc({{windowHeight}}px - 56px); width:{{windowWidth}}px;background-color: #F9F9F9;">
+	<view class="user">
+		<myUserInfo height="136" contentLeft="128" borderLeft="{{0}}" wx:if="{{!userInfo}}">
+			<view slot="avatar">
+				<image class="" mode="aspectFill" catchtap="goDetail" src="http://i.2fei2.com/5d638db0055ea.png" style="height:60rpx;width:60rpx;left: 44rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 8rpx;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 50rpx;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">请登录</view>
+			</view>
+		</myUserInfo>
+		<myUserInfo height="136" contentLeft="128" borderLeft="{{0}}" wx:else>
+			<view slot="avatar">
+				<image class="" mode="aspectFill" catchtap="goDetail" src="{{userInfo.Wechat_xcxSetUser.avatar_url}}" style="height:60rpx;width:60rpx;left: 44rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 8rpx;background-color: #ccc;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 50rpx;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">{{userInfo.Wechat_xcxSetUser.nickname}}</view>
+			</view>
+		</myUserInfo>
+	</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/order/order" style="margin-top: 30rpx;">
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconProfit" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #484B28;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">我的订单</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	<view class="user-item"
+	bindtap="goChat"  style="margin-top: 30rpx;">
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconProfit" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #484B28;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">联系客服</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pages/index/index?c=1" style="margin-top: 30rpx;">
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconProfit" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #484B28;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">清除缓存</view>
+			</view>
+		</myUserInfo>
+	</view>
+</scroll-view>
+
+<!-- <include src="../common/service.wxml"/> -->
+<include src="../common/footer.wxml" />
+<include src="../common/auth.wxml" />

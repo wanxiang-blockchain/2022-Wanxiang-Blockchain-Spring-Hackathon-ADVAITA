@@ -1,0 +1,98 @@
+<include src="public.wxml" />
+<!-- 底部菜单栏 -->
+<cover-view class="footer-bottom" wx:if="{{URL == 2}}">
+	<cover-view class="footer">
+		<!-- <cover-view class="nav"> -->
+		<cover-view class="ul">
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pages/shop/shop" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 1 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2020-12-31/09:48:33/5fed2df17a9fc.png" wx:if="{{URL != 1}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2020-12-31/09:48:33/5fed2df17a9fc.png" wx:else></cover-image>
+						<cover-view>商城</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+		
+			<!-- <cover-view class="li">
+				<navigator class="nav-controller a" url="/pageFriend/pageFriend/friendCircle/friendCircle" open-type="reLaunch"
+				 hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 3 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2020-12-31/09:46:51/5fed2d8b654bc.png" wx:if="{{URL != 3}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2020-12-31/09:46:51/5fed2d8b654bc.png" wx:else></cover-image>
+						<cover-view>世界</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pages/index/index" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 2 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2021-04-19/16:00:56/607d38b8d217f.png" wx:if="{{URL != 2}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2021-04-19/16:00:56/607d38b8d217f.png" wx:else></cover-image>
+						<cover-view style="color: {{skinMainColor}};">测评</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view> -->
+			<cover-view class="li">
+				<navigator class="nav-controller a" url="/pages/personal/personal" open-type="reLaunch" hover-class="a-hover">
+					<cover-view class="foot-btn nav-controller {{URL == 4 ? 'active' : ''}} a">
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2021-02-01/14:45:47/6017a39bdb376.png" wx:if="{{URL != 4}}"></cover-image>
+						<cover-image class="foot-img" src="https://i.2fei2.com/shop/logo/2021-02-01/14:45:47/6017a39bdb376.png" wx:else></cover-image>
+						<cover-view>我的</cover-view>
+					</cover-view>
+				</navigator>
+			</cover-view>
+		</cover-view>
+		<!-- </cover-view> -->
+	</cover-view>
+</cover-view>
+
+<view class="footer" wx:else>
+	<view class="nav">
+		<view class="ul">
+			<view class="li">
+				<navigator class="nav-controller a" url="/pages/shop/shop" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 1 ? 'active' : ''}} a">
+						<!-- <view class="foot-btn nav-controller {{URL == 2 ? 'active' : ''}} a" style="font-size: 47rpx;margin-top: -4px;"> -->
+						<!-- <view class="iconfont icon-tubiaozhizuomoban1" style="font-size:47px;"></view> -->
+						<view class="iconfont iconshangcheng-01" wx:if="{{URL != 1}}" ></view>
+						<view class="iconfont iconshangcheng" wx:else style="color: {{URL == 1?skinMainColor:''}};"></view>
+						<text style="color: {{URL == 1?skinMainColor:''}};">商城</text>
+					</view>
+				</navigator>
+			</view>
+
+			
+
+			<!-- <view class="li">
+				<navigator class="nav-controller a" url="/pageFriend/pageFriend/friendCircle/friendCircle" open-type="reLaunch"
+				 hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 3 ? 'active' : ''}} a">
+						<view class="iconfont iconjiacu" wx:if="{{URL != 3}}"></view>
+						<view class="iconfont iconyuanquanlanse1" wx:else style="color: {{URL == 3?skinMainColor:''}};"></view>
+						<text style="color: {{URL == 3?skinMainColor:''}};">世界</text>
+					</view>
+				</navigator>
+			</view>
+			<view class="li">
+				<navigator class="nav-controller a" url="/pages/index/index" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 2 ? 'active' : ''}} a">
+						<view class="iconfont iconsidajingang-4" wx:if="{{URL != 2}}"></view>
+						<view class="iconfont iconsidajingang-5" wx:else style="color: {{URL == 2?skinMainColor:''}};"></view>
+						<text style="color: {{URL == 2?skinMainColor:''}};">测评</text>
+					</view>
+				</navigator>
+			</view>
+			 -->
+			<view class="li">
+				<navigator class="nav-controller a" url="/pages/personal/personal" open-type="reLaunch" hover-class="a-hover">
+					<view class="foot-btn nav-controller {{URL == 4 ? 'active' : ''}} a">
+						<view class="iconfont iconxiyue" wx:if="{{URL != 4}}"></view>
+						<view class="iconfont iconxiyue" wx:else style="color: {{URL == 4?skinMainColor:''}};"></view>
+						<text style="color: {{URL == 4?skinMainColor:''}};">我的</text>
+					</view>
+				</navigator>
+			</view>
+		</view>
+	</view>
+</view>

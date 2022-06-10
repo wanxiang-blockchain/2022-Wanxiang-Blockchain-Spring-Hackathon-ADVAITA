@@ -1,0 +1,198 @@
+<MyHeader titleText='我的'></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<scroll-view scroll-y="true" style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px + 29rpx); width:{{windowWidth}}px;">
+	<view class="user">
+		<myUserInfo height="136" contentLeft="128" borderLeft="{{0}}" wx:if="{{!userInfo}}">
+			<view slot="avatar">
+				<image class="" mode="aspectFill" bindtap="getUserProfile" src="http://i.2fei2.com/5d638db0055ea.png" style="height:60rpx;width:60rpx;left: 44rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 8rpx;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" bindtap="getUserProfile" style="margin-top: 50rpx;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">请登录</view>
+			</view>
+		</myUserInfo>
+		<myUserInfo height="136" contentLeft="128" borderLeft="{{0}}" wx:else>
+			<view slot="avatar">
+				<image class="" mode="aspectFill" bindtap="getUserProfile" src="{{userInfo.Wechat_xcxSetUser.avatar_url}}" style="height:60rpx;width:60rpx;left: 44rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 8rpx;background-color: #ccc;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" bindtap="getUserProfile" style="display: block;margin-top: 30rpx;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">{{userInfo.Wechat_xcxSetUser.nickname}}</view>
+				<view wx:if="{{userInfo.Wechat_xcxSetUser.user_id}}" class="hidden-text" bindtap="getUserProfile" style="margin-top: 0;max-width: 400rpx;font-size: 28rpx;">用户ID：{{userInfo.Wechat_xcxSetUser.user_id}}</view>
+				<view class="wechat-box" bindtap="goChat"><view class="wechat-icon iconfont iconweixinhaoyou1"></view>联系客服</view>
+			</view>
+		</myUserInfo>
+	</view>
+	<navigator url="/pageShop/pageShop/healthBean/healthBean">
+		<image src="https://i.2fei2.com/poster/slide/2022-01-27/16:59:16/61f25ee43f0d2.png" style="width: 100%;" mode="widthFix"></image>
+	</navigator>
+	<view class="list-title list-border">健康中心</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pages/index/index" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconzhikeshuma-" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #1A184C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">脉诊手表</view>
+			</view>
+		</myUserInfo>
+	</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/sleepIntro/sleepIntro" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconbiyan" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #1A184C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">睡眠测评</view>
+			</view>
+		</myUserInfo>
+	</view>
+	<!-- <view class="user-item"
+	bindtap="goUrl" data-url="{{'/pages/focus/focus?url=https://ali.huofar.cn/hf/newhomena/&user_id='+userInfo.Wechat_xcxSetUser.user_id+'&appid=176'}}" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconiosbodyoutline" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #1A184C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">中医九种体质辨识</view>
+			</view>
+		</myUserInfo>
+	</view> -->
+	<view class="user-item"
+	bindtap="goUrl" data-url="{{'/pageFriend/pageFriend/friendCircle/friendCircle?bigType=1&showSearch=1'}}" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<image class="team-img" mode="aspectFill" src="https://i.2fei2.com/goods/logo/2021-08-16/09:38:32/6119c1989d00c.png" style="width: 30rpx;height: 40rpx; display:inline-block;font-size:50rpx;color: #1A184C;position: absolute;left:56rpx;top: 0;bottom: 0;margin: auto;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">矿盐查询</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	
+	
+	<view class="user-item list-border"
+	style="margin-top: 18rpx;"
+	bindtap="goUrl" data-url="/pageShop/pageShop/order/order">
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconaui-icon-order" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #223370;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">全部订单</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/moneyList/moneyList?sort=3" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconhuiyuantequanduihuanzhekou" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#41202C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">积分</view>
+			</view>
+			
+		</myUserInfo>
+	</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/healthBean/healthBean" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconCoffeebeangrain" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#41202C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">塔豆</view>
+			</view>
+			
+		</myUserInfo>
+	</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/healthBeanSendLog/healthBeanSendLog" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconhrwelfarestaffSendRecord" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#41202C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">塔豆赠送记录</view>
+			</view>
+			
+		</myUserInfo>
+	</view>
+
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/cardList/cardList" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconhrwelfarestaffSendRecord" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#41202C;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">会员卡</view>
+			</view>
+			
+		</myUserInfo>
+	</view>
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/task/task" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont icontaskempty" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#291F54;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">任务中心</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/mycard/mycard" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconCard-Pay" style="height: 72rpx; display:inline-block;font-size:50rpx;color:#1C533D;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">储蓄卡</view>
+			</view>
+		</myUserInfo>
+	</view>
+	
+	<!-- <view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/agent/agent" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconteam-work" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #662E89;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">我的团队</view>
+			</view>
+		</myUserInfo>
+	</view> -->
+	<!-- <view class="user-item"
+	bindtap="goUrl" data-url="/pageShop/pageShop/agentProfit/agentProfit" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconProfit" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #484B28;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">我的返利</view>
+			</view>
+		</myUserInfo>
+	</view> -->
+	<view class="user-item"
+	bindtap="goUrl" data-url="/pages/works/works" >
+		<myUserInfo height="100" contentLeft="120" borderLeft="{{0}}">
+			<view slot="avatar">
+				<view class="iconfont iconpulloverclothes" style="height: 72rpx; display:inline-block;font-size:50rpx;color: #274F56;position: absolute;left:44rpx;top: 0;bottom: 0;margin: auto;"></view>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 34rpx;color: #333;max-width: 400rpx;font-size: 28rpx;font-weight: bold;">我的作品</view>
+			</view>
+		</myUserInfo>
+	</view>
+</scroll-view>
+
+<!-- <include src="../common/service.wxml"/> -->
+<include src="../common/footer.wxml" />
+<include src="../common/auth.wxml" />

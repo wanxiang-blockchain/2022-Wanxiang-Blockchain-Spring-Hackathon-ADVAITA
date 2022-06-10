@@ -1,0 +1,39 @@
+<MyHeader titleText='非二大学' bind:back="back" backIcon="{{true}}"></MyHeader>
+
+<scroll-view style="top: {{statusBarHeight+navHeight}}px;bottom:112rpx;width:{{windowWidth}}px;background: #fff;"
+ scroll-y="true" class="scroll-h" bindscroll="bindscroll">
+	<view class="content">
+   <!--授权登录框-->
+  <view wx:if="{{!userInfo}}" style="position: fixed;width: 100%;z-index: 999;height: calc({{windowHeight}}px - {{windowIsBang ? 40 : 16}}px - 52px - 56px);" bindtap="showLogin"></view>
+  
+    <image class="videoCover" wx:if="{{showCover}}" src="{{room.cover_img}}" mode="aspectFill"></image>
+    <!-- <view class="replay-icon iconfont icon-back" bindtap="goback"></view> -->
+    <video wx:if="{{userInfo}}" id="myVideo" src="{{videoSrc}}" autoplay="{{isAuto}}" controls="{{true}}" show-progress="{{true}}" object-fit="contain" direction="0" bindplay="videoStart" bindended="videoEnd"></video>
+    <!-- <view class="replay-info">
+      <view class="time-left">{{room.name}}</view>
+      <view class="time-left">{{room.anchor_name}}</view>
+    </view> -->
+    <!-- <view class="live-title">
+      <view class="title-li">
+        相关视频
+      </view>
+    </view>
+    <view class="live-list">
+      <view class="list-item" wx:for="{{list}}" wx:key="index" bindtap="goRoom" data-room="{{item}}">
+        <view class="img-box">
+          <image class="room-img" src="{{item.cover_img }}" mode="aspectFill"></image>
+          <view class="room">
+            <view class="room-name">{{item.anchor_name}}</view>
+            <view class="room-num">{{item.click_num}}</view>
+            <view class="room-icon iconfont icon-icon-test"></view>
+          </view>
+          <view class="room-state" wx:if="{{item.live_status == 101}}">直播</view>
+          <view class="room-state state-end" wx:if="{{item.live_status == 103}}">下播</view>
+        </view>
+        <view class="list-title">{{item.name}}</view>
+        <view class="list-time">{{item.start_time}} 开始</view>
+      </view>
+    </view> -->
+  </view>
+</scroll-view>
+<include src="/pages/common/auth.wxml" />
