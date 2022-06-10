@@ -1,0 +1,54 @@
+<MyHeader bind:back="back" backIcon="{{true}}"></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="content">
+		<view class="score-box">
+			<view class="score-item">
+				<view class="inline">我的积分</view>
+				<view class="signature-blue">{{total}}</view>
+			</view>
+			<!-- <view class="score-item" bindtap="goUrl" data-url="/pageHappy/pageHappy/musicList/musicList">积分商城<view class="more-icon inline iconfont iconjiantouyou"></view>
+			</view> -->
+		</view>
+		<view class="sport-box">
+			<view class="sport-title">
+				<view class="sport-icon inline iconfont iconziyuan"></view>
+				<view class="inline" style="font-weight: bold;">每日步数</view>
+			</view>
+			<view class="sport-state sport-state-finish" wx:if="{{finishState != 0}}">
+				今日{{target_num}}步达成
+			</view>
+			<view class="sport-state {{ isGone < signinTime ? '':'sport-state-night'}}"  wx:else>
+				<image class="sport-img buy-logo" wx:if="{{isGone < signinTime}}" src="https://i.2fei2.com/goods/logo/2021-07-26/15:44:12/60fe67ccbeb4d.png" mode="aspectFill" />
+				<image class="sport-img buy-logo" wx:else src="https://i.2fei2.com/goods/logo/2021-07-26/16:34:14/60fe738673e40.png" mode="aspectFill" />
+				<view class="sport-people inline iconfont iconbuhang" style="left: {{sportNum/target_num*100}}%;"></view>
+				<view class="sport-num">{{sportNum}}/{{target_num}}</view>
+			</view>
+			
+			<view class="sport-content">
+				<block wx:if="{{finishState == 0}}">
+					<view class=" inline">当前步数 </view>
+					<view class="sport-text-num inline">{{sportNum}}</view>
+					<view class=" inline">目标步数 </view>
+					<view class="sport-text-num inline">{{target_num}}</view>
+				</block>
+				<block wx:else>
+					<view class=" inline">明天继续</view>
+				</block>
+				<view class="task-score {{finishState == 1?'score-finish':''}} inline">+{{score}}分</view>
+				<view class="sport-btn inline sport-btn-finish" bindtap="getSport" wx:if="{{finishState == 1}}">已完成</view>
+				<view class="sport-btn inline {{ isGone < signinTime ? '':'sport-btn-night'}}" bindtap="getSport" wx:else>刷新步数</view>
+			</view>
+		</view>
+		<view class="task-item" wx:for="{{task}}" wx:key="index" bindtap="goDetail" data-id="{{item.integral_type_id}}">
+			<view class="task-title">{{item.title}}</view>
+			<view class="task-score score-finish" wx:if="{{item.is_can == 1}}">+{{(item.to_day_get_count == 0 || item.to_day_get_count == 1)?item.integral_num:item.integral_num+'*'+item.to_day_get_count}}分</view>
+			<view class="task-score " wx:else>+{{item.to_day_get_count == 0?item.integral_num:item.integral_num+'*'+item.to_day_get_count}}分</view>
+			<button wx:if="{{item.integral_type_id == 25}}" open-type="share" class="task-btn {{ item.is_can == 1 ? 'btn-finish':''}}" >
+				<view style="display: inline-block;">{{ item.is_can == 1 ? '已完成':'去完成'}}</view>
+			</button>	
+			<view wx:else class="task-btn {{ item.is_can == 1 ? 'btn-finish':''}}">{{ item.is_can == 1 ? '已完成':'去完成'}}</view>
+		</view>
+	</view>
+</scroll-view>

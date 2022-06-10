@@ -1,0 +1,118 @@
+<!-- <MyHeader bind:back="back" backIcon="{{true}}" titleText='健康脉诊手表' background="#fff" color="#002855"></MyHeader> -->
+<cover-view class="header" style="height: {{statusBarHeight+navHeight}}px;">
+	<cover-view class="header-text" style="height: {{navHeight}}px;line-height: {{navHeight}}px;">
+		好好生活
+		<cover-image bindtap="back" class="header-icon" src="https://i.2fei2.com/shop/logo/2020-12-08/13:53:24/5fcf14d4841f8.png"></cover-image>
+	</cover-view>
+</cover-view>
+<myLoading wx:if="{{loading}}"></myLoading>
+<!-- <scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px - 98rpx); width:{{windowWidth}}px;position:relative;" class="scroll-content" scroll-y="true" scroll-into-view="{{isSelect}}"> -->
+<view bindtouchend="changeScroll" style="padding-top: {{statusBarHeight+navHeight+28}}px; width:{{windowWidth}}px;background: #fff;"
+ class="m-content">
+<!-- <view bindtouchend="changeScroll" style="padding-top: {{statusBarHeight+navHeight}}px; width:{{windowWidth}}px;background: #fff;"
+ class="m-content"> -->
+	<myUserInfo wx:if="{{id!=my_id}}"  height="108" contentLeft="152" btnText="{{focusText}}" btnStyle="{{focusText!='关注'?'background:#A8ACBC':''}}"  borderLeft="{{0}}" bindchangeUser="triggleDeleteUser">
+		<view slot="avatar">
+			<image class="" mode="aspectFill" src="{{info.avatar_url}}" style="height:108rpx;width:108rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+		</view>
+		<view slot="content">
+			<view class="" style="margin-top: 4rpx;font-size: 36rpx;color: #333;">
+				<text class="hidden-text" style="vertical-align: middle;font-weight: bold;max-width:300rpx">{{info.name || info.wechat_name}}</text>
+				<image wx:if="{{info.is_family == 1}}" class="" mode="aspectFill" style="height:50rpx;width:72rpx;vertical-align: middle;margin-left: 12rpx;" src="https://i.2fei2.com/shop/logo/2020-12-25/09:57:52/5fe547202c44a.png"></image>
+			</view>
+			<view class="" style="font-size: 24rpx;color: #999;">好好生活，好好睡觉</view>
+		</view>
+	</myUserInfo>
+	<myUserInfo wx:else height="108" contentLeft="152" borderLeft="{{0}}">
+		<view slot="avatar">
+			<image class="" mode="aspectFill" src="{{info.avatar_url}}" style="height:108rpx;width:108rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+		</view>
+		<view slot="content">
+			<view class="" style="margin-top: 4rpx;font-size: 36rpx;color: #333;">
+				<text class="hidden-text" style="vertical-align: middle;font-weight: bold;max-width:300rpx">{{info.name || info.wechat_name}}</text>
+				<image wx:if="{{info.is_family == 1}}" class="" mode="aspectFill" style="height:50rpx;width:72rpx;vertical-align: middle;margin-left: 12rpx;" src="https://i.2fei2.com/shop/logo/2020-12-25/09:57:52/5fe547202c44a.png"></image>
+			</view>
+			<view class="" style="font-size: 24rpx;color: #999;">好好生活，好好睡觉</view>
+		</view>
+	</myUserInfo>
+	<view class="admin-bg" catchtap="triggleDeleteUser" wx:if="{{showAuthMask}}">
+		<view class="admin-list" catchtap="forbiddenBubble" style="top: {{(statusBarHeight+navHeight)*2+155}}rpx;">
+			<view class="admin-item" catchtap="deleteFamily">{{info.is_family == 1 ?'删除该家人':'添加为家人'}}</view>
+			<view class="admin-item" catchtap="showDeleteUser">取消关注</view>
+		</view>
+	</view>
+	<view class="data">
+		<view class="data-box">
+			<view class="data-num">{{info.dynamic_num}}</view>
+			<view class="data-title">动态</view>
+		</view>
+		<view class="data-box">
+			<view class="data-num">{{info.attent_num}}</view>
+			<view class="data-title">关注</view>
+		</view>
+		<view class="data-box">
+			<view class="data-num">{{info.beattent_num}}</view>
+			<view class="data-title">粉丝</view>
+		</view>
+		<view class="data-box">
+			<view class="data-num">{{info.family_num}}</view>
+			<view class="data-title">家人</view>
+		</view>
+	</view>
+	<validData 
+	testUserId="{{userId}}"
+	validInfo="{{info.validData}}" isShowAuto="{{false}}" isShowChart="{{false}}" wx:if="{{info.validData && info.validData.getHRV && info.validData.getHRV.list && info.validData.getHRV.list.length>0}}"></validData>
+	<!-- 搜索 -->
+	<!-- <view class="search-form">
+		<input type="text" class="search-input" placeholder="搜索TA的动态" placeholder-style="color:#A6A6A6" bindinput="changeSearch" />
+		<view class="search-icon iconfont iconsearch" bindtap="goSearch"></view>
+	</view> -->
+	<view>
+		<view class="group">健康圈</view>
+		<view class="group-list">
+			<circleList 
+			item="{{item}}" 
+			index="{{index}}" 
+			auth="{{info.this_user_set_to_my_auth_type==2}}" 
+			wx:for="{{list}}" 
+			wx:key="index"
+			isShowFly="{{isShowFly}}"
+			bindtriggleFly="triggleFly"
+			bindrefreshPage="refreshPage"
+			></circleList>
+		</view>
+		<view class="no-more" wx:if="{{list && list.length === 0 }}">-- 暂无动态 --</view>
+		<view class="no-more" wx:if="{{!listMore && list && list.length > 0 }}">-- 已加载全部内容 --</view>
+	</view>
+	<view style="height: 1px;width: 100%;"></view>
+</view>
+
+<include src="../../../pages/common/auth.wxml" />
+<!-- <include src="../../../pages/common/footer.wxml" /> -->
+
+<!--删除好友-->
+<view class="alert-affirm" wx:if="{{delUserMask}}">
+	<view class="mask"></view>
+	<view class="window">
+		<view class="title">取消关注</view>
+		<view class="content-text">确定不再关注吗？</view>
+		<view class="btn-group">
+			<button class="btn cancel" bindtap="hideDeleteUser">取消</button>
+			<button class="btn" bindtap="deleteUser">确定</button>
+			<view class="clearfix"></view>
+		</view>
+	</view>
+</view>
+<!--降为好友-->
+<view class="alert-affirm" wx:if="{{delfamilyMask}}">
+	<view class="mask"></view>
+	<view class="window">
+		<view class="title">删除家人</view>
+		<view class="content-text">确定删除该家人吗？</view>
+		<view class="btn-group">
+			<button class="btn cancel" bindtap="hideDeleteFamily">取消</button>
+			<button class="btn" bindtap="deleteFamily">确定</button>
+			<view class="clearfix"></view>
+		</view>
+	</view>
+</view>

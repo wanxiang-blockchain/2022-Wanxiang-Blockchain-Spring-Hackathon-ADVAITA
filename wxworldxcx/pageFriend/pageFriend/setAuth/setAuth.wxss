@@ -1,0 +1,56 @@
+page{
+	background: rgb(242,242,242);
+}
+
+image{
+	/*width: calc(100% - 60rpx); */
+	/*margin:30rpx 30rpx 0 30rpx; */
+	width: 100%;
+}
+/* 鎴愬憳鍒楄〃 */
+.p-title{
+	height: 100rpx;
+	line-height: 40rpx;
+	color: rgba(152,152,152,1);
+	font-size: 28rpx;
+	padding: 30rpx;
+}
+
+.user-list{
+	width: 690rpx;
+	background: #fff;
+	box-shadow: 0 0 10rpx rgba(0,0,0,0.05);
+	padding: 0 30rpx;
+	margin: auto;
+}
+.user-list .item{
+	height: 100rpx;
+	position: relative;
+	border-bottom: 1rpx solid #EDEDED;
+}
+
+.user-list .item:last-child{
+	border: none;
+}
+
+.user-name{
+	height: 100rpx;
+	line-height: 100rpx;
+	font-size: 28rpx;
+	color: #6D7278;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.user-icon{
+	height: 68rpx;
+	font-size: 44rpx;
+	color: #2B86FF;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}

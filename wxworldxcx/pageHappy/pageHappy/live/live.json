@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+		 "MyHeader": "/components/MyHeader/MyHeader",
+		 "myLive": "/components/live/live",
+		 "login":"/components/login/login",
+		 "myLoading": "/components/myLoading/myLoading"
+    },
+	"navigationBarTextStyle": "black"
+
+}

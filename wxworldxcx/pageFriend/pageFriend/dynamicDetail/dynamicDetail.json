@@ -1,0 +1,10 @@
+{
+	"usingComponents": {
+		"MyHeader": "/components/MyHeader/MyHeader",
+		"login":"/components/login/login",
+		"myUserInfo": "/components/userInfo/userInfo",
+		"myLoading": "/components/myLoading/myLoading",
+		"zhihuList": "/pageFriend/components/zhihuList/zhihuList"
+	},
+	"navigationBarTextStyle": "black"
+}

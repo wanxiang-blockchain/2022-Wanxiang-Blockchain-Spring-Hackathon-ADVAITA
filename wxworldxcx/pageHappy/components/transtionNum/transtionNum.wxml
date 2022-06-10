@@ -1,0 +1,12 @@
+<!--components/scroll-number/index.wxml-->
+<view class="scroll-number container-class">
+  <block wx:for="{{valArr}}" wx:key="index">
+    <view wx:if="{{item.isNaN}}" class="scroll-number-item number-dot dot-class">{{item.val}}</view>
+    <view wx:else class="scroll-number-item number-item item-class">
+      <view class="scroll-ani" style="transition-duration: {{duration}}ms; {{aniArr[index]}}">
+        <view wx:for="{{numArr}}" wx:for-item="num" wx:for-index="idx" wx:key="idx" class="num{{num}}">{{num}}</view>
+        <view wx:for="{{numArr}}" wx:for-item="num" wx:for-index="idx" wx:key="idx" class="num{{num}}">{{num}}</view>
+      </view>
+    </view>
+  </block>
+</view>

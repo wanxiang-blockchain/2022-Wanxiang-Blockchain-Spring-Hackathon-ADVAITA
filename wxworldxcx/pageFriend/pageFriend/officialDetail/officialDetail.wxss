@@ -1,0 +1,33 @@
+@import "/common/common.wxss";
+page {
+	font-size: 24rpx;
+	color: #282828;
+	background-color: #fff;
+}
+.salt-tips{
+	height: 28rpx;
+	text-align: center;
+	font-size: 24rpx;
+	color: #C3C3C3;
+	line-height: 28rpx;
+	margin-bottom: 34rpx;
+}
+.salt-list{
+	padding: 0 30rpx;
+}
+.salt-item{
+	width: 100%;
+	padding:0 28rpx 20rpx 28rpx;
+	border-bottom: 2rpx solid #E3E3E3;
+}
+.salt-title{
+	font-size: 32rpx;
+	font-weight: bold;
+	color: #000000;
+	line-height: 70rpx;
+}
+.salt-content{
+	font-size: 28rpx;
+	color: #333E6F;
+	line-height: 32rpx;
+}

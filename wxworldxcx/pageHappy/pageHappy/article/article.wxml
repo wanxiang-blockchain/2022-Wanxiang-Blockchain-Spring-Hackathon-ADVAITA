@@ -1,0 +1,10 @@
+<MyHeader bind:back="back" backIcon="{{true}}" ></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="common-title">{{title}}</view>
+	<view class="article-content">
+		<rich-text nodes="{{info}}"></rich-text>
+	</view>
+</scroll-view>

@@ -1,0 +1,167 @@
+.scroll-h{
+	
+}
+
+/*高斯模糊背景*/
+.bg{ 
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;   
+	width: 100%;
+	height: 100%;
+}
+.bg .before{
+  position: absolute;
+	top:0;
+	right:0;
+	bottom:0;
+	left:0;
+	background-size:100% 100%;
+	background-repeat:no-repeat;
+  filter: blur(100rpx);
+  margin:-500rpx;      
+}
+.bg2{
+	position: fixed;
+	top: 0;
+	left: 0;
+	overflow: hidden;   
+	width: 100%;
+	height: 100%;
+}
+/*内容*/
+.content{
+	width: 100%;
+	position: absolute;
+}
+.content .top{
+	padding: 2rpx 43rpx;
+	/* margin-bottom: 45rpx; */
+}
+.content .top .h1{
+	color: #fff;
+    text-align: left;
+    font-size: 47rpx;
+    font-weight: 300;
+}
+.content .top image{
+	width: 254rpx;
+	height: 285rpx;
+	box-shadow: 0px 4rpx 14rpx 4rpx rgba(0,0,0,0.25);
+	border-radius: 32rpx;
+	margin-top: 62rpx;
+}
+.content .top .intro{
+	width: 355rpx;
+	font-size: 25rpx;
+	color:#fff;
+	line-height: 36rpx;
+	float:right;
+	margin-top: 78rpx;
+	float: right;
+}
+/*列表*/
+.list{
+	padding-left: 51rpx;
+	padding-right: 47rpx;
+	margin-bottom: 100rpx;
+}
+.list .h1{
+	color:#fff;
+	font-size: 33rpx;
+	margin-top: 45rpx;
+}
+.list .item{
+	color:#fff;
+	display: inline-flex;
+	box-shadow: 0px 4rpx 14rpx 4rpx rgba(0,0,0,0.25);
+	background: rgba(145, 145, 145, 0.38);
+	border-radius: 29rpx;
+	width: 100%;
+	margin-bottom: 16rpx;
+	height: 76rpx;
+	line-height: 71rpx;
+	border: 4rpx solid rgba(0, 0, 0, 0);
+}
+
+.list .item .num{
+	width: 78rpx;
+	text-align: center;
+	font-size: 25rpx;
+}
+.list .item .title{
+	width: 375rpx;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	overflow:hidden;
+	text-align: left;
+	font-size: 25rpx;
+}
+.list .item .state{
+	/* margin-right: 60rpx; */
+	width: 125rpx;
+	font-size: 25rpx;
+}
+.list .item .iconfont{
+	width: 30rpx;
+	height: 30rpx;
+	font-size: 30rpx;
+	color: RGBA(142, 142, 142, 1);
+}
+.list .play{
+	border: 4rpx solid #FFF;
+	background: rgba(255, 255, 255, 0.38);
+}
+.list .gray,.list .play.gray{
+	background: rgba(0, 0, 0, 0.38);
+}
+.list .play .iconfont{
+	color: #fff;
+}
+/*弹出框*/
+.topay{
+	background: rgba(255, 255, 255, 0.38);
+	width: 80%;
+	position: fixed;
+	/* height: 800rpx; */
+	left: 10%;
+	top: 300rpx;
+	border-radius: 10rpx;
+	padding: 30rpx;
+}
+.topay .title{
+	color: #fff;
+	font-size: 32rpx;
+	margin-top: 25rpx;
+}
+.topay .intro{
+	color: #fff;
+	font-size: 22rpx;
+	/* padding: 0 30rpx; */
+	margin: 15rpx 0;
+}
+
+.topay .price{
+	text-align: left;
+	font-size: 22rpx;
+	/* padding: 0 30rpx; */
+	color: #fff;
+	margin-bottom: 30rpx;
+}
+.topay .price text{
+	font-size: 32rpx;
+
+}
+.topay .btn{
+	background: rgba(255, 255, 255, 0.8);
+	padding: 12rpx 30rpx;
+	border-radius: 26rpx;
+	font-size: 26rpx;
+	/* margin: 30rpx; */
+}
+.topay .group-btn{
+	display: flex;
+	justify-content:space-around;
+	
+}

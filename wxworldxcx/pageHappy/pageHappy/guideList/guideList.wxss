@@ -1,0 +1,33 @@
+
+.scroll-h{
+	box-sizing: border-box;
+	background: #fff;
+}
+
+.title-box{
+	padding: 0 42rpx 0 49rpx;
+}
+.inline{
+	display: inline-block;
+	vertical-align: middle;
+}
+.title{
+	font-size: 27rpx;
+	font-weight: bold;
+}
+.line{
+	width: 6rpx;
+	height: 27rpx;
+	background: #D8D8D8;
+	border-radius: 3rpx;
+	margin-left: 21rpx;
+}
+.title-item{
+	font-size: 23rpx;
+	margin: 0 20rpx;
+}
+.content{
+	width: 100%;
+	padding: 40rpx 42rpx 0 49rpx;
+	border-top: 9rpx solid #F6F6F6;
+}

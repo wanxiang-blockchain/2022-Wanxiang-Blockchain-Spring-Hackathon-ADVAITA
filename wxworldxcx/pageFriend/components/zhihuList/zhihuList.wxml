@@ -1,0 +1,185 @@
+<myLoading wx:if="{{loading}}"></myLoading>
+<myToast text="{{textToast}}"></myToast>
+<view class="group-item">
+	<view style="position: relative;">
+		<view class="salt-title">{{info.title}}</view>
+		<view class="salt-user">
+			<image class="salt-img" mode="aspectFill" src="{{info.avatar_url}}"></image>
+			<text class="salt-name">{{info.nickname}}</text>
+		</view>
+		<view class="salt-del" bindtap="delArticle" wx:if="{{user_id==info.user_id}}">删除</view>
+	</view>
+	<!-- 纯文字版动态 -->
+	<view class="msg-box " bindtap="triggleText" style="margin-bottom: 0;">
+		<rich-text nodes="{{info.detailInfo}}"></rich-text>
+		<!-- <view class="msg-more" style="width: {{info.textIsShow?'100rpx':'126rpx'}};bottom: {{info.textIsShow?'0':'-4'}}rpx;"
+		 wx:if="{{info.textOver}}">{{ info.textIsShow ? '收起' : '... 展开' }}<text class="msg-text iconfont iconjiantouxia"
+			 style="transform: rotateZ({{info.textIsShow?180:0}}deg);"></text></view> -->
+	</view>
+	<!-- 图片 -->
+	<view class="salt-image" wx:if="{{info.slide_img.length>0}}">
+		<image class="salt-image-item" mode="widthFix" wx:for="{{info.slide_img}}" wx:key="index" src="{{item.url}}"></image>
+	</view>
+
+	<!-- 链接商品 -->
+	<block wx:if="{{type == 0}}">
+		<view class="goods-name">购买了 {{info.orders_goods.goods_name}}</view>
+		<view class="goods-box" bindtap="goGoods" data-item="{{info.orders_goods}}">
+			<watchList info="{{info.orders_goods}}" type="2" wx:if="{{info.orders_goods}}"></watchList>
+		</view>
+
+	</block>
+	<block wx:elif="{{type == 1}}">
+		<!-- 矿盐 -->
+		<view class="goods-name">推荐矿盐</view>
+		<view class="goods-box" bindtap="goGoods" data-item="{{item}}" wx:for="{{goods}}" wx:key="index" wx:if="{{goods && goods.length>0}}">
+			<watchList info="{{item}}" type="3"></watchList>
+		</view>
+	</block>
+	<!-- 标签 -->
+	<view class="salt-box" style="margin: 20rpx auto 30rpx;">
+		<view class="salt-label" wx:for="{{info.topic}}" wx:key="index" wx:for-item="textItem">{{textItem.name}}</view>
+	</view>
+	<view class="salt-border"></view>
+	<!-- 工具栏 -->
+	<!-- <view class="icon-box" >
+		<block wx:if="{{info.cicleType != 'report'}}">
+			<view class="group-icon" catchtap="goComfort" data-id="{{info.id}}" data-index="{{index}}">
+				<text class="comfort-icon iconfont icontubiaozhizuomoban {{info.hug_state == 1?'icon-active':''}}"></text>
+			</view>
+			<view class="love-icon" catchtap="goComment" data-id="{{info.id}}" data-index="{{index}}">
+				<text class="comfort-icon iconfont iconbianzubeifen2-01"></text>
+			</view>
+			<block wx:if="{{info.cicleType == 'img'}}">
+				<view class="dot-box">
+					<view class="dot-item {{dotIndex == index?'dot-active':''}}" wx:for="{{info.imgArr}}" wx:key="index"></view>
+				</view>
+				<image class="fly-icon" mode="aspectFill" catchtap="triggleFly" wx:if="{{isShowFly}}" src="https://i.2fei2.com/shop/logo/2021-01-21/16:03:06/6009353aa4cb6.png"></image>
+				<image class="fly-icon" mode="aspectFill" catchtap="triggleFly" wx:else src="https://i.2fei2.com/shop/logo/2021-01-21/16:03:37/600935595351e.png"></image>
+			</block>
+		</block>
+		<block wx:else>
+			<view class="group-icon" catchtap="changeReportMask" style="right: 18rpx;left: auto;">
+				<text class="comfort-icon iconfont iconcaozuo"></text>
+			</view>
+			<view class="report-mask flex-box " wx:if="{{info.showReportMask}}">
+				<view class="report-icon" catchtap="goComfort" data-id="{{info.id}}" data-index="{{index}}">
+					<text class="comfort-icon iconfont icontubiaozhizuomoban" style="color: #fff;"></text>
+					<text class="report-text" style="vertical-align: middle;">拥抱</text>
+				</view>
+				<view class="report-icon" catchtap="goComment" data-id="{{info.id}}" data-index="{{index}}">
+					<text class="comfort-icon iconfont iconbianzubeifen2-01" style="color: #fff;"></text>
+					<text class="report-text">评论</text>
+				</view>
+			</view>
+		</block>
+	</view> -->
+	<!-- 拥抱名单 -->
+	<!-- <view class="comfort-num " wx:if="{{info.hug_num >0}}">{{info.hug_num}}次拥抱</view>
+	<view class="comfort-detail" wx:if="{{info.myHugList.length>0}}">
+		<text class="iconfont icontubiaozhizuomoban" style="font-size: 24rpx;margin-right: 10rpx;"></text>
+		<text wx:for="{{info.myHugList}}" wx:key="index">{{index == 0 ?'':'，'}}{{item}}</text>
+	</view> -->
+
+	<!-- 列表式评论 -->
+	<view class="">
+		<view class="comment-title" style="margin-left: 32rpx;">
+			全部评论 {{list.length}}
+			<view class="rank-box">
+				<view class="rank-item" bindtap="changeType" data-type="0">
+					<view class="rank-bg {{rankType == 0?'rank-active':''}}">默认</view>
+				</view>
+				<view class="rank-item" bindtap="changeType" data-type="1">
+					<view class="rank-bg {{rankType == 1?'rank-active':''}}">最新</view>
+				</view>
+			</view>
+		</view>
+		<view class="add-comment" style="margin: 0 0 20rpx 0;" bindtap="showMask">
+			<image class="add-icon" mode="aspectFill" src="{{myAvatar}}"></image>
+			<view class="add-border">
+				<view class="comment-input" style="color: #D3D3D3;line-height: 64rpx;">写下你的评论…</view>
+				<text class="conmment-btn">发送</text>
+			</view>
+		</view>
+		
+		<view class="reason-mask" wx:if="{{showAddComment}}" bindtap="showMask">
+			<view class="reason-bg" style='position:fixed;bottom:{{inputBottom}}px;' catchtap="forbiddenBubble">
+				<view class="add-comment" >
+					<image class="add-icon" mode="aspectFill" src="{{myAvatar}}"></image>
+					<view class="add-border">
+						<input class="comment-input" value="{{commentAll}}" 
+						bindinput='getInputTextAll' 
+						bindconfirm='submit' 
+						bindfocus="foucus"
+						bindblur="blur" 
+						type="text"
+						 placeholder="写下你的评论…" placeholder-style="color: #D3D3D3;" maxlength="-1" adjust-position="{{false}}" />
+						<text class="conmment-btn" bindtap="submit">发送</text>
+					</view>
+				</view>
+			</view>
+		</view>
+
+		<view wx:if="{{list.length>0}}">
+			<view class="conmment-item" catchtap="goComment" bindlongpress='longPressComment' data-iteminfo="{{items}}"
+			 data-reuid="{{items.user_id}}" data-reid="{{items._id}}" data-id="{{info.id}}" data-index="{{index}}" data-i="{{i}}"
+			 wx:for="{{list}}" wx:key="i" wx:for-index="i" wx:for-item="items">
+				<view wx:if="{{info.isCommentMore || i == 0 || i==1}}" class="conmment" style="padding-left: {{items.isReply?'64rpx':'0'}};">
+					<view class="conmment-user">
+						<image class="conmment-img" mode="aspectFill" src="{{items.userInfo.avatar_url}}"></image>
+						<text class="conmment-name" wx:if="{{!items.isReply}}">{{items.userInfo.nickname}}</text>
+						<!-- 回复名字 -->
+						<text class="conmment-name" wx:else>{{items.userInfo.nickname}} <text class="triangle"></text> {{items.replyName}}</text>
+						<!-- 老师身份 -->
+						<text class="comfort-auth iconfont iconzhuanyezhuanyeke" wx:if="{{items.type == 'expert'}}"></text>
+						<text class="comfort-auth-text" wx:if="{{items.type == 'expert'}}">置顶</text>
+						<!-- 作者 -->
+						<text class="comfort-author" wx:if="{{items.type == 'author'}}">作者</text>
+					</view>
+					<view style="margin-left: 66rpx;">{{items.remark}}</view>
+					<view class="icon-box">
+						<view class="salt-time">{{items.add_time_text}}</view>
+						<view class="icon-right">
+							<view class="love-icon">
+								<text class="comfort-icon iconfont iconrenwuzhongxin-huodepinglun "></text>
+							</view>
+							<view class="group-icon" catchtap="goComfort" data-id="{{items._id}}" data-index="{{i}}">
+								<text class="comfort-icon iconfont iconzan {{items.agree_state == 1?'icon-active':''}}"></text>
+								<text class="{{items.agree_state == 1?'icon-active':''}}">{{items.agree_num}}</text>
+							</view>
+						</view>
+					</view>
+					<view class="del-box" wx:if="{{items.active}}">
+						<view class="del-text" catchtap="delComment" data-cid="{{items._id}}">删除</view>
+						<view class="m-mask" style='z-index: 1;background:transparent;' catchtap="longPressComment"></view>
+					</view>
+				</view>
+				
+			</view>
+		</view>
+		<!-- 添加回复 -->
+		<view class="reason-mask" wx:if="{{showReplyComment}}" bindtap="hideMask">
+			<view class="reason-bg" style='position:fixed;bottom:{{inputBottom}}px;' catchtap="forbiddenBubble">
+				<view class="add-comment">
+					<image class="add-icon" mode="aspectFill" src="{{myAvatar}}"></image>
+					<view class="add-border">
+						<input class="comment-input" value="{{comment}}" 
+						bindinput='getInputText' 
+						bindconfirm='submit'
+						bindfocus="foucus"
+						bindblur="blur" 
+						type="text"
+						 placeholder="{{replayName?'回复'+replayName:'添加评论…'}}" maxlength="-1" placeholder-style="color: #D3D3D3;"
+						 adjust-position="{{false}}" />
+						<text class="conmment-btn" bindtap="submit">发送</text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view wx:if="{{list.length>2 && !info.isCommentMore}}" class="comfort-num comment-num">
+			查看全部 {{list.length - 2}} 条回复
+			<text class="msg-text iconfont iconjiantouyou"></text>
+		</view>
+	</view>
+
+</view>

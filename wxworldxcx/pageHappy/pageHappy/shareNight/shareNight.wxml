@@ -1,0 +1,90 @@
+<MyHeader bind:back="back" backIcon="{{true}}" titleText='晚10点线上共修'></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<login wx:if="{{isLogin}}" bindcloseLogin="closeLogin" isLogin="{{isLogin}}"></login>
+<login wx:if="{{!userInfo && !isLogin}}"></login>
+<myToast text="{{textToast}}"></myToast>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view style="padding-top:150rpx;" wx:if="{{failLocation || failLoading}}">
+		<retry bindrefresh="getLocation" text="很抱歉,您拒绝了定位申请" wx:if="{{failLocation}}"></retry>
+		<retry bindrefresh="getLocation" wx:if="{{failLoading}}"></retry>
+	</view>
+	<block wx:else>
+		<view wx:if="{{!userLocation}}" style="width: {{mapWidth}}rpx; height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px - 382rpx);"></view>
+		
+		<map id="myMap" style="width: {{mapWidth}}rpx; height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px - 382rpx);"
+		 latitude="{{userLocation.latitude}}" longitude="{{userLocation.longitude}}" subkey="FQVBZ-WD6KR-QJTWO-WFF4Y-4RYX6-6GBMD"
+		 layer-style="1" markers="{{markers}}" scale="{{mapScale}}" min-scale="4" max-scale="11" wx:else>
+			<!-- <cover-view slot="callout">
+			<cover-view marker-id="3">
+				<cover-image class="callout-img" src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q3auHgzwzM5qWnJ3TOT1nDF8vPzmcsB9PX251MJF6cCPfsxp56Vp8kDP9ialgiaQqLyWANnibu1MOibUIKNNRItkrw/132"></cover-image>
+			</cover-view>
+		</cover-view> -->
+		</map>
+		<cover-view class="share-box"  wx:if="{{userInfo.share_qrcode}}" style="top: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px - 578rpx);;" >
+			<cover-image class="share-code" src="{{userInfo.share_qrcode}}"></cover-image>
+			<cover-view>截图分享</cover-view>
+		</cover-view>
+		<myAudio wx:if="{{isStart && !isEnd && !endAudio}}" 
+		info="{{nightMeditation}}" 
+		type="1" bindclose="close"
+		 showDuration="{{nightMeditation.duration}}" 
+		 bindisPlayChange="isPlayChange" bindupdateErr="updateErr"></myAudio>
+		<scroll-view scroll-y="true">
+			<view class="info-box">
+				<view class="info-title">
+					线上共修
+					<button class="time-sign" open-type="share" style="bottom: 4rpx;z-index: 2;">邀请好友</button>
+				</view>
+				
+				<view class="info-tips">参加共修人数 
+				<view style="display: inline-block;">
+					<transtionNum value="{{markers.length}}"></transtionNum>
+				</view>
+					<!-- <text class="info-num {{markers.length>30?'on':''}}">{{markers.length}}</text> -->
+					人
+				</view>
+			<!-- 	<view class="img-box" bindtap="showAll" wx:if="{{!isShowAll}}" >
+					<view class="img-show">
+						<image wx:for="{{avatar}}" wx:key="user_id" style="left: {{item.left}}rpx;"  class="img-item" src="{{item.qiniu_img}}" mode="aspectFill"></image>
+					</view>
+					<view class="time-more" wx:if="{{avatar.length>11}}">更多</view>
+				</view> -->
+				<view class="img-box" bindtap="showAll" wx:if="{{!isShowAll}}" >
+					<image wx:for="{{avatar}}" wx:key="index" class="img-item-all " src="{{item.qiniu_img}}" mode="aspectFill"></image>
+					<view class="time-more" wx:if="{{avatar.length>11}}">更多</view>
+				</view>
+				<view class="img-box" wx:else>
+					<image wx:for="{{avatarAll}}" wx:key="index" class="img-item-all " src="{{item.qiniu_img}}" mode="aspectFill"></image>
+				</view>
+				<view class="time-box">
+					<block wx:if="{{!isStart}}">
+						<view class="time-state">未开始</view>
+						<view class="time-begin">距开始还有{{time[0]}}:{{time[1]}}:{{time[2]}}</view>
+					</block>
+					<block wx:else>
+						<view class="time-state {{isEnd?'time-grey':'time-blue'}}">{{isEnd?'已结束':'进行中'}}</view>
+						<view class="time-sign sign-done" wx:if="{{sign_state!=0}}">已打卡</view>
+						<view class="time-sign" wx:if="{{!isEnd && showSign && sign_state==0}}" bindtap="changeSign">打卡</view>
+					</block>
+
+				</view>
+			</view>
+		</scroll-view>
+	</block>
+</scroll-view>
+
+<messageboxOne wx:if="{{showErr}}" title="提示" bottomname="返回" height="250" bindcancel="cancel">
+	<view slot="content1">
+		<view class="mask-tips" style="color: #1966CA;">很抱歉，冥想音频出错了</view>
+		<view class="mask-tips" style="color: #1966CA;">您可以直接点击打卡完成任务</view>
+	</view>
+</messageboxOne>
+
+
+<messageboxOne wx:if="{{showTips}}" title="提示" bottomname="返回" height="210" bindcancel="cancel">
+	<view slot="content1">
+		<view class="mask-tips" style="color: #1966CA;">冥想结束，记得打卡哦</view>
+	</view>
+</messageboxOne>
+<include src="../../../pages/common/auth.wxml" />

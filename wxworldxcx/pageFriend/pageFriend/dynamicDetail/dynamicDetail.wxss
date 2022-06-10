@@ -1,0 +1,6 @@
+@import "/common/common.wxss";
+page {
+	font-size: 24rpx;
+	color: #282828;
+	background-color: #fff;
+}

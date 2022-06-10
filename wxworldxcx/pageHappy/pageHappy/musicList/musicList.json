@@ -1,0 +1,12 @@
+{
+    "usingComponents": {
+    	 "login":"/components/login/login",
+    	 "myLoading": "/components/myLoading/myLoading",
+		 "retry": "/components/retry/retry",
+		 "MyHeader": "/components/MyHeader/MyHeader",
+		 "messageboxOne": "/components/messageboxOne/messageboxOne",
+		  "myAudio": "/components/myAudio/myAudio"
+    },
+	"navigationBarTextStyle": "black"
+
+}

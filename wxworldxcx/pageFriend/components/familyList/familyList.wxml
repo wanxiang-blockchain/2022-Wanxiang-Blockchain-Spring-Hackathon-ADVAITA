@@ -1,0 +1,35 @@
+<!-- 好友列表 -->
+<view class="m-mask" wx:if="{{friendMask}}" bindtap="hideFriendMask">
+	<myLoading wx:if="{{updateNum<2}}"></myLoading>
+	<view class="m-content" catchtap="forbiddenBubble">
+		<view class="friend-top">
+			<view style="height: {{statusBarHeight}}px;"></view>
+			<view class="friend-height" style="height: {{navHeight}}px;">
+				<image class="friend-icon" src="https://i.2fei2.com/shop/logo/2020-12-07/13:36:42/5fcdbf6a504f8.png"></image>
+				<view class="friend-text">家人</view>
+			</view>
+		</view>
+		<scroll-view class=" scroll-h" style="top:{{navHeight*2+statusBarHeight*2}}rpx;z-index: 99999;"
+		 scroll-y="true" bindscrolltolower="searchScrollLower">
+			<view class="userinfo" bindtap="goUrl" data-url="/pageFriend/pageFriend/userDetail/userDetail?id={{item.treport_user_id}}&userId={{item.id}}"
+			 style="height:126rpx" wx:for="{{list}}" wx:key="index">
+				<image class="" mode="aspectFill" src="{{item.avatar_url}}" style="height:88rpx;width:88rpx;left: 30rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 10rpx;background-color: #ccc;"
+				 wx:if="{{item.avatar_url}}"></image>
+				<view class="user-content" style="left: 147rpx;">
+					<view class="hidden-text" style="margin-top: 42rpx;color: #6D7278;font-size: 28rpx;width: 360rpx;">
+						{{item.name||item.wechat_name}}
+					</view>
+				</view>
+				<view class="user-score">
+					<text style="font-size: 26rpx;color: #999;">{{item.new_count}}</text>
+					<text style="font-size: 20rpx;color: rgba(0,0,0,0.1);"> 分</text>
+				</view>
+				<view class="border-line" style="left: 147rpx;"></view>
+			</view>
+			<view class="block-box" wx:if="{{list && list.length === 0 }}">
+				<image class="block-img" mode="aspectFill" src="https://i.2fei2.com/shop/logo/2020-12-31/10:26:36/5fed36dcaac66.png"></image>
+				<view class="block-text" style="left: 147rpx;">暂无数据</view>
+			</view>
+		</scroll-view>
+	</view>
+</view>

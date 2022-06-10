@@ -1,0 +1,46 @@
+<MyHeader bind:back="back" backIcon="{{true}}" ></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="today-task">
+		<view class="" style="position: relative;" wx:if="{{videoList[videoId].third_video_id}}">
+			<!-- <video id="myVideo" :src="videoList[videoId].video_url" object-fit="contain" controls :autoplay="isPlay" :poster="videoList[videoId].logo_url"></video> -->
+			<txv-video class="myVideo" vid="{{videoList[videoId].third_video_id}}" objectFit="contain" autoplay="true" playerid="txv1"></txv-video>
+		</view>
+		<!-- 公开课 -->
+		<view class="recommend-top" wx:if="{{type == 1}}">
+			<view class="recommend-box">
+				<view class="recommend-title" wx:if="{{videoList[videoId]}}">{{ videoList[videoId].title }}</view>
+				<view class="teacher-box">
+					<image
+						class="m-img-circle teacher-img"
+						wx:if="{{type == 1}}"
+						src="http://i.2fei2.com/5f1549ba8c04c.png?imageMogr2/thumbnail/!75p"
+						mode="aspectFill"
+					/>
+					<view class="teacher-name" wx:if="{{videoList[videoId]}}">{{ videoList[videoId].teacher_name }}</view>
+				</view>
+				<view class="recommend-intro"></view>
+			</view>
+		</view>
+		<!-- 体式 -->
+		<view class="recommend-top" wx:elif="{{type == 2}}">
+			<view class="recommend-box">
+				<view class="recommend-title" style="color: #002855;text-align: center;" wx:if="{{videoList[videoId]}}">{{ videoList[videoId].title }}</view>
+				<view class="recommend-intro">
+					<rich-text nodes="{{info}}"></rich-text>
+				</view>
+			</view>
+		</view>
+		<!-- 断食营 -->
+		<view class="recommend-top" wx:else>
+			<view class="recommend-box">
+				<view class="recommend-title" wx:if="{{videoList[videoId]}}">{{ videoList[videoId].title }}</view>
+				<view class="teacher-box">
+					<view class="teacher-name" style="margin-left: 0;" wx:if="{{videoList[videoId]}}">{{ videoList[videoId].teacher_name }}</view>
+				</view>
+				<view class="recommend-intro"></view>
+			</view>
+		</view>
+	</view>
+</scroll-view>

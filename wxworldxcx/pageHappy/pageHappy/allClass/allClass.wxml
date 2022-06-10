@@ -1,0 +1,16 @@
+<MyHeader bind:back="back" backIcon="{{true}}" ></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="today-task">
+		<view class="today-item" bindtap="goWeb" data-url="{{item.to_url}}" wx:for="{{hot_course}}" wx:key="index">
+			<image class="today-img" src="{{item.logo_url}}" mode="aspectFill"></image>
+			<view class="today-content">
+				<view class="today-line today-title">{{item.title}}</view>
+				<view class="today-line today-name">{{item.teacher_name}}</view>
+			</view>
+			<view class="today-btn">￥{{item.pay_price}}</view>
+		</view>
+		<view class="no-more" wx:if="{{videoList.length === 0}}">-- 暂无数据 --</view>
+	</view>
+</scroll-view>

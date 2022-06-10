@@ -1,0 +1,172 @@
+
+.scroll-h{
+	box-sizing: border-box;
+	background: #fff;
+}
+.inline{
+	display: inline-block;
+	vertical-align: middle;
+}
+.content{
+	padding: 0 50rpx;
+}
+/* 我的积分 */
+.score-box{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	padding: 22rpx 0 24rpx;
+}
+.score-item{
+	font-size: 28rpx;
+	color: #989898;
+	vertical-align: middle;
+}
+.signature-blue{
+	color: #027AFE;
+	font-weight: bold;
+	display: inline-block;
+	margin-left: 8rpx;
+	vertical-align: middle;
+}
+.more-icon{
+	font-size: 18rpx;
+	margin-left: 8rpx;
+}
+/* 步数 */
+.sport-box{
+	border-bottom: 2rpx solid #EEEEEE;
+}
+.sport-title{
+	height: 40rpx;
+	line-height: 40rpx;
+	font-weight: bold;
+	margin-bottom: 22rpx;
+}
+.sport-icon{
+	font-size: 40rpx;
+	color: #846FA8;
+}
+.sport-state{
+	width: 100%;
+	height: 86rpx;
+	text-align: center;
+	font-size: 32rpx;
+	color: #fff;
+	background: linear-gradient(270deg, #FFDBB2 0%, #FFD1D1 100%);
+	border-radius: 8rpx;
+	position: relative;
+	overflow: hidden;
+}
+.sport-state-night{
+	background: linear-gradient(270deg, #4E4476 0%, #434371 100%);
+}
+.sport-state-finish{
+	line-height: 86rpx;
+	background: #DFD1FF;
+}
+.sport-img{
+	width: 24rpx;
+	height: 24rpx;
+	position: absolute;
+	left: 8rpx;
+	top: 6rpx;
+}
+.sport-people{
+	color: #fff;
+	position: absolute;
+	left: 0rpx;
+	bottom: -8rpx;
+}
+.sport-num{
+	font-size: 20rpx;
+	color: #FFFFFF;
+	position: absolute;
+	right: 12rpx;
+	top: 6rpx;
+}
+.sport-content{
+	font-size: 20rpx;
+	color: #989898;
+	position: relative;
+	margin: 12rpx auto 58rpx;
+}
+.sport-text-num{
+	color: #846FA8;
+	margin: 0 50rpx 0 10rpx;
+}
+.sport-btn{
+	width: 96rpx;
+	height: 40rpx;
+	line-height: 40rpx;
+	background: #FF9E20;
+	text-align: center;
+	font-size: 20rpx;
+	color: #fff;
+	border-radius: 8rpx;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.sport-btn-night{
+	background: #4E4576;
+}
+.sport-btn-finish{
+	background: #D3D3D3;
+}
+/* 任务中心 */
+.task-item{
+	height: 102rpx;
+	line-height: 102rpx;
+	position: relative;
+	border-bottom: 2rpx solid #EEEEEE;
+}
+.task-title{
+	width: 370rpx;
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #000000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.task-score{
+	width: 100rpx;
+	text-align: center;
+	font-size: 20rpx;
+	color: #989898;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 176rpx;
+	margin: auto;
+}
+.score-finish{
+	color: #027AFE;
+}
+.task-btn{
+	width: 96rpx;
+	height: 48rpx;
+	line-height: 48rpx;
+	text-align: center;
+	font-size: 24rpx;
+	color: #fff;
+	background: #027AFE;
+	border-radius: 8rpx;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto;
+}
+.btn-finish{
+	background: #D3D3D3;
+}

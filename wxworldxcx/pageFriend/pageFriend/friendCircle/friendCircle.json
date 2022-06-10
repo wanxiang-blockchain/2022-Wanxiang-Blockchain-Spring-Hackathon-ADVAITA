@@ -1,0 +1,13 @@
+{
+	"usingComponents": {
+		"MyHeader": "/components/MyHeader/MyHeader",
+		"myUserInfo": "/components/userInfo/userInfo",
+		"circleList": "/pageFriend/components/circleList/circleList",
+		"familyList": "/pageFriend/components/familyList/familyList",
+		"messageboxOne": "/components/messageboxOne/messageboxOne",
+		"myLoading": "/components/myLoading/myLoading",
+		"commentInput": "/components/commentInput/commentInput",
+		"articleList": "/components/articleList/articleList"
+	},
+	"navigationBarTextStyle": "black"
+}

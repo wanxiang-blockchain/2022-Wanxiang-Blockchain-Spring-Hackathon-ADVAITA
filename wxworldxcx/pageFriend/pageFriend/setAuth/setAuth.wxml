@@ -1,0 +1,19 @@
+
+<MyHeader bind:clickDate="clickDate"  bind:back="back" backIcon="{{true}}"></MyHeader>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;background: #fff;" scroll-y="true" scroll-top="{{scrollTop}}" bindscrolltolower="scrollMore">
+<view class="p-title">设置好友查看报告权限</view>
+<view class="user-list">
+	<view class="item" bindtap="authChange" data-type="1">
+		<view class="user-name">只允许他查看我的报告总分</view>
+		<text class="user-icon iconfont iconxuanze" wx:if="{{type==1}}"></text>
+	</view>
+	<view class="item" bindtap="authChange" data-type="2">
+		<view class="user-name">允许他查看我的报告详情</view>
+		<text class="user-icon iconfont iconxuanze"  wx:if="{{type==2}}"></text>
+	</view>
+	<!-- <view class="item" bindtap="authChange" data-type="3">
+		<view class="user-name">不让他看我的报告</view>
+		<text class="user-icon iconfont iconxuanze" wx:if="{{type==3}}"></text>
+	</view> -->
+</view>
+</scroll-view>

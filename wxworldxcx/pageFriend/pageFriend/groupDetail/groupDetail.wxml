@@ -1,0 +1,153 @@
+<MyHeader bind:back="back" backIcon="{{true}}" titleText='健康脉诊手表'></MyHeader>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px ); width:{{windowWidth}}px;position:relative;"
+ class="scroll-content" scroll-y="true" scroll-into-view="{{isSelect}}">
+	<block wx:if="{{type == 1}}">
+		<view class="group-user flex-box">
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+
+			<view class="user-item" bindtap="addUser" type="1">
+				<view class="user-border">
+					<text class="user-icon iconfont iconjiahao1"></text>
+				</view>
+			</view>
+			<view class="user-item" bindtap="addUser" type="2">
+				<view class="user-border">
+					<text class="user-icon iconfont iconjiahao1"></text>
+				</view>
+			</view>
+			<view class="user-item" style="margin-bottom:0"></view>
+			<view class="user-item" style="margin-bottom:0"></view>
+			<view class="user-item" style="margin-bottom:0"></view>
+		</view>
+		<view class="user-more">
+			查看更多成员
+			<text class="more-icon iconfont iconjiantouyou"></text>
+		</view>
+		<view class="user-auth" bindtap="switchName" style="border-top: 2rpx solid #e5e5e5;">
+			<view class="auth-title">亲友团名称</view>
+			<view class="auth-tips">相亲相爱大家庭</view>
+			<text class="auth-icon iconfont iconjiantouyou"></text>
+			<view class="border-line"></view>
+		</view>
+		<view class="user-auth">
+			<view class="auth-title">团二维码</view>
+			<text class="auth-tips iconfont iconerweima"></text>
+			<text class="auth-icon iconfont iconjiantouyou"></text>
+			<view class="border-line"></view>
+		</view>
+		<view class="user-auth" bindtap="switchNotice" style="border-bottom: 2rpx solid #e5e5e5;height: 175rpx;">
+			<view class="auth-team">团公告</view>
+			<view class="auth-content">相亲相爱大家庭相亲相爱大相亲相爱大家庭相亲相爱大家庭相亲相爱大家庭相亲相爱大家庭相亲相爱大家庭家庭相亲相爱大家庭相亲相爱大家庭相亲相爱大家庭</view>
+			<text class="auth-icon iconfont iconjiantouyou"></text>
+		</view>
+		<view class="btn-all" bindtap="confirm">{{true?'退出':'解散'}}</view>
+		<view style="height: 160rpx;width: 100%;"></view>
+	</block>
+	<block wx:elif="{{type == 2}}">
+		<view class="update-title" style="margin-bottom: 30rpx;">新建亲友团</view>
+		<view class="update-box" style="margin-bottom: 52rpx;">
+			<input class="update-tips hidden-text" value="{{groupName}}" type="text" placeholder="请输入亲友团名称" bindinput="changeName" style="left: 0;right: 0;text-align: center;"/>
+		</view>
+		<view class="group-user flex-box" style="padding: 0 56rpx;">
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+			<view class="user-item">
+				<image class="user-img" mode="widthFix" src=""></image>
+				<view class="user-name">陈某某</view>
+			</view>
+		
+		
+			<view class="user-item" bindtap="addUser" type="1">
+				<view class="user-border">
+					<text class="user-icon iconfont iconjiahao1"></text>
+				</view>
+			</view>
+			<view class="user-item" bindtap="addUser" type="2">
+				<view class="user-border">
+					<text class="user-icon iconfont iconjiahao1"></text>
+				</view>
+			</view>
+			<view class="user-item" style="margin-bottom:0"></view>
+			<view class="user-item" style="margin-bottom:0"></view>
+			<view class="user-item" style="margin-bottom:0"></view>
+		</view>
+		<view class="btn-all {{groupName?'update-active':''}}" bindtap="addGroup">保存</view>
+	</block>
+	<block wx:elif="{{type == 3}}">
+		<view class="update-title">修改亲友团名称</view>
+		<view class="update-box">
+			<image class="update-img" mode="widthFix" src=""></image>
+			<input class="update-tips hidden-text" value="{{groupName}}" type="text" placeholder="请输入亲友团名称" bindinput="changeName"/>
+			<text class="update-clear iconfont iconcha" bindtap="clearName"></text>
+		</view>
+		<view class="update-btn {{groupName?'update-active':''}}" bindtap="confirmName">确定</view>
+	</block>
+	<block wx:elif="{{type == 4}}">
+		<myUserInfo height="136" borderLeft="30" contentLeft="147">
+			<view slot="avatar">
+				<image class="" mode="widthFix" src="" style="height:88rpx;width:88rpx;left: 30rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+			</view>
+			<view slot="content">
+				<view class="" style="margin-top: 30rpx;color: #6D7278;font-size: 30rpx;">123</view>
+				<view class="" style="color: #ADADAD;font-size: 24rpx;">2020.11.14 18:22</view>
+			</view>	
+		</myUserInfo>
+		<view class="update-content">这里是公告内容，这里是公告内容这里是公告内容这里是公告内容，这里是公告内容，这里是公告内容，这里是公告内容，这里是公告内容，这里是公告内容</view>
+		<!-- <textarea class="update-content" value="这里是公告这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容这里是公告内容内容"  name="notice" id="notice" cols="30" rows="10" ></textarea> -->
+		<view class="update-notice">仅群主可编辑</view>
+	</block>
+	<block wx:elif="{{type == 5}}">
+		<scroll-view class="people-scroll" scroll-x="{{true}}">
+			<image class="people-item " wx:for="{{selectUserList}}" wx:key="index" src="{{item.thumb_avatar}}"></image>
+		</scroll-view>
+		<friendList bindgoDetail="goDetail"></friendList>
+		<view class="btn-all orange-btn" bindtap="confirm">{{true?'完成':'移除'}}</view>
+	</block>
+</scroll-view>
+<include src="../../../pages/common/auth.wxml" />
+<!-- <include src="../../../pages/common/footer.wxml" /> -->

@@ -1,0 +1,19 @@
+<MyHeader bind:back="back" backIcon="{{true}}" ></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="title-box" style="margin: 27rpx 0 38rpx 0;">
+		<view class="title inline">持戒</view>
+		<view class="line inline"></view>
+		<view class="title-item inline" bindtap="changeType" data-id="{{item.id}}" style="color: {{articleId == item.id?'#027AFE':'#989898'}};" wx:for="{{scrollArr}}" wx:key="index">{{item.name}}</view>
+	</view>
+	<view class="title-box" style="margin: 0 0 53rpx 0;">
+		<view class="title inline">精进</view>
+		<view class="line inline"></view>
+		<view class="title-item inline" bindtap="changeType" data-id="{{item.id}}" style="color: {{articleId == item.id?'#027AFE':'#989898'}};" wx:for="{{scrollArr2}}" wx:key="index">{{item.name}}</view>
+	</view>
+	<view class="content">
+		<rich-text nodes="{{info}}"></rich-text>
+	</view>
+</scroll-view>

@@ -1,0 +1,33 @@
+/* components/scroll-number/index.wxss */
+.scroll-number {
+  display: flex;
+  align-items: flex-end;
+}
+.scroll-number-item {
+  color: #0079FE;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin: 0 4rpx;
+  font-family: Microsoft YaHei;
+}
+.number-item {
+  background-color: rgba(0, 121, 254, 0.2);
+  border-radius: 8rpx;
+  width: 28rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+.number-dot {
+  margin: 0 12rpx;
+}
+.scroll-ani {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 2s ease-in-out 0s;
+}

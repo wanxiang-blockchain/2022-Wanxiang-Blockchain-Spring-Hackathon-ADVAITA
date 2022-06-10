@@ -1,0 +1,15 @@
+<MyHeader bind:back="back" backIcon="{{true}}" titleText=''></MyHeader>
+<myLoading wx:if="{{loading}}"></myLoading>
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;" class="scroll-content" scroll-y="true" scroll-into-view="{{isSelect}}">
+	<view class="salt-tips">68条内容</view>
+	<view class="salt-list">
+		<view class="salt-item" wx:for="{{list}}" wx:key="index">
+			<view class="salt-title">{{item.symptom_ft}}</view>
+			<view class="salt-content">矿盐：{{item.prescription}}</view>
+		</view>
+	</view>
+	<view class="salt-tips" style="margin: 68rpx 0;">已显示全部内容</view>
+	<view style="height: 1px;width: 100%;"></view>
+</scroll-view>
+
+<include src="../../../pages/common/auth.wxml" />

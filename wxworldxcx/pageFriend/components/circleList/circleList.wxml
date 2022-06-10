@@ -1,0 +1,196 @@
+<view class="group-item">
+	<!-- {{info.autoplay?'到了':'没到'}}{{index}} -->
+	<!-- 动态列表 -->
+	<block wx:if="{{ type == 1 && !isFocus }}">
+		<!-- 自己的可删 -->
+		<block wx:if="{{user_id == info.user_id}}">
+			<myUserInfo height="80" contentLeft="124" borderLeft="{{0}}" bindchangeUser="changeDel" btnText="删除"
+			btnStyle="background:transparent;color:#999;line-height:56rpx">
+				<view slot="avatar">
+					<image class="" mode="aspectFill" catchtap="goDetail" src="{{info.avatar_url}}" style="height:80rpx;width:80rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+				</view>
+				<view slot="content">
+					<view class="hidden-text" style="margin-top: 0rpx;color: #333;max-width: 400rpx;font-size: 28rpx;">{{info.nickname}}
+						<text style="color:#999;font-size: 22rpx;" wx:if="{{info.location}}">{{info.timeCircle}} {{info.timeOnlyTimes}}</text>
+					</view>
+					<view class="" style="line-height: 14rpx;color: #333;font-size: 26rpx;" wx:if="{{info.location}}">{{info.location}}</view>
+					<view class="" style="line-height: 18rpx;color: #999;font-size: 24rpx;" wx:else>{{info.timeCircle}}
+						{{info.timeOnlyTimes}}</view>
+				</view>
+			</myUserInfo>
+		</block>
+		<block wx:else>
+			<!-- 非自己无按钮 -->
+			<myUserInfo height="80" contentLeft="124" borderLeft="{{0}}">
+				<view slot="avatar">
+					<image class="" mode="aspectFill" catchtap="goDetail" src="{{info.avatar_url}}" style="height:80rpx;width:80rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+				</view>
+				<view slot="content">
+					<view class="hidden-text" style="margin-top: 0rpx;color: #333;max-width: 400rpx;font-size: 28rpx;">{{info.nickname}}
+						<text style="color:#999;font-size: 22rpx;" wx:if="{{info.location}}">{{info.timeCircle}} {{info.timeOnlyTimes}}</text>
+					</view>
+					<view class="" style="line-height: 14rpx;color: #333;font-size: 26rpx;" wx:if="{{info.location}}">{{info.location}}</view>
+					<view class="" style="line-height: 18rpx;color: #999;font-size: 24rpx;" wx:else>{{info.timeCircle}}
+						{{info.timeOnlyTimes}}</view>
+				</view>
+			</myUserInfo>
+		</block>
+	</block>
+	
+	<!-- 火花 有关注 -->
+	<myUserInfo height="80" contentLeft="124" borderLeft="{{0}}" bindchangeUser="triggleFocus" btnText="{{isFocus && info.is_attent == 0 ?'关注':'已关注'}}"
+	 btnStyle="{{isFocus && info.is_attent == 0?'background:transparent;color:#2B86FF;border:1rpx solid #2B86FF;line-height:56rpx':'background:transparent;color:#999;border:1rpx solid #999;line-height:54rpx'}}"
+	 wx:elif="{{type == 1 && isFocus}}">
+		<view slot="avatar">
+			<image class="" mode="aspectFill" catchtap="goDetail" src="{{info.avatar_url}}" style="height:80rpx;width:80rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+		</view>
+		<view slot="content">
+			<view class="hidden-text" style="margin-top: 0rpx;color: #333;max-width: 400rpx;font-size: 28rpx;">{{info.nickname}}
+				<text style="color:#999;font-size: 22rpx;" wx:if="{{info.location}}">{{info.timeCircle}} {{info.timeOnlyTimes}}</text>
+			</view>
+			<view class="" style="line-height: 14rpx;color: #333;font-size: 26rpx;" wx:if="{{info.location}}">{{info.location}}</view>
+			<view class="" style="line-height: 18rpx;color: #999;font-size: 24rpx;" wx:else>{{info.timeCircle}}
+				{{info.timeOnlyTimes}}</view>
+		</view>
+	</myUserInfo>
+	<!-- 动态详情 单条 -->
+	<view wx:else style="margin: 56rpx 0 32rpx;">
+		<myUserInfo height="80" contentLeft="124" borderLeft="{{0}}">
+			<view slot="avatar">
+				<image class="" mode="aspectFill" catchtap="goDetail" src="{{info.avatar_url}}" style="height:80rpx;width:80rpx;left: 32rpx;position: absolute;top: 0;bottom: 0;margin: auto;border-radius: 50%;background-color: #ccc;"></image>
+			</view>
+			<view slot="content">
+				<view class="hidden-text" style="margin-top: 0rpx;color: #333;max-width: 400rpx;font-size: 28rpx;">{{info.nickname}}
+					<text style="color:#999;font-size: 22rpx;" wx:if="{{info.location}}">{{info.timeCircle}} {{info.timeOnlyTimes}}</text>
+				</view>
+				<view class="" style="line-height: 14rpx;color: #333;font-size: 26rpx;" wx:if="{{info.location}}">{{info.location}}</view>
+				<view class="" style="line-height: 18rpx;color: #999;font-size: 24rpx;" wx:else>{{info.timeCircle}}
+					{{info.timeOnlyTimes}}</view>
+			</view>
+		</myUserInfo>
+	</view>
+
+	<!-- 报告 -->
+	<view class="report-box {{type==2?'report-box-detail':''}} {{auth || info.user_id == user_id?'':'sleep-bg'}}" wx:if="{{info.cicleType == 'report'}}"  catchtap="goReportDetail" data-dev="{{info.treport.deviceidentity}}"
+		 data-id="{{info.treport.db_id}}" data-bindid="{{info.treport.treport_bind_user_db_id}}">
+		<view class="report-top" wx:if="{{auth || info.user_id == user_id}}">
+			<text style="vertical-align: top;font-weight: bold;">{{info.treport.count}}</text>
+			<view class="report-small">总分</view>
+		</view>
+		<view class="report-top sleep-bg" wx:else>
+			<text style="vertical-align: top;font-weight: bold;">{{info.treport.sleepqualiscore}}</text>
+			<view class="report-small">睡眠分</view>
+		</view>
+		<view class="report-time {{auth || info.user_id == user_id?'':'sleep-bg'}}">检测日期：{{info.starttime_text}}</view>
+	</view>
+
+	<!-- 动态 -->
+	<block wx:else>
+		<!-- 有图片 -->
+		<view wx:if="{{info.cicleType == 'img'}}">
+			<view class="banner-box">
+				<Carousel imgUrls='{{info.imgArr}}' autoplay="{{false}}" bindchangeIndex="changeIndex" swiperIndex="{{0}}" height="390"></Carousel>
+				
+				<block wx:if="{{isShowFly}}">
+					<!-- <view class="doommview"> -->
+						<block wx:for="{{doommData}}" wx:key="id">
+							<text class="aon" style="color:{{item.color}};left:{{item.left}}px;top:{{item.top}}%;transition: left {{item.time}}s linear;">{{item.text}}</text>
+						</block>
+					<!-- </view> -->
+					<!-- <view class="doommview" style="top: auto;bottom: 0;"> -->
+						<view
+							class="aon aon-left" 
+							style="color:{{moodData.color}};left:{{moodData.left}}px;top:{{moodData.top}}%;text-align: left; direction:rtl; unicode-bidi:bidi-override;transition:{{moodData.left == phoneWidth?'left '+moodData.time+'s linear':'none'}};  ">
+							{{info.message}}
+						</view>
+					<!-- </view> -->
+				</block>
+			</view>
+		</view>
+		<view wx:else>
+		</view>
+	</block>
+	<!-- 纯文字版动态 -->
+	<view wx:if="{{info.message && info.cicleType == 'text'}}" class="msg-box {{info.textOver?'msg-box-active':''}} {{info.textIsShow?'msg-box-auto':''}}"
+	 bindtap="triggleText" style="margin-bottom: 0;">
+		{{info.message}}
+		<view class="msg-more" style="width: {{info.textIsShow?'100rpx':'126rpx'}};bottom: {{info.textIsShow?'0':'-4'}}rpx;" wx:if="{{info.textOver}}">{{ info.textIsShow ? '收起' : '... 展开' }}<text
+			 class="msg-text iconfont iconjiantouxia" style="transform: rotateZ({{info.textIsShow?180:0}}deg);"></text></view>
+	</view>
+	<!-- 工具栏 -->
+	<view class="icon-box" >
+		<!-- 非报告类型 -->
+		<block wx:if="{{info.cicleType != 'report'}}">
+			<view class="group-icon" catchtap="goComfort" data-id="{{info.id}}" data-index="{{index}}">
+				<text class="comfort-icon iconfont icontubiaozhizuomoban {{info.hug_state == 1?'icon-active':''}}"></text>
+			</view>
+			<view class="love-icon" catchtap="goComment" data-id="{{info.id}}" data-index="{{index}}">
+				<text class="comfort-icon iconfont iconbianzubeifen2-01"></text>
+			</view>
+			<block wx:if="{{info.cicleType == 'img'}}">
+				<view class="dot-box">
+					<view class="dot-item {{dotIndex == index?'dot-active':''}}" wx:for="{{info.imgArr}}" wx:key="index"></view>
+				</view>
+				<image class="fly-icon" mode="aspectFill" catchtap="triggleFly" wx:if="{{isShowFly}}" src="https://i.2fei2.com/shop/logo/2021-01-21/16:03:06/6009353aa4cb6.png"></image>
+				<image class="fly-icon" mode="aspectFill" catchtap="triggleFly" wx:else src="https://i.2fei2.com/shop/logo/2021-01-21/16:03:37/600935595351e.png"></image>
+			</block>
+		</block>
+		<block wx:else>
+			<view class="group-icon" catchtap="changeReportMask" style="right: 18rpx;left: auto;">
+				<text class="comfort-icon iconfont iconcaozuo"></text>
+			</view>
+			<view class="report-mask flex-box " wx:if="{{info.showReportMask}}">
+				<view class="report-icon" catchtap="goComfort" data-id="{{info.id}}" data-index="{{index}}">
+					<text class="comfort-icon iconfont icontubiaozhizuomoban" style="color: #fff;"></text>
+					<text class="report-text" style="vertical-align: middle;">拥抱</text>
+				</view>
+				<view class="report-icon" catchtap="goComment" data-id="{{info.id}}" data-index="{{index}}">
+					<text class="comfort-icon iconfont iconbianzubeifen2-01" style="color: #fff;"></text>
+					<text class="report-text">评论</text>
+				</view>
+			</view>
+		</block>
+	</view>
+	<!-- 拥抱名单 -->
+	<view class="comfort-num " wx:if="{{info.hug_num >0}}">{{info.hug_num}}次拥抱</view>
+	<view class="comfort-detail" wx:if="{{info.myHugList.length>0}}">
+		<text class="iconfont icontubiaozhizuomoban" style="font-size: 24rpx;margin-right: 10rpx;"></text>
+		<text wx:for="{{info.myHugList}}" wx:key="index">{{index == 0 ?'':'，'}}{{item}}</text>
+	</view>
+	
+	<!-- 图片版动态 -->
+	<view wx:if="{{info.message && info.cicleType == 'img'}}" class="msg-box {{info.textOver?'msg-box-active':''}} {{info.textIsShow?'msg-box-auto':''}}"
+	 bindtap="triggleText">
+		{{info.message}}
+		<view class="msg-more" style="width: {{info.textIsShow?'100rpx':'126rpx'}};" wx:if="{{info.textOver}}">{{ info.textIsShow ? '收起' : '... 展开' }}<text
+			 class="msg-text iconfont iconjiantouxia" style="transform: rotateZ({{info.textIsShow?180:0}}deg);"></text></view>
+	</view>
+	<!-- 列表式评论 -->
+	<view class="comfort-num comment-num" wx:if="{{info.dynamic_remark_list.length >0}}">共{{info.dynamic_remark_list.length}}条评论</view>
+	<view class="conmment" wx:if="{{info.treport && info.dynamic_remark_list.length>0}}">
+		<view class="conmment-item" catchtap="goComment" bindlongpress='longPressComment' data-iteminfo="{{items}}"
+		 data-reuid="{{items.user_id}}" data-reid="{{items._id}}" data-id="{{info.id}}" data-index="{{index}}" data-i="{{i}}"
+		 wx:for="{{info.dynamic_remark_list}}" wx:key="i" wx:for-index="i" wx:for-item="items">
+			<block wx:if="{{info.isCommentMore || i == 0 || i==1}}">
+				<text class="conmment-name">{{items.userInfo.nickname}}</text>
+				<text wx:if="{{items.isReply}}">回复</text>
+				<text wx:if="{{items.isReply}}" class="conmment-name">{{items.replyName}}</text>
+				<text>: {{items.remark}}</text>
+				<view class="del-box" wx:if="{{items.active}}">
+					<view class="del-text" catchtap="delComment" data-cid="{{items._id}}">删除</view>
+					<view class="m-mask" style='z-index: 1;background:transparent;' catchtap="longPressComment"></view>
+				</view>
+			</block>
+		</view>
+	</view>
+	<view wx:if="{{info.dynamic_remark_list.length>2 && !info.isCommentMore}}" bindtap="triggleComment" class="comfort-num comment-num"
+	 style="color: #2B86FF;">展开更多评论</view>
+	
+	<!-- 添加评论 -->
+	<view class="add-comment" wx:if="{{info.commentMask}}">
+		<image class="add-icon" mode="aspectFill" src="{{myAvatar}}"></image>
+		<input class="comment-input" value="{{comment}}" bindinput='getInputText' bindconfirm='submit' type="text"
+		 placeholder="{{replayName?'回复'+replayName:'添加评论…'}}" placeholder-style="color: #D3D3D3;" adjust-position="{{false}}" />
+		<text class="conmment-btn" bindtap="submit">发送</text>
+	</view>
+</view>

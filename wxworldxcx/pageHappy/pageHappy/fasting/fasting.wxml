@@ -1,0 +1,61 @@
+<MyHeader bind:back="back" backIcon="{{true}}"></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+
+<view class="audio-box">
+	<myAudio wx:if="{{playInfo}}" info="{{playInfo}}"
+	changeAudio="{{activeId}}" type="1" 
+	isPause="{{playInfo.state}}" 
+	isAuto="false" 
+	bindgetLoading="getLoading" 
+	bindclose="close"
+	 bindupdateErr="updateErr"></myAudio>
+</view>
+
+
+<!-- <myAudio 
+class="audio-box" 
+@changeMusic="changeMusic" 
+@closeList="closeList" 
+@getPlayerState="getPlayerState" 
+@getLoading="getLoading" 
+:changeAudio="activeId" 
+:isPause="playInfo.state" 
+ v-if="type !=4"></myAudio> -->
+
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<view class="classic-box">
+		<image class="classic-img " src="https://i.2fei2.com/goods/logo/2021-08-03/16:57:29/610904f90f4fc.png" mode="aspectFill"></image>
+		<view class="classic-content">
+			<view class="classic-title">吴奇伟、洪容华老师</view>
+			<view class="classic-intro">陪伴式断食营</view>
+		</view>
+	</view>
+	<view class="classic-score" bindtap="goChat">加入断食群聊 <view class="more-icon inline iconfont iconjiantouyou"></view>
+	</view>
+	<view class="today-item"
+	 wx:for="{{video_list}}" wx:key="index" bindtap="goVideoSingle" data-item="{{item}}" data-index="{{index}}">
+		<view class="today-active"></view>
+		<view class="today-num m-vertical">{{ index + 1 }}</view>
+		<view class="today-content">
+			<view class="today-title">{{ item.title }}</view>
+			<view class="today-progress">{{ item.teacher_name }}</view>
+		</view>
+		<view class="state-btn m-vertical">
+			<view class="audio-start iconfont iconshipin1" ></view>
+		</view>
+	</view>
+	
+	<view class="fasting-title">断食营</view>
+	<view class="today-item" style="margin-bottom: 30rpx;"
+	 wx:for="{{article_list}}" wx:key="index" bindtap="goArticle" data-item="{{item}}">
+		<view class="today-content" style="left: 38rpx;">
+			<view class="today-title" style="font-size: 24rpx;">{{ item.title }}</view>
+			<view class="today-intro">{{ item.intro }}</view>
+		</view>
+		<view class="state-btn m-vertical">
+			<view class="audio-start iconfont iconjiantouyou" style="font-size: 18rpx;"></view>
+		</view>
+	</view>
+</scroll-view>
+

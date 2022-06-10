@@ -1,0 +1,104 @@
+<MyHeader bind:back="back" backIcon="{{true}}"></MyHeader>
+<myLoading wx:if="{{isLoading}}"></myLoading>
+
+
+<myAudio wx:if="{{playInfo}}" info="{{playInfo}}" 
+changeAudio="{{activeId}}" type="1" 
+isPause="{{playInfo.state}}" 
+isAuto="false" 
+bindgetLoading="getLoading" 
+bindclose="close"
+bindupdateErr="updateErr"></myAudio>
+
+<scroll-view style="height: calc({{windowHeight}}px - {{statusBarHeight}}px - {{navHeight}}px); width:{{windowWidth}}px;position:relative;"
+ scroll-y="true" class="scroll-h">
+	<block wx:if="{{type == 1}}">
+		<view class="" bindtap="startALL">
+			<view class="music-all inline iconfont iconbofang"></view>
+			<view class="music-title inline" >播放全部</view>
+			<view class="music-num inline">({{list.length}})</view>
+		</view>
+	</block>
+	<block wx:if="{{type == 2}}">
+		<view class="classic-box">
+			<image class="classic-img" src="https://i.2fei2.com/goods/logo/2021-07-30/09:33:06/610356d2b0113.png" mode="aspectFill"></image>
+			<view class="classic-content">
+				<view class="classic-title">邱显峰老师</view>
+				<view class="classic-intro">瑜伽四大部经典暨道德经语音</view>
+			</view>
+		</view>
+		<view class="classic-score">我的积分 {{score}} <view class="more-icon inline iconfont iconjiantouyou"></view>
+		</view>
+	</block>
+	<!-- type==1梵唱-->
+	<block wx:if="{{type == 1}}">
+		<view id="{{'indexes-' + item.id}}" class="today-item {{activeId == item.id && item.state?'playing' :''}}"
+		 wx:for="{{list}}" wx:key="index">
+			<view class="today-active"></view>
+			<view class="today-num m-vertical">{{ index + 1 }}</view>
+			<view class="today-content">
+				<view class="today-title">{{ item.title }}</view>
+				<view class="today-progress">{{ item.intro }}</view>
+			</view>
+			<view class="today-music">
+				{{ item.duration }}
+			</view>
+			<view class="state-btn m-vertical" bindtap="playVideo" data-item="{{item}}" data-index="{{index}}">
+				<block wx:if="{{activeId == item.id}}">
+					<view class="audio-start iconfont iconbofang1" wx:if="{{!item.state && !videoLoading}}"></view>
+					<view class="audio-start iconfont iconzanting1" wx:if="{{item.state && !videoLoading}}"></view>
+					<text class="audio-start iconfont iconjiazai" wx:if="{{videoLoading}}"></text>
+				</block>
+				<block wx:else>
+					<view class="audio-start iconfont iconbofang1" wx:if="{{!item.state}}"></view>
+					<view class="audio-start iconfont iconzanting1" wx:if="{{item.state}}"></view>
+				</block>
+			</view>
+		</view>
+	</block>
+	<!-- type==2邱老师-->
+	<block wx:if="{{type == 2 }}">
+		<view id="{{'indexes-' + item.article_id}}" class="today-item {{activeId == item.article_id && item.state?'playing' :''}}"
+		 wx:for="{{list}}" wx:key="index">
+			<view class="today-active"></view>
+			<view class="today-num m-vertical">{{ index + 1 }}</view>
+			<view class="today-content">
+				<view class="today-title">{{ item.intro }}</view>
+				<view class="today-progress">{{ item.author }}</view>
+			</view>
+			<view class="today-music">
+				{{ item.voice_duration }}
+			</view>
+			<view class="state-btn m-vertical" wx:if="{{item.is_already_dissolve == 1}}" bindtap="playVideo" data-item="{{item}}"
+			 data-index="{{index}}">
+				<block wx:if="{{activeId == item.article_id}}">
+					<view class="audio-start iconfont iconbofang1" wx:if="{{!item.state && !videoLoading}}"></view>
+					<view class="audio-start iconfont iconzanting1" wx:if="{{item.state && !videoLoading}}"></view>
+					<text class="audio-start iconfont iconjiazai" wx:if="{{videoLoading}}"></text>
+				</block>
+				<block wx:else>
+					<view class="audio-start iconfont iconbofang1" wx:if="{{!item.state}}"></view>
+					<view class="audio-start iconfont iconzanting1" wx:if="{{item.state}}"></view>
+				</block>
+			</view>
+			<view class="state-btn m-vertical lock" wx:else bindtap="unLockVideo" data-item="{{item}}" data-index="{{index}}">
+				<view class="audio-start iconfont iconsuo"></view>
+			</view>
+		</view>
+	</block>
+	<view class="no-more" wx:if="list.length === 0">-- 暂无数据 --</view>
+</scroll-view>
+
+
+<!-- 积分兑换 -->
+<messageboxOne wx:if="{{showScoreMask}}" title="是否花费100积分解锁本集?" maskType="1" bottomname="解锁" height="170" bindcancel="hideMask" bindconfirm="confirmLock">
+	<view slot="content1">
+		<view class="mask-tips">当前积分：{{ score }}</view>
+	</view>
+</messageboxOne>
+
+<messageboxOne wx:if="{{earnScoreMask}}" title="您的积分不足" maskType="1" bottomname="去赚取" height="170" bindcancel="hideMask" bindconfirm="goEarn">
+	<view slot="content1">
+		<view class="mask-tips">当前积分：{{ score }}</view>
+	</view>
+</messageboxOne>

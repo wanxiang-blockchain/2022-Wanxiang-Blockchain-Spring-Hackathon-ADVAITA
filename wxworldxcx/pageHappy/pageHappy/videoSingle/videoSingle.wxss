@@ -1,0 +1,132 @@
+
+.scroll-h{
+	box-sizing: border-box;
+	background: #fff;
+}
+/* 视频 */
+.myVideo {
+	width:666rpx;
+	height:416rpx;
+	margin: 0 auto;
+	display: block;
+}
+.today-task {
+	padding: 16rpx 0;
+	min-height: 1000rpx;
+	/* margin-top: 95rpx; */
+	background-color: #fff;
+	border-radius: 50rpx 50rpx 0 0;
+	overflow: hidden;
+}
+/* 视频详情 */
+.recommend-box {
+	position: relative;
+}
+.recommend-title {
+	font-size: 30rpx;
+	font-weight: bold;
+	color: rgba(40, 40, 40, 1);
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.teacher-box {
+	height: 60rpx;
+	position: relative;
+	margin-top: 24rpx;
+}
+.teacher-img {
+	width: 60rpx;
+	height: 60rpx;
+}
+.teacher-name {
+	display: inline-block;
+	font-size: 28rpx;
+	color: rgba(3, 3, 3, 1);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	margin-left: 20rpx;
+}
+.recommend-top {
+	padding: 0 40rpx;
+	background-color: #fff;
+}
+
+.recommend-intro {
+	font-size: 30rpx;
+	color: #9AAFCA;
+	margin-top: 22rpx;
+	padding-bottom: 30rpx;
+}
+
+.recommend-block {
+	display: inline-block;
+}
+
+/* 课程内容 */
+.tabBottom {
+	border-top: 16rpx solid #f8f8f8;
+	background-color: #fff;
+}
+
+/* 视频回放 */
+.blurBox {
+	filter: blur(5px);
+}
+.video-content {
+	padding: 30rpx;
+	background-color: #f8f8f8;
+}
+.video-title {
+	padding: 10rpx 0 30rpx;
+	font-size: 36rpx;
+	font-weight: bold;
+}
+.videoBox {
+	background: rgba(255, 255, 255, 1);
+	box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.1);
+	border-radius: 16px;
+	margin-bottom: 30rpx;
+}
+.video-item {
+	height: 187rpx;
+	padding: 0 30rpx;
+	border-bottom: 1px solid #e8e8e8;
+	position: relative;
+}
+.video-name {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: rgba(3, 3, 3, 1);
+	padding-top: 28rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.videoBox .active .video-name {
+	color: #ff790d;
+}
+.video-teacher {
+	font-size: 24rpx;
+	color: rgba(77, 77, 77, 1);
+	padding-top: 14rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.video-time {
+	font-size: 20rpx;
+	color: rgba(153, 153, 157, 1);
+	padding-top: 18rpx;
+}
+.video-icon {
+	font-size: 52rpx;
+	position: absolute;
+	right: 28rpx;
+	bottom: 22rpx;
+	color: #99999d;
+}
+.videoBox .active .video-icon {
+	color: #ff790d;
+}

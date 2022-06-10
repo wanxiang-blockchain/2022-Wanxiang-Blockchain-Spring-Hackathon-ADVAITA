@@ -1,0 +1,75 @@
+
+.scroll-h{
+	box-sizing: border-box;
+}
+/* 视频列表 */
+.today-task {
+	padding: 16rpx 0;
+	min-height: 1000rpx;
+	/* margin-top: 95rpx; */
+	background-color: #fff;
+	border-radius: 50rpx 50rpx 0 0;
+	overflow: hidden;
+}
+.today-item {
+	height: 188rpx;
+	position: relative;
+}
+.today-img {
+	width: 140rpx;
+	height: 140rpx;
+	background: #ADADAD;
+	border-radius: 8rpx;
+	position: absolute;
+	left: 38rpx;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.today-content {
+	width: 324rpx;
+	height: 88rpx;
+	position: absolute;
+	left: 200rpx;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.today-line {
+	width: 324rpx;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.today-title {
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #000;
+}
+.today-name {
+	font-size: 20rpx;
+	color: #989898;
+	margin-top: 6rpx;
+}
+.today-btn {
+	width: 104rpx;
+	height: 52rpx;
+	line-height: 52rpx;
+	background: #F8F8F8;
+	font-size: 24rpx;
+	font-weight: bold;
+	border-radius: 26rpx;
+	text-align: center;
+	color: #027AFE;
+	position: absolute;
+	right: 56rpx;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.no-more {
+	padding: 20rpx;
+	color: #999;
+	text-align: center;
+	font-size: 24rpx;
+}

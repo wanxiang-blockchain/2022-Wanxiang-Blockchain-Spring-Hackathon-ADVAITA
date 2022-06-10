@@ -1,0 +1,11 @@
+{
+	"usingComponents": {
+		"MyHeader": "/components/MyHeader/MyHeader",
+		"login":"/components/login/login",
+		"myUserInfo": "/components/userInfo/userInfo",
+		"validData": "/components/validData/validData",
+		"myLoading": "/components/myLoading/myLoading",
+		"circleList": "/pageFriend/components/circleList/circleList"
+	},
+	"navigationBarTextStyle": "black"
+}

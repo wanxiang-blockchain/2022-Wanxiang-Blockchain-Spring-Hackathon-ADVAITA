@@ -1,0 +1,49 @@
+<view class="cu-load {{isLoad ? 'loading' : 'over'}}" wx:if="{{isLoad}}" >首次加载需较长时间，</view>
+<scroll-view
+	scroll-y
+	class="indexes"
+	scroll-into-view="{{listCurID}}"
+	style="height:calc(100% - 136rpx)"
+	scroll-with-animation="true"
+	enable-back-to-top="true"
+>
+	<block wx:for="{{list}}" wx:key="index">
+		<view class="{{'indexItem-' + item[0]}}" data-index="{{item[0]}}">
+			<view class="user-title padding" id="indexes-{{item[0]}}" wx:if="{{item[1].length > 0}}">{{ item[0] }}</view>
+			<view class="cu-list  no-padding" wx:if="{{item[1].length > 0}}">
+				<view class="cu-item" id="indexes-{{items.user_id}}" wx:for="{{item[1]}}" wx:key="sub" wx:for-item="items" wx:for-index="sub" bindtap="goDetail" data-lable="{{item[0]}}" data-num="{{sub}}">
+					<text class="cu-active iconfont icondui"  wx:if="{{items.active}}"></text>
+					<text class="cu-icon" wx:else></text>
+					<view class="cu-avatar lg" style="background-image:url({{items.thumb_avatar}}"></view>
+					<view class="list-name">{{ items.name }}</view>
+					<view class="cu-border"></view>
+				</view>
+			</view>
+		</view>
+	</block>
+	<view class="no-more" wx:if="{{list.length == 0}}">-- 暂无数据 --</view>
+	<view class="" style="height: 160rpx;width: 100%;"></view>
+</scroll-view>
+<view class="indexBar" wx:if="{{course_user_id!=1}}">
+	<view class="indexBar-box" bindtouchstart="tStart" bindtouchend="tEnd" bindtouchmove="tMove">
+		<view class="indexBar-item" wx:for="{{listRight}}" wx:key="index"  id="{{index}}" bindtouchstart="getCur" bindtouchend="setCur">{{ item.name }}</view>
+	</view>
+</view>
+<block wx:if="{{course_user_id == 1}}">
+	<block wx:for="{{demoList}}" wx:key="index">
+		<view class="indexItem-" >
+			<view class="cu-list  no-padding">
+				<view class="cu-item">
+					<view class="cu-avatar lg" style="background-image:url({{item.thumb_avatar }}"></view>
+					<view class="list-name">{{ item.name }}</view>
+					<view class="action">
+						<text class="msg-icon iconfont iconqiyeweixin" style="color: #999;"></text>
+					</view>
+				</view>
+			</view>
+		</view>
+	</block>
+</block>
+
+<!--选择显示-->
+<view wx:if="{{!hidden}}" class="indexToast">{{ listCur }}</view>

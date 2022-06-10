@@ -1,0 +1,197 @@
+.scroll-h{
+	background: #fff;
+}
+.m-vertical {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.inline{
+	display: inline-block;
+}
+/* 音乐 */
+.music-all{
+	color: #027AFE;
+	font-size: 36rpx;
+	vertical-align: middle;
+	margin: 0 22rpx 0 24rpx;
+}
+.music-title{
+	font-size: 28rpx;
+	font-weight: bold;
+	vertical-align: middle;
+}
+.music-num{
+	font-size: 20rpx;
+	color: #989898;
+	margin-left: 15rpx;
+}
+/* 经典 */
+.classic-box{
+	height: 174rpx;
+	position: relative;
+}
+.classic-img{
+	width: 142rpx;
+	height: 142rpx;
+	border-radius: 8rpx;
+	background-color: #ccc;
+	margin: 16rpx 0 0 38rpx;
+}
+.classic-content{
+	height: 142rpx;
+	position: absolute;
+	left: 224rpx;
+	top: 0;
+}
+.classic-title{
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #000000;
+	margin-top: 42rpx;
+}
+.classic-intro{
+	font-size: 24rpx;
+	color: #000000;
+}
+.classic-score{
+	height: 46rpx;
+	line-height: 66rpx;
+	margin-left: 38rpx;
+	font-size: 24rpx;
+	color: #9C9C9C;
+}
+.more-icon{
+	height: 68rpx;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 18rpx;
+}
+
+/* 播放列表 */
+.audio-box{
+	position: absolute;
+	left: -100%;
+	top: 0;
+}
+.today-task {
+	padding: 22rpx 0;
+	min-height: 500rpx;
+	/* margin-top: 95rpx; */
+	background-color: #fff;
+	border-radius: 50rpx 50rpx 0 0;
+	overflow: hidden;
+}
+.today-item {
+	width: 750rpx;
+	height: 104rpx;
+	position: relative;
+}
+.playing .today-active{
+	width: 6rpx;
+	height: 60rpx;
+	background: #027AFE;
+	border-radius: 3rpx;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.today-num {
+	width: 62rpx;
+	text-align: center;
+	left: 18rpx;
+	color: #989898;
+	font-size: 27rpx;
+}
+.playing .today-num {
+	color: #027AFE;
+}
+.today-content {
+	width: 380rpx;
+	height: 70rpx;
+	position: absolute;
+	left: 83rpx;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.today-title {
+	font-size: 27rpx;
+	color: #000;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.playing .today-title {
+	color: #027AFE;
+}
+
+.today-progress {
+	font-size: 19rpx;
+	color: #989898;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.playing .today-progress {
+	color: #027AFE;
+}
+.today-music {
+	line-height: 104rpx;
+	font-size: 19rpx;
+	color: #989898;
+	position: absolute;
+	left: 564rpx;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+.playing .today-music {
+	color: #027AFE;
+}
+
+.playing .item-icon {
+	background: linear-gradient(180deg, rgba(255, 191, 49, 1) 0%, rgba(255, 139, 22, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.state-btn {
+	
+	right:38rpx;
+}
+
+.audio-start {
+	font-size: 42rpx;
+	color: #6D7278;
+}
+.playing .audio-start{
+	color: #027AFE;
+}
+.lock {
+	width: 42rpx;
+	height: 42rpx;
+	line-height: 42rpx;
+	text-align: center;
+	background: #E6E6E6;
+	border-radius: 50%;
+}
+.lock .audio-start{
+	font-size: 23rpx;
+	color: #fff;
+}
+.all-start {
+	font-size: 24rpx;
+	color: #fff;
+	margin-right: 15rpx;
+	background: linear-gradient(180deg, rgba(255, 191, 49, 1) 0%, rgba(255, 139, 22, 1) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.no-more {
+	padding: 20rpx;
+	color: #999;
+	text-align: center;
+	font-size: 24rpx;
+}

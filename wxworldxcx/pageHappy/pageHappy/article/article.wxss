@@ -1,0 +1,29 @@
+
+.scroll-h{
+	box-sizing: border-box;
+}
+.common-title{
+	text-align: center;
+	font-weight: bold;
+	margin-top: 42rpx;
+}
+
+.article-content {
+		padding:60rpx 60rpx 120rpx;
+		font-size: 28rpx;
+		line-height: 56rpx;
+	}
+.article-content /deep/ h4{
+	font-size: 30rpx;
+	font-weight: bold;
+	margin-bottom: 18rpx;
+}
+.article-content /deep/ p{
+		margin-bottom: 30rpx;
+	}
+.article-content /deep/ img{
+		width: 100% !important;
+		margin-bottom: 30rpx;
+	}
+	
+	 uni-rich-text img{ max-width: 100% !important;}
