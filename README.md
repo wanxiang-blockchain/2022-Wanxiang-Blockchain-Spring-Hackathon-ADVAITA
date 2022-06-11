@@ -17,7 +17,7 @@ GCYY代表参数之间的互动和所研究参数的整合，表征所研究参�
 ADVAITA愿景是搭建一个自我了悟、社会服务的元宇宙，共同推动人类身心灵整体健康生活方式，应对日益增长的医疗费用、身心问题和由此引发的社会问题。
 
 
-PPT：https://i.2fei2.com/%E9%9D%9E%E4%BA%8C%E4%B8%96%E7%95%8C-%E5%9B%BD%E9%99%85%E7%89%88.pdf
+PPT：https://i.2fei2.com/ADVAITA.pdf
 
 DEMO介绍：https://i.2fei2.com/%E9%9D%9E%E4%BA%8C-%E9%BB%91%E5%AE%A2%E6%9D%BE%E6%B8%B8%E6%88%8Fdemo.mp4
 
